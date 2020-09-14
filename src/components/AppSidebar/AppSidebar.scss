@@ -1,0 +1,63 @@
+.app-sidebar {
+  position: sticky;
+  top: var(--navbar-height);
+  width: 100%;
+  max-width: 120px;
+  height: calc(100vh - var(--navbar-height));
+  flex: 0 0 120px;
+  background-color: #fff;
+  border-radius: 0 0.75rem 0.75rem 0;
+  box-shadow: 0 3px 30px rgba(0, 0, 0, 0.1), 0 3px 20px rgba(0, 0, 0, 0.1);
+
+  nav {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  li {
+    margin-bottom: 0;
+  }
+
+  .nav-item {
+    position: relative;
+    display: flex;
+    height: 120px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary);
+    font-size: 14px;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 6px;
+      height: 90px;
+      border-bottom-right-radius: 6px;
+      border-top-right-radius: 6px;
+      content: '';
+      transform: translateY(-50%);
+    }
+
+    .icon {
+      width: 35px;
+      height: 35px;
+      margin-bottom: 6px;
+      fill: var(--secondary);
+    }
+
+    &:hover,
+    &.active {
+      color: var(--primary);
+
+      .icon {
+        fill: var(--primary);
+      }
+    }
+
+    &.active::before {
+      background-color: var(--primary);
+    }
+  }
+}

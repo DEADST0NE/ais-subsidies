@@ -1,0 +1,25 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import AppHeader from '../AppHeader';
+import AppSidebar from '../AppSidebar';
+
+import './AppLayout.scss';
+
+const AppLayout = ({ children }) => (
+  <div className="app">
+    <AppHeader />
+    <section className="app-container">
+      <AppSidebar />
+      <main className="app-content">
+        <div className="app-content-body">{children}</div>
+      </main>
+    </section>
+  </div>
+);
+
+AppLayout.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export default AppLayout;
