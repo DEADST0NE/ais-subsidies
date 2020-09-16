@@ -5,7 +5,7 @@ import { Col, Form } from 'react-bootstrap';
 
 import './InputField.scss';
 
-const InputField = ({ size, name, type, placeholder, error, col }) => {
+const InputField = ({ size, name, type, placeholder, error, col, Ref }) => {
   return (
     <Form.Group as={Col} md={col} controlId={name}>
       <Form.Control
@@ -14,6 +14,7 @@ const InputField = ({ size, name, type, placeholder, error, col }) => {
         name={name}
         type={type}
         placeholder={placeholder}
+        ref={Ref}
       />
       {Object.keys(error).length ? <p className="is-invalid-text mb-0">{error.message}</p> : ''}
     </Form.Group>
@@ -26,6 +27,7 @@ InputField.defaultProps = {
   placeholder: '',
   error: {},
   col: '12',
+  Ref: () => {},
 };
 
 InputField.propTypes = {
@@ -39,6 +41,7 @@ InputField.propTypes = {
     ref: PropTypes.instanceOf(Element),
   }),
   col: PropTypes.string,
+  Ref: PropTypes.func,
 };
 
 export default InputField;

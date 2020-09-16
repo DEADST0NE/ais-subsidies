@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
+import SearchInput from '../generic/SearchInput';
 import sidebarBurgerShow from '../../store/sidebar/actions';
 import Icon from '../generic/Icon';
 import HeaderUser from '../HeaderUser';
@@ -35,10 +36,8 @@ const AppHeader = () => {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-between">
-        <Nav>
-          <Nav.Link as={NavLink} to="/new-case">
-            Новое обращение
-          </Nav.Link>
+        <Nav className="global-search">
+          <SearchInput placeholder="Поиск по лицевому счету ..." />
         </Nav>
         <Nav>
           <HeaderUser />
