@@ -5,7 +5,7 @@ import AppLayout from '../components/AppLayout';
 
 import LoadingIndicator from '../components/generic/LoadingIndicator';
 
-const DocumentsPage = lazy(() => import('./documents-page'));
+const HomePage = lazy(() => import('./home-page'));
 
 const AppView = () => (
   <AppLayout>
@@ -13,7 +13,7 @@ const AppView = () => (
       <Suspense fallback={<LoadingIndicator />}>
         <Redirect to="/home" exact />
         <Route path="/home">
-          <DocumentsPage />
+          <HomePage />
         </Route>
       </Suspense>
     </Switch>

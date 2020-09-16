@@ -17,14 +17,16 @@
     "react-custom-scrollbars": "^4.2.1",
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.8.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "react-select": "^3.1.0",
     "react-text-mask": "^5.4.3",
     "react-toastify": "^6.0.5",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "sass": "^1.26.10",
     "yup": "^0.29.1"
   },
   "scripts": {
@@ -68,5 +70,9 @@
     "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.18.0"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/DEADST0NE/ais-subsidies.git",
+  "author": "Ruslan <deadstone@list.ru>",
+  "license": "MIT"
 }

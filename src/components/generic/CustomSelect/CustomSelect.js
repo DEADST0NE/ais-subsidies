@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Field } from 'formik';
-import Form from 'react-bootstrap/Form';
+import { Form, Col } from 'react-bootstrap';
 import Select from 'react-select';
 
-const CustomSelect = ({ name, data, label, placeholder, isLoading, isDisabled, onChange }) => (
-  <Field name={name}>
-    {({ field, meta }) => (
+import './CustomSelect.scss';
+
+const CustomSelect = ({ name, data, label, placeholder, isLoading, isDisabled, error, col }) => {
+  return (
+    <Form.Group as={Col} md={col}>
       <div className="custom-select2">
         <Select
-          className={meta.touched && meta.error ? 'is-invalid' : ''}
+          className={Object.keys(error).length && 'is-invalid'}
           classNamePrefix="react-select"
-          name={field.name}
+          name={name}
           options={data}
-          value={field.value}
-          onChange={onChange}
           placeholder={placeholder}
           isClearable="true"
           isLoading={isLoading}
@@ -23,19 +22,19 @@ const CustomSelect = ({ name, data, label, placeholder, isLoading, isDisabled, o
         />
 
         <Form.Label>{label}</Form.Label>
-        <Form.Control.Feedback className="invalid-tooltip" type="invalidd">
-          {meta.error}
-        </Form.Control.Feedback>
+        {Object.keys(error).length ? <p className="is-invalid-text mb-0">{error.message}</p> : ''}
       </div>
-    )}
-  </Field>
-);
+    </Form.Group>
+  );
+};
 
 CustomSelect.defaultProps = {
   data: [],
   placeholder: 'Выберите из вариантов',
   isLoading: false,
   isDisabled: false,
+  error: {},
+  col: '12',
 };
 
 CustomSelect.propTypes = {
@@ -45,7 +44,12 @@ CustomSelect.propTypes = {
   placeholder: PropTypes.string,
   isLoading: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
+  error: PropTypes.shape({
+    message: PropTypes.string,
+    type: PropTypes.string,
+    ref: PropTypes.instanceOf(Element),
+  }),
+  col: PropTypes.string,
 };
 
 export default CustomSelect;
