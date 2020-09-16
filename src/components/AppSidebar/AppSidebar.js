@@ -7,19 +7,39 @@ import './AppSidebar.scss';
 
 const NAV_ITEMS = [
   {
-    label: 'Документы',
-    icon: 'employees',
-    link: '/documents',
+    label: 'Главная',
+    icon: 'home',
+    link: '/Home',
   },
   {
-    label: 'Услуги',
-    icon: 'services',
-    link: '/services',
+    label: 'Справочники',
+    icon: 'directory',
+    link: '/Directory',
   },
   {
-    label: 'СМЭВ',
-    icon: 'smev',
-    link: '/smev',
+    label: 'Журналы',
+    icon: 'journal',
+    link: '/Journal',
+  },
+  {
+    label: 'Отчеты',
+    icon: 'reports',
+    link: '/Reports',
+  },
+  {
+    label: 'Заявки с ЕПГУ',
+    icon: 'applications',
+    link: '/Applications',
+  },
+  {
+    label: 'Ошибки в ЕГИССО',
+    icon: 'error',
+    link: '/Errors',
+  },
+  {
+    label: 'Настройки',
+    icon: 'settings',
+    link: '/Settings',
   },
 ];
 

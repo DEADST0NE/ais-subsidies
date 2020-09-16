@@ -1,7 +1,7 @@
 import React from 'react';
 
-import LoginForm from '../components/LoginForm';
+import Login from '../components/Login';
 
-const LoginPage = () => <LoginForm />;
+const LoginPage = () => <Login />;
 
 export default LoginPage;

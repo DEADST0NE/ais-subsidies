@@ -11,7 +11,7 @@ import AppView from '../../pages';
 import LoginPage from '../../pages/login-page';
 import NotFoundPage from '../../pages/not-found-page';
 
-import PrivateRoute from '../generic/PrivateRoute';
+// import PrivateRoute from '../generic/PrivateRoute';
 
 import { getAccessToken } from '../../services/authService';
 import { setUserData } from '../../store/user/actions';
@@ -39,9 +39,9 @@ const App = () => {
             <LoginPage />
           </Route>
 
-          <PrivateRoute path="/">
+          <Route path="/">
             <AppView />
-          </PrivateRoute>
+          </Route>
 
           <Route>
             <NotFoundPage />

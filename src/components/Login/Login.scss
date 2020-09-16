@@ -1,0 +1,64 @@
+.login-form {
+  background-color: #c7c3be;
+  &-card {
+    overflow: hidden;
+    border: 0;
+    border-radius: 27.5px;
+    box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+
+    form {
+      max-width: 350px;
+      input {
+        height: 43px;
+        min-height: 45px;
+        padding: 15px 25px;
+        border: 1px solid #d5dae2;
+        margin-bottom: 20px;
+        font-size: 13px;
+        font-weight: normal;
+        line-height: 15;
+      }
+      button {
+        display: flex;
+        height: 45px;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Cuprum-Bold';
+      }
+    }
+
+    .col-md-7 {
+      background-color: #fff;
+    }
+
+    &-body {
+      padding: 60px 60px 60px 60px;
+    }
+
+    &-logo {
+      font-family: 'Cuprum-Bold';
+      svg {
+        width: 45px;
+        height: 45px;
+      }
+      h1 {
+        font-size: 2.5em;
+      }
+    }
+
+    &-description {
+      color: #3a3939;
+      font-size: 20px;
+      font-weight: normal;
+    }
+  }
+  .forgot-password-link {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 800px) {
+  .login-form-card-img {
+    display: none;
+  }
+}

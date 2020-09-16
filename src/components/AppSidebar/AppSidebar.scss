@@ -27,7 +27,9 @@
     justify-content: center;
     color: var(--secondary);
     font-size: 14px;
-
+    span {
+      text-align: center;
+    }
     &::before {
       position: absolute;
       top: 50%;

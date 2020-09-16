@@ -1,9 +1,22 @@
 .app-header {
   background-color: var(--navbar-bg);
-
   .logo {
-    display: inline-block;
-    vertical-align: top;
+    display: flex;
+    align-items: center;
+    p {
+      color: #ffffffcc;
+      font-family: 'Cuprum-Regular';
+      font-size: 27px;
+    }
+    svg {
+      width: 35px;
+      height: 35px;
+    }
+    &:hover {
+      p {
+        color: #fff;
+      }
+    }
   }
 
   .navbar-nav {
