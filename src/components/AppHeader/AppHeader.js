@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-import SearchInput from '../generic/SearchInput';
+import GlobalSearchInput from '../generic/GlobalSearchInput';
 import sidebarBurgerShow from '../../store/sidebar/actions';
 import Icon from '../generic/Icon';
-import HeaderUser from '../HeaderUser';
+import HeaderUser from '../Header_User';
 
 import './AppHeader.scss';
 
@@ -37,7 +37,7 @@ const AppHeader = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-between">
         <Nav className="global-search">
-          <SearchInput placeholder="Поиск по лицевому счету ..." />
+          <GlobalSearchInput placeholder="Поиск по лицевому счету ..." />
         </Nav>
         <Nav>
           <HeaderUser />

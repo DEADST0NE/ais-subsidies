@@ -5,10 +5,10 @@ export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
 export const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
-// Сотрудники
-export const DOCUMENTS_GET_REQUEST = 'DOCUMENTS_GET_REQUEST';
-export const DOCUMENTS_GET_SUCCESS = 'DOCUMENTS_GET_SUCCESS';
-export const DOCUMENTS_GET_ERROR = 'DOCUMENTS_GET_ERROR';
+// Запрос реестра банков
+export const BANKS_GET_REQUEST = 'BANKS_GET_REQUEST';
+export const BANKS_GET_SUCCESS = 'BANKS_GET_SUCCESS';
+export const BANKS_GET_ERROR = 'BANKS_GET_ERROR';
 
 // Раскрытие сайдбара
 export const SIDEBAR_BURGER_CLICK = 'SIDEBAR_BURGER_CLICK';

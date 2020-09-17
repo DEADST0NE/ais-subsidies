@@ -22,7 +22,7 @@ const AppLayout = ({ children }) => {
         <AppSidebar />
         <main
           className="app-content"
-          onClick={() => (showParentSidebar ? dispatch(sidebarBurgerShow(4, false)) : null)}
+          onClick={() => (showParentSidebar ? dispatch(sidebarBurgerShow(0, false)) : null)}
         >
           {children}
         </main>

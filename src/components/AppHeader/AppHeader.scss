@@ -5,7 +5,7 @@
     align-items: center;
     p {
       color: #ffffffcc;
-      font-family: 'Cuprum-Regular';
+      font-family: 'Cuprum-400';
       font-size: 27px;
     }
     svg {
@@ -49,5 +49,12 @@
     .svgNotActive {
       fill: #8a8a8a;
     }
+  }
+}
+
+.app-header.navbar {
+  padding: 0.5rem 2.5rem;
+  .navbar-brand {
+    margin-left: 10px;
   }
 }

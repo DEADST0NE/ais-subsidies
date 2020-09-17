@@ -8,7 +8,7 @@ import InputField from '../generic/InputField';
 import CustomSelect from '../generic/CustomSelect';
 import DatePicker from '../generic/DatePicker';
 
-const CalculatorSubsidyForm = () => {
+const CalculatorForm = () => {
   const { control, errors, handleSubmit, register } = useForm();
   const onSubmit = (data) => console.log(data);
   return (
@@ -67,7 +67,7 @@ const CalculatorSubsidyForm = () => {
           control={control}
           onChange={([selected]) => selected}
           error={errors.Name4}
-          col="12"
+          col="6"
           defaultValue=""
           name="Name4"
           placeholderText="Периуд"
@@ -75,7 +75,7 @@ const CalculatorSubsidyForm = () => {
         />
         <InputField
           name="Name5"
-          col="12"
+          col="6"
           type="number"
           error={errors.Name5}
           placeholder="Количество трудоспособных"
@@ -83,7 +83,7 @@ const CalculatorSubsidyForm = () => {
         />
         <InputField
           name="Name6"
-          col="12"
+          col="6"
           type="number"
           error={errors.Name6}
           placeholder="Количество пенсионеров"
@@ -91,7 +91,7 @@ const CalculatorSubsidyForm = () => {
         />
         <InputField
           name="Name7"
-          col="12"
+          col="6"
           type="number"
           error={errors.Name7}
           placeholder="Количество детей"
@@ -114,4 +114,4 @@ const CalculatorSubsidyForm = () => {
   );
 };
 
-export default CalculatorSubsidyForm;
+export default CalculatorForm;

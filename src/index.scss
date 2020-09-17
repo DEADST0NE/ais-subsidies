@@ -1,23 +1,8 @@
 @import 'custom';
 
 @font-face {
-  font-family: 'Cuprum-Bold';
-  src: local('Font Name'), url(./fonts/Cuprum/Cuprum-Bold.ttf);
-}
-
-@font-face {
-  font-family: 'Cuprum-BoldItalic';
-  src: local('Font Name'), url(./fonts/Cuprum/Cuprum-BoldItalic.ttf);
-}
-
-@font-face {
-  font-family: 'Cuprum-Regular';
+  font-family: 'Cuprum-400';
   src: local('Font Name'), url(./fonts/Cuprum/Cuprum-Regular.ttf);
-}
-
-@font-face {
-  font-family: 'Cuprum-Italic';
-  src: local('Font Name'), url(./fonts/Cuprum/Cuprum-Italic.ttf);
 }
 
 html {
@@ -26,6 +11,12 @@ html {
 
 .form-control {
   padding-left: 17px !important;
+}
+
+.crop-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .pages-block-content {
@@ -38,7 +29,7 @@ html {
 
 .page-title {
   margin-bottom: 1.5rem;
-  font-size: 25px;
+  font-size: 23px;
   font-weight: 300;
   text-align: start;
 }

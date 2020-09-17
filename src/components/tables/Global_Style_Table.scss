@@ -1,0 +1,36 @@
+.castom_table {
+  .table {
+    margin: 0px;
+    th {
+      border-bottom: 1px solid #dee2e6;
+    }
+    td {
+      font-size: 14px;
+    }
+    .actions-table {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      button {
+        padding: 0px;
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+    .pencil-item-table svg {
+      fill: rgb(90, 90, 245);
+      &:hover {
+        fill: blue;
+      }
+    }
+
+    .trash-item-table svg {
+      fill: rgb(240, 90, 85);
+      &:hover {
+        fill: red;
+      }
+    }
+  }
+}

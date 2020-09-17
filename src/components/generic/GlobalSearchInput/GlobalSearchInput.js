@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
 
-import './SearchInput.scss';
+import './GlobalSearchInput.scss';
 
-const SearchInput = ({ placeholder }) => {
+const GlobalSearchInput = ({ placeholder }) => {
   return (
     <div className="search-grup" tabIndex={0}>
       <input type="text" placeholder={placeholder} />
@@ -18,12 +18,12 @@ const SearchInput = ({ placeholder }) => {
   );
 };
 
-SearchInput.defaultProps = {
+GlobalSearchInput.defaultProps = {
   placeholder: '',
 };
 
-SearchInput.propTypes = {
+GlobalSearchInput.propTypes = {
   placeholder: PropTypes.string,
 };
 
-export default SearchInput;
+export default GlobalSearchInput;

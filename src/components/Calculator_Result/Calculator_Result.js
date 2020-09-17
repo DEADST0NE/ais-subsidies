@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './CalculatorSubsidyResult.scss';
+import './Calculator_Result.scss';
 
-const CalculatorSubsidyResult = () => {
+const CalculatorResult = () => {
   return (
     <div className="subsidy-result">
       <div className="not-info-result">
@@ -12,4 +12,4 @@ const CalculatorSubsidyResult = () => {
   );
 };
 
-export default CalculatorSubsidyResult;
+export default CalculatorResult;

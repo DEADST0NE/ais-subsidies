@@ -6,17 +6,25 @@ import AppLayout from '../components/AppLayout';
 import LoadingIndicator from '../components/generic/LoadingIndicator';
 
 const HomePage = lazy(() => import('./home-page'));
+const BanksPage = lazy(() => import('./banks-page'));
+const NotFoundPage = lazy(() => import('./not-found-page'));
 
 const AppView = () => (
   <AppLayout>
-    <Switch>
-      <Suspense fallback={<LoadingIndicator />}>
-        <Redirect to="/home" exact />
+    <Suspense fallback={<LoadingIndicator />}>
+      <Switch>
+        <Redirect from="/" to="/home" exact />
         <Route path="/home">
           <HomePage />
         </Route>
-      </Suspense>
-    </Switch>
+        <Route path="/directory/bank">
+          <BanksPage />
+        </Route>
+        <Route>
+          <NotFoundPage />
+        </Route>
+      </Switch>
+    </Suspense>
   </AppLayout>
 );
 
