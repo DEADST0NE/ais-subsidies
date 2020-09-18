@@ -1,0 +1,29 @@
+.search-table-grup {
+  position: relative;
+  .search-table-input {
+    width: 100%;
+    height: 40px;
+    padding-left: 30px;
+    border: 0;
+    border-bottom: 1px solid #dee2e6;
+    outline: none;
+    transition: All 0.5s ease 0.3s;
+    &:focus {
+      border-color: #263341;
+      & ~ .search-table-grup {
+        svg {
+          fill: #263341 !important;
+        }
+      }
+    }
+  }
+  .search-table-icon {
+    position: absolute;
+    z-index: 1;
+    top: 12px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    fill: #757575;
+  }
+}

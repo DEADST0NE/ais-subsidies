@@ -4,14 +4,17 @@ import React from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import Alert from 'react-bootstrap/Alert';
 import PropTypes from 'prop-types';
+
 import Icon from '../../generic/Icon';
+import SortTable from '../../generic/SortTable';
 
 import LoadingIndicator from '../../generic/LoadingIndicator';
 import ErrorIndicator from '../../generic/ErrorIndicator';
 
 import '../Global_Style_Table.scss';
 
-const BanksTable = ({ array, loading, error }) => {
+const BanksTable = ({ array, loading, error, setMass }) => {
+  console.log(array, 'Table');
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -38,8 +41,18 @@ const BanksTable = ({ array, loading, error }) => {
         <thead>
           <tr>
             <th className="text-center">№</th>
-            <th>Название</th>
-            <th>Адрес</th>
+            <th>
+              <div className="d-flex align-items-center">
+                Название
+                <SortTable array={array} setMass={setMass} name="name" />
+              </div>
+            </th>
+            <th>
+              <div className="d-flex align-items-center">
+                Адрес
+                <SortTable array={array} setMass={setMass} name="address" />
+              </div>
+            </th>
             <th>Номер корр</th>
             <th className="text-center">Бик</th>
             <th className="text-center">Действия</th>
@@ -88,12 +101,14 @@ const BanksTable = ({ array, loading, error }) => {
 BanksTable.defaultProps = {
   array: [],
   error: {},
+  setMass: () => {},
 };
 
 BanksTable.propTypes = {
   array: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
+  setMass: PropTypes.func,
 };
 
 export default BanksTable;

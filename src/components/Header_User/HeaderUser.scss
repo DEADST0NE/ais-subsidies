@@ -38,8 +38,9 @@
 .drop-account-list {
   position: absolute;
   top: 0px;
-  left: -20px;
+  right: 0px;
   display: none;
+  min-width: 150px;
   &:hover {
     display: block !important;
   }
@@ -55,9 +56,8 @@
       font-size: 14px;
       font-size: 12px;
       text-align: center;
-      &:first-child {
-        background-color: #fff !important;
-        cursor: default !important;
+      a {
+        color: #535b63 !important;
       }
       &:hover {
         background-color: #ddd;
@@ -67,7 +67,11 @@
     .drop-account-user {
       display: flex;
       align-items: center;
+      justify-content: center;
       border-bottom: 1px dashed #ddd;
+      background-color: #fff !important;
+      border-radius: 3px 3px 0px 0px;
+      cursor: default !important;
       white-space: pre;
       span {
         margin-left: 10px;
