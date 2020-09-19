@@ -20,9 +20,9 @@
       }
     }
     .pencil-item-table svg {
-      fill: rgb(90, 90, 245);
+      fill: #34658d;
       &:hover {
-        fill: blue;
+        fill: #0b4f86;
       }
     }
 
@@ -31,6 +31,21 @@
       &:hover {
         fill: red;
       }
+    }
+  }
+  .status-employess {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+    .lock {
+      fill: red;
+    }
+    .ullock {
+      fill: green;
     }
   }
 }

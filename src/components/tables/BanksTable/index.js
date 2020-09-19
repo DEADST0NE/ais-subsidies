@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
 // eslint-disable-next-line import/extensions
-import BanksTable from './Banks_Table.js';
+import BanksTable from './BanksTable.js';
 
 export default BanksTable;

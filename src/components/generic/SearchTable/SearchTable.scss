@@ -2,28 +2,33 @@
   position: relative;
   .search-table-input {
     width: 100%;
-    height: 40px;
+    padding: 11px 0px;
     padding-left: 30px;
-    border: 0;
-    border-bottom: 1px solid #dee2e6;
+    border: 1px solid #dee2e6;
+    font-size: 17px;
     outline: none;
-    transition: All 0.5s ease 0.3s;
+    transition: All 0.5s ease 0.1s;
     &:focus {
       border-color: #263341;
-      & ~ .search-table-grup {
-        svg {
-          fill: #263341 !important;
-        }
-      }
+    }
+    &:focus ~ .search-table-icon {
+      fill: red;
     }
   }
-  .search-table-icon {
-    position: absolute;
-    z-index: 1;
-    top: 12px;
-    left: 5px;
-    width: 15px;
-    height: 15px;
-    fill: #757575;
+  p {
+    padding-left: 5px;
+    margin: 0px;
+    color: #ef7168;
+    font-size: 12px;
   }
+}
+
+.search-table-icon {
+  position: absolute;
+  z-index: 1;
+  top: 17px;
+  left: 8px;
+  width: 15px;
+  height: 15px;
+  fill: #757575;
 }

@@ -1,0 +1,48 @@
+.confirmation {
+  .modal-header {
+    border-bottom: 0;
+  }
+  .modal-dialog {
+    max-width: 400px;
+  }
+  .modal-body {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    text-align: center;
+    svg {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 0px;
+      fill: coral;
+    }
+    p {
+      padding-top: 10px;
+      margin: 0px;
+      font-size: 18px;
+    }
+  }
+  .modal-footer {
+    padding: 0;
+    border-top: 0;
+    margin-top: 20px;
+    button {
+      width: 50%;
+      margin: 0px;
+      font-size: 20px;
+    }
+    .btn-primary {
+      min-width: 80px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .confirmation {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    .modal-dialog {
+      flex: 1 1 auto;
+    }
+  }
+}

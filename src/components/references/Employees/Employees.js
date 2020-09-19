@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getBanks } from '../../../store/banks/actions';
+import { getEmployees } from '../../../store/employees/actions';
 
 import SearchTable from '../../generic/SearchTable';
-import BanksTable from '../../tables/BanksTable';
+import EmployessTable from '../../tables/EmployessTable';
 import Icon from '../../generic/Icon';
 
-import './Banks.scss';
+import './Employees.scss';
 
-const ConteinerBanks = () => {
+const ConteinerEmployees = () => {
   const dispatch = useDispatch();
 
-  const { banks, loading, error } = useSelector(({ banks }) => banks);
+  const { employees, loading, error } = useSelector(({ employees }) => employees);
   const [searchArray, setSearchArray] = useState([]);
   useEffect(() => {
-    dispatch(getBanks());
+    dispatch(getEmployees());
   }, [dispatch, searchArray]);
 
   return (
-    <div className="banks">
+    <div className="employess">
       <div className="сontrol-table-grup">
-        <SearchTable array={banks} setMass={setSearchArray} />
+        <SearchTable array={employees} setMass={setSearchArray} />
         <button type="button" className="btn btn-primary">
           <Icon name="addNewInfo" />
         </button>
       </div>
-      <BanksTable
-        array={searchArray.length ? searchArray : banks}
+      <EmployessTable
+        array={searchArray.length ? searchArray : employees}
         loading={loading}
         error={error}
         setMass={setSearchArray}
@@ -36,4 +36,4 @@ const ConteinerBanks = () => {
   );
 };
 
-export default ConteinerBanks;
+export default ConteinerEmployees;

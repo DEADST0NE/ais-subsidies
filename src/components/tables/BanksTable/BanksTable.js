@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React from 'react';
+import React, { useState } from 'react';
 
 import Scrollbars from 'react-custom-scrollbars';
 import Alert from 'react-bootstrap/Alert';
@@ -7,14 +7,14 @@ import PropTypes from 'prop-types';
 
 import Icon from '../../generic/Icon';
 import SortTable from '../../generic/SortTable';
+import Сonfirmation from '../../Сonfirmation';
 
 import LoadingIndicator from '../../generic/LoadingIndicator';
 import ErrorIndicator from '../../generic/ErrorIndicator';
 
-import '../Global_Style_Table.scss';
+import '../GlobalStyleTable.scss';
 
-const BanksTable = ({ array, loading, error, setMass }) => {
-  console.log(array, 'Table');
+const BanksTable = ({ array, loading, error }) => {
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -26,7 +26,9 @@ const BanksTable = ({ array, loading, error, setMass }) => {
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
-
+  const [arrayTable, setArrayTable] = useState(array);
+  const [sortName, setSortName] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   return (
     <div className="castom_table">
       <table className="table table-striped">
@@ -44,13 +46,25 @@ const BanksTable = ({ array, loading, error, setMass }) => {
             <th>
               <div className="d-flex align-items-center">
                 Название
-                <SortTable array={array} setMass={setMass} name="name" />
+                <SortTable
+                  array={arrayTable}
+                  setMass={setArrayTable}
+                  nameSort={sortName}
+                  name="name"
+                  setSortName={setSortName}
+                />
               </div>
             </th>
             <th>
               <div className="d-flex align-items-center">
                 Адрес
-                <SortTable array={array} setMass={setMass} name="address" />
+                <SortTable
+                  array={arrayTable}
+                  setMass={setArrayTable}
+                  nameSort={sortName}
+                  name="address"
+                  setSortName={setSortName}
+                />
               </div>
             </th>
             <th>Номер корр</th>
@@ -59,7 +73,7 @@ const BanksTable = ({ array, loading, error, setMass }) => {
           </tr>
         </thead>
       </table>
-      <div className="table-content" style={{ height: 'calc(100vh - 280px)' }}>
+      <div className="table-content" style={{ height: 'calc(100vh - 315px)' }}>
         <Scrollbars>
           <table className="table">
             <colgroup>
@@ -71,7 +85,7 @@ const BanksTable = ({ array, loading, error, setMass }) => {
               <col style={{ width: '15%' }} />
             </colgroup>
             <tbody>
-              {array.map((item, idx) => (
+              {arrayTable.map((item, idx) => (
                 <tr key={item.id} className="table-row">
                   <td className="text-center">{idx + 1}</td>
                   <td>{item.name}</td>
@@ -83,7 +97,14 @@ const BanksTable = ({ array, loading, error, setMass }) => {
                       <button title="Изменить" className="btn pencil-item-table" type="button">
                         <Icon name="pencil" />
                       </button>
-                      <button title="Удалить" className="btn trash-item-table" type="button">
+                      <button
+                        title="Удалить"
+                        onClick={() => {
+                          setShowConfirmation(true);
+                        }}
+                        className="btn trash-item-table"
+                        type="button"
+                      >
                         <Icon name="trash" />
                       </button>
                     </div>
@@ -94,6 +115,13 @@ const BanksTable = ({ array, loading, error, setMass }) => {
           </table>
         </Scrollbars>
       </div>
+      <Сonfirmation
+        show={showConfirmation}
+        onClosed={setShowConfirmation}
+        onSuccess={() => {
+          console.log(1);
+        }}
+      />
     </div>
   );
 };
@@ -101,14 +129,12 @@ const BanksTable = ({ array, loading, error, setMass }) => {
 BanksTable.defaultProps = {
   array: [],
   error: {},
-  setMass: () => {},
 };
 
 BanksTable.propTypes = {
   array: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
-  setMass: PropTypes.func,
 };
 
 export default BanksTable;

@@ -27,8 +27,8 @@ export const NAV_ITEMS = [
       },
       {
         label: 'Прожиточный минимум',
-        icon: 'minPipleLive',
-        link: '/directory/minLivePeople',
+        icon: 'livingwage',
+        link: '/directory/livingwage',
       },
       {
         label: 'ССЖКУ',
@@ -38,7 +38,7 @@ export const NAV_ITEMS = [
       {
         label: 'Сотрудники',
         icon: 'team',
-        link: '/directory/team',
+        link: '/directory/employees',
       },
       {
         label: 'Лицевые счета',

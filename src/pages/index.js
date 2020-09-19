@@ -7,7 +7,9 @@ import LoadingIndicator from '../components/generic/LoadingIndicator';
 
 const HomePage = lazy(() => import('./home-page'));
 const BanksPage = lazy(() => import('./banks-page'));
+const EmployeesPage = lazy(() => import('./employees-page'));
 const NotFoundPage = lazy(() => import('./not-found-page'));
+const Livingwage = lazy(() => import('./livingwage-page'));
 
 const AppView = () => (
   <AppLayout>
@@ -19,6 +21,12 @@ const AppView = () => (
         </Route>
         <Route path="/directory/bank">
           <BanksPage />
+        </Route>
+        <Route path="/directory/employees">
+          <EmployeesPage />
+        </Route>
+        <Route path="/directory/livingwage">
+          <Livingwage />
         </Route>
         <Route>
           <NotFoundPage />
