@@ -20,6 +20,7 @@ const BanksTable = ({
   setBanksId,
   setShowConfirmation,
   setShowWindowFormPut,
+  setBanksDataVal,
 }) => {
   if (loading) {
     return <LoadingIndicator />;
@@ -103,7 +104,10 @@ const BanksTable = ({
                         title="Изменить"
                         className="btn pencil-item-table"
                         type="button"
-                        onClick={() => setShowWindowFormPut(true)}
+                        onClick={() => {
+                          setShowWindowFormPut(true);
+                          setBanksDataVal(item);
+                        }}
                       >
                         <Icon name="pencil" />
                       </button>
@@ -136,6 +140,7 @@ BanksTable.defaultProps = {
   setBanksId: () => {},
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
+  setBanksDataVal: () => {},
 };
 
 BanksTable.propTypes = {
@@ -145,6 +150,7 @@ BanksTable.propTypes = {
   setBanksId: PropTypes.func,
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
+  setBanksDataVal: PropTypes.func,
 };
 
 export default BanksTable;

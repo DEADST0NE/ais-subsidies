@@ -3,7 +3,7 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import CalculatorForm from '../forms/Calculator_Form';
+import CalculatorForm from '../../forms/CalculatorForm';
 import CalculatorResult from '../CalculatorResult';
 
 import './Home.scss';

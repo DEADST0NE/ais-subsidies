@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import AppLayout from '../components/AppLayout';
+import AppLayout from '../components/app/AppLayout';
 
 import LoadingIndicator from '../components/generic/LoadingIndicator';
 

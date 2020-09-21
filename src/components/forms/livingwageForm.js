@@ -1,6 +1,6 @@
 /* eslint-disable no-sequences */
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Form, Col, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 import objectOfFormDate from '../../utils/objectOfFormDate';
 import SubmitBtn from '../generic/SubmitBtn';
 import CustomField from '../generic/CustomField';
+import DatePicker from '../generic/DatePicker';
+import ErrorIndicator from '../generic/ErrorIndicator';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Обязательное поле'),
@@ -21,8 +23,9 @@ const validationSchema = Yup.object().shape({
   bik: Yup.number().min(9, 'Заполните бик до конца').required('Обязательное поле'),
 });
 
-const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) => {
+const livingwageForm = ({ defautValueForm, SocialGroupId, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
+  const { socialgroups, error } = useSelector(({ socialgroups }) => socialgroups);
   return (
     <Formik
       initialValues={defautValueForm}
@@ -30,59 +33,31 @@ const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) =>
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         const formDate = objectOfFormDate(values);
-        if (banksId) formDate.append('id', banksId);
+        if (SocialGroupId) formDate.append('SocialGroupId', SocialGroupId);
         dispatch(onSuccess(formDate, onClosed));
       }}
     >
       {({ handleSubmit }) => {
+        if (error) return <ErrorIndicator error={error} />;
         return (
           <form style={{ paddingBottom: '4rem' }} onSubmit={handleSubmit}>
             <Form.Row>
-              <Col sm="12">
-                <Form.Group>
-                  <CustomField
-                    type="text"
-                    label="Количество трудоспособных"
-                    placeholder="Количество трудоспособных"
-                    name="name"
-                  />
-                </Form.Group>
-              </Col>
-              <Col sm="12">
-                <Form.Group>
-                  <CustomField
-                    type="text"
-                    label="Город расположения банка"
-                    placeholder="Город расположения банка"
-                    name="city"
-                  />
-                </Form.Group>
-              </Col>
-              <Col sm="12">
-                <Form.Group>
-                  <CustomField
-                    type="text"
-                    label="Адрес банка"
-                    placeholder="Адрес банка"
-                    name="address"
-                  />
-                </Form.Group>
-              </Col>
-              <Col sm="12">
-                <Form.Group>
-                  <CustomField
-                    type="text"
-                    mask="ks"
-                    label="Корреспондентский счет"
-                    placeholder="Корреспондентский счет"
-                    name="ks"
-                  />
-                </Form.Group>
-              </Col>
+              {socialgroups.map((item) => (
+                <Col sm="4">
+                  <Form.Group>
+                    <CustomField
+                      type="text"
+                      label={item.name}
+                      placeholder={item.name}
+                      name={`wageValue${item.id}`}
+                    />
+                  </Form.Group>
+                </Col>
+              ))}
 
               <Col sm="12">
                 <Form.Group>
-                  <CustomField type="text" mask="bik" label="Бик" placeholder="Бик" name="bik" />
+                  <DatePicker label="Дата начала" name="DateStart" />
                 </Form.Group>
               </Col>
               <div className="d-flex w-100 position-absolute left-0 bottom-0">
@@ -114,7 +89,7 @@ const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) =>
   );
 };
 
-BankForm.defaultProps = {
+livingwageForm.defaultProps = {
   defautValueForm: {
     name: '',
     address: '',
@@ -128,7 +103,7 @@ BankForm.defaultProps = {
   banksId: '',
 };
 
-BankForm.propTypes = {
+livingwageForm.propTypes = {
   defautValueForm: PropTypes.oneOfType([PropTypes.string, PropTypes.objectOf(PropTypes.string)]),
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
@@ -136,4 +111,4 @@ BankForm.propTypes = {
   banksId: PropTypes.string,
 };
 
-export default BankForm;
+export default livingwageForm;

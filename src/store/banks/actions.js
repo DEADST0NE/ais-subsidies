@@ -8,7 +8,15 @@ import {
   BANKS_GET_REQUEST,
   BANKS_GET_SUCCESS,
   BANKS_GET_ERROR,
-  BANKS_DELETE_SUCCESS,
+  BANK_DELETE_REQUEST,
+  BANK_DELETE_SUCCESS,
+  BANK_DELETE_ERROR,
+  BANK_POST_REQUEST,
+  BANK_POST_SUCCESS,
+  BANK_POST_ERROR,
+  BANK_PUT_REQUEST,
+  BANK_PUT_SUCCESS,
+  BANK_PUT_ERROR,
 } from '../actions';
 
 /* Все относится к запросу списка банков  */
@@ -39,14 +47,22 @@ export const getBanks = () => (dispatch) => {
 /* --------------------------------------- */
 
 /* Все относится к запросу удаления банка  */
-const deleteBanksSuccess = (id) => ({
-  type: BANKS_DELETE_SUCCESS,
+const deleteBankRequested = () => ({
+  type: BANK_DELETE_REQUEST,
+});
+
+const deleteBankError = () => ({
+  type: BANK_DELETE_ERROR,
+});
+
+const deleteBankSuccess = (id) => ({
+  type: BANK_DELETE_SUCCESS,
   payload: id,
 });
 
-const deleteBanksRequest = async (id) => {
+const deleteBankRequest = async (id) => {
   return axios
-    .delete('Directory/bankss', {
+    .delete('Directory/banks', {
       params: {
         id,
       },
@@ -54,13 +70,82 @@ const deleteBanksRequest = async (id) => {
     .then((response) => response.data);
 };
 
-export const deleteBanks = (id) => (dispatch) => {
-  deleteBanksRequest(id)
+export const deleteBanks = (id, onClose) => (dispatch) => {
+  dispatch(deleteBankRequested());
+  deleteBankRequest(id)
     .then(() => {
+      onClose(false);
       toastMessageSuccess('Банк успешно удален из списка');
-      dispatch(deleteBanksSuccess(id));
+      dispatch(deleteBankSuccess(id));
     })
-    .catch((err) => toastMessageError(err.title));
+    .catch((err) => {
+      toastMessageError(err.title);
+      dispatch(deleteBankError());
+    });
+};
+/* --------------------------------------- */
+
+/* Все относится к запросу добавления банка  */
+const postBankRequested = () => ({
+  type: BANK_POST_REQUEST,
+});
+
+const postBankError = () => ({
+  type: BANK_POST_ERROR,
+});
+
+const postBankSuccess = (object) => ({
+  type: BANK_POST_SUCCESS,
+  payload: object,
+});
+
+const postBankRequest = async (formDara) => {
+  return axios.post('Directory/banks', formDara).then((response) => response.data);
 };
 
+export const postBanks = (formDara, onClose) => (dispatch) => {
+  dispatch(postBankRequested());
+  postBankRequest(formDara)
+    .then((data) => {
+      onClose(false);
+      postBankSuccess(data);
+      toastMessageSuccess('Банк успешно добавлен');
+    })
+    .catch((err) => {
+      toastMessageError(err.title);
+      dispatch(postBankError());
+    });
+};
+/* --------------------------------------- */
+/* Все относится к запросу изменения банка  */
+const putBankRequested = () => ({
+  type: BANK_PUT_REQUEST,
+});
+
+const putBankError = () => ({
+  type: BANK_PUT_ERROR,
+});
+
+const putBankSuccess = (object) => ({
+  type: BANK_PUT_SUCCESS,
+  payload: object,
+});
+
+const putBankRequest = async (formDara) => {
+  return axios.put('Directory/banks', formDara).then((response) => response.data);
+};
+
+export const putBanks = (formDara, onClose) => (dispatch) => {
+  dispatch(putBankRequested());
+  putBankRequest(formDara)
+    .then((data) => {
+      onClose(false);
+      putBankSuccess(data);
+      toastMessageSuccess('Данные о банке успешно изменены');
+    })
+    .catch((err) => {
+      toastMessageError(err.title);
+      dispatch(putBankError());
+    });
+};
 /* --------------------------------------- */

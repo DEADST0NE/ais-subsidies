@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-import GlobalSearchInput from '../generic/GlobalSearchInput';
-import sidebarBurgerShow from '../../store/sidebar/actions';
-import Icon from '../generic/Icon';
-import HeaderUser from '../HeaderUser';
+import GlobalSearchInput from '../../generic/GlobalSearchInput';
+import sidebarBurgerShow from '../../../store/sidebar/actions';
+import Icon from '../../generic/Icon';
+import AppHeaderUser from '../AppHeaderUser';
 
 import './AppHeader.scss';
 
@@ -40,7 +40,7 @@ const AppHeader = () => {
           <GlobalSearchInput placeholder="Поиск по лицевому счету ..." />
         </Nav>
         <Nav>
-          <HeaderUser />
+          <AppHeaderUser />
         </Nav>
       </Navbar.Collapse>
     </Navbar>

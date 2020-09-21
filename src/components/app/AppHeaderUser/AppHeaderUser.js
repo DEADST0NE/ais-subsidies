@@ -8,12 +8,12 @@ import { NavLink, withRouter } from 'react-router-dom';
 
 import Nav from 'react-bootstrap/Nav';
 
-import Icon from '../generic/Icon';
-import { logoutUser } from '../../store/user/actions';
+import Icon from '../../generic/Icon';
+import { logoutUser } from '../../../store/user/actions';
 
-import './HeaderUser.scss';
+import './AppHeaderUser.scss';
 
-class HeaderUser extends Component {
+class AppHeaderUser extends Component {
   onLogout = () => {
     const { history, logoutUser } = this.props;
 
@@ -54,7 +54,7 @@ class HeaderUser extends Component {
   }
 }
 
-HeaderUser.propTypes = {
+AppHeaderUser.propTypes = {
   user: PropTypes.shape({
     userData: PropTypes.oneOfType([PropTypes.object]),
     loading: PropTypes.bool.isRequired,
@@ -70,4 +70,4 @@ const mapStateToProps = ({ user }) => {
 
 const mapDispatchToProps = { logoutUser };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderUser));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppHeaderUser));

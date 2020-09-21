@@ -10,7 +10,7 @@ html {
 }
 
 .form-control {
-  padding-left: 17px !important;
+  padding-left: 14px !important;
 }
 
 .crop-text {
@@ -32,6 +32,14 @@ html {
   font-size: 23px;
   font-weight: 300;
   text-align: start;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.bottom-0 {
+  bottom: 0;
 }
 
 small,
@@ -197,7 +205,8 @@ ul li {
   }
 
   .form-control {
-    padding: 14px 25px;
+    padding-top: 20px;
+    padding-bottom: 6px;
 
     &:disabled {
       cursor: not-allowed;
@@ -246,7 +255,6 @@ ul li {
     &__control {
       height: 54px;
       border-color: $input-border-color;
-      border-radius: 0;
       cursor: pointer;
     }
 

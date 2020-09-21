@@ -3,28 +3,27 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 
-import Icon from '../generic/Icon';
+import SubmitBtn from '../SubmitBtn';
+import Icon from '../Icon';
 import './Сonfirmation.scss';
 
-const Сonfirmation = ({ show, onClosed, onSuccess }) => (
+const Сonfirmation = ({ show, onClosed, onSuccess, loading }) => (
   <Modal show={show} onHide={() => onClosed(false)} className="confirmation">
     <Modal.Body>
       <Icon name="siren" />
       <p>Подтвердите действие</p>
     </Modal.Body>
     <Modal.Footer>
-      <Button variant="secondary" onClick={() => onClosed(false)}>
+      <Button disabled={loading} variant="secondary" onClick={() => onClosed(false)}>
         Отмена
       </Button>
-      <Button
-        variant="primary"
+      <SubmitBtn
+        isSubmitting={loading}
+        text="Ок"
         onClick={() => {
           onSuccess();
-          onClosed(false);
         }}
-      >
-        Oк
-      </Button>
+      />
     </Modal.Footer>
   </Modal>
 );
@@ -33,6 +32,7 @@ const Сonfirmation = ({ show, onClosed, onSuccess }) => (
   show: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]).isRequired,
   onClosed: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Сonfirmation;

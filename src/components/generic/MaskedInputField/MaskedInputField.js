@@ -14,23 +14,29 @@ const MaskedInputField = ({
   error,
   Ref,
   size,
+  defaultValue,
 }) => (
   <Form.Group as={Col} md={col}>
     <div className="custom-field">
-      <Form.Label>{label}</Form.Label>
+      {label ? <Form.Label>{label}</Form.Label> : ''}
       <MaskedInput
         type="text"
         id={name}
         placeholder={placeholder}
-        className={`form-control form-control-${size} ${Object.keys(error).length && 'is-invalid'}`}
+        className={`form-control ${size ? `form-control-${size}` : ''} ${
+          Object.keys(error).length ? 'is-invalid' : ''
+        }`}
         name={name}
         mask={mask}
         disabled={isDisabled}
         autoComplete="off"
-        guide={false}
+        guide
         ref={Ref}
+        defaultValue={defaultValue}
+        value={defaultValue}
       />
     </div>
+    {Object.keys(error).length ? <p className="is-invalid-text mb-0">{error.message}</p> : ''}
   </Form.Group>
 );
 
@@ -41,12 +47,15 @@ MaskedInputField.defaultProps = {
   error: {},
   col: '12',
   Ref: () => {},
+  label: '',
+  defaultValue: '',
 };
 
 MaskedInputField.propTypes = {
+  defaultValue: PropTypes.string,
   size: PropTypes.string,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
   isDisabled: PropTypes.bool,
   error: PropTypes.shape({
@@ -55,7 +64,9 @@ MaskedInputField.propTypes = {
     ref: PropTypes.instanceOf(Element),
   }),
   col: PropTypes.string,
-  mask: PropTypes.arrayOf(PropTypes.string).isRequired,
+  mask: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.oneOf([RegExp]), PropTypes.string, PropTypes.oneOf([null])])
+  ).isRequired,
   Ref: PropTypes.func,
 };
 

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import AppHeader from '../AppHeader';
 import AppSidebar from '../AppSidebar';
-import sidebarBurgerShow from '../../store/sidebar/actions';
+import sidebarBurgerShow from '../../../store/sidebar/actions';
 
 import './AppLayout.scss';
 

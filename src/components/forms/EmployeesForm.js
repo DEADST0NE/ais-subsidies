@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
   bik: Yup.number().min(9, 'Заполните бик до конца').required('Обязательное поле'),
 });
 
-const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) => {
+const EmployeesForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
   return (
     <Formik
@@ -114,7 +114,7 @@ const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) =>
   );
 };
 
-BankForm.defaultProps = {
+EmployeesForm.defaultProps = {
   defautValueForm: {
     name: '',
     address: '',
@@ -128,7 +128,7 @@ BankForm.defaultProps = {
   banksId: '',
 };
 
-BankForm.propTypes = {
+EmployeesForm.propTypes = {
   defautValueForm: PropTypes.oneOfType([PropTypes.string, PropTypes.objectOf(PropTypes.string)]),
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
@@ -136,4 +136,4 @@ BankForm.propTypes = {
   banksId: PropTypes.string,
 };
 
-export default BankForm;
+export default EmployeesForm;

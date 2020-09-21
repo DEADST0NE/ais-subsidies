@@ -7,6 +7,8 @@ const inputMasksMap = {
   pasportSerials: [/\d/, /\d/, ' ', /\d/, /\d/],
   pasportNumbers: [/\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/],
   pasportCode: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/],
+  ks: [/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,],
+  bik: [/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/],
 };
 
 export default inputMasksMap;

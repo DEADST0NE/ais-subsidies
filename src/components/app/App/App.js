@@ -5,16 +5,16 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { ReactComponent as SvgSprite } from '../../images/sprite.svg';
+import { ReactComponent as SvgSprite } from '../../../images/sprite.svg';
 
-import AppView from '../../pages';
-import LoginPage from '../../pages/login-page';
-import NotFoundPage from '../../pages/not-found-page';
+import AppView from '../../../pages';
+import LoginPage from '../../../pages/login-page';
+import NotFoundPage from '../../../pages/not-found-page';
 
 // import PrivateRoute from '../generic/PrivateRoute';
 
-import { getAccessToken } from '../../services/authService';
-import { setUserData } from '../../store/user/actions';
+import { getAccessToken } from '../../../services/authService';
+import { setUserData } from '../../../store/user/actions';
 
 toast.configure({
   pauseOnHover: true,

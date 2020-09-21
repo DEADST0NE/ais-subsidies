@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import Icon from '../../generic/Icon';
 import SortTable from '../../generic/SortTable';
-import Сonfirmation from '../../Сonfirmation';
+import Сonfirmation from '../../generic/Сonfirmation';
 
 import LoadingIndicator from '../../generic/LoadingIndicator';
 import ErrorIndicator from '../../generic/ErrorIndicator';

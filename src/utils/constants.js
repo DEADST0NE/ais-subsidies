@@ -84,7 +84,7 @@ export const NAV_ITEMS = [
       },
       {
         label: 'Ошибки',
-        icon: 'error',
+        icon: 'outline-error',
         link: '/settings/error',
       },
       {

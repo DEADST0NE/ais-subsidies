@@ -6,10 +6,22 @@ export const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
 // Запрос реестра банков
+// get
 export const BANKS_GET_REQUEST = 'BANKS_GET_REQUEST';
 export const BANKS_GET_SUCCESS = 'BANKS_GET_SUCCESS';
 export const BANKS_GET_ERROR = 'BANKS_GET_ERROR';
-export const BANKS_DELETE_SUCCESS = 'BANKS_DELETE_SUCCESS';
+// delete
+export const BANK_DELETE_REQUEST = 'BANK_DELETE_REQUEST';
+export const BANK_DELETE_SUCCESS = 'BANK_DELETE_SUCCESS';
+export const BANK_DELETE_ERROR = 'BANK_DELETE_ERROR';
+// post
+export const BANK_POST_REQUEST = 'BANK_POST_REQUEST';
+export const BANK_POST_SUCCESS = 'BANK_POST_SUCCESS';
+export const BANK_POST_ERROR = 'BANK_POST_ERROR';
+// put
+export const BANK_PUT_REQUEST = 'BANK_PUT_REQUEST';
+export const BANK_PUT_SUCCESS = 'BANK_PUT_SUCCESS';
+export const BANK_PUT_ERROR = 'BANK_PUT_ERROR';
 
 // Запрос реестра социальных групп
 export const SOCIALGROUPS_GET_REQUEST = 'SOCIALGROUPS_GET_REQUEST';

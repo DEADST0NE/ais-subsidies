@@ -5,9 +5,9 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { NAV_ITEMS } from '../../utils/constants';
-import sidebarBurgerShow from '../../store/sidebar/actions';
-import Icon from '../generic/Icon';
+import { NAV_ITEMS } from '../../../utils/constants';
+import sidebarBurgerShow from '../../../store/sidebar/actions';
+import Icon from '../../generic/Icon';
 
 import './AppSidebar.scss';
 

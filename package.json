@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "date-fns": "^2.14.0",
+    "formik": "^2.1.5",
     "jwt-decode": "^2.2.0",
     "prop-types": "^15.7.2",
     "rc-switch": "^3.2.0",

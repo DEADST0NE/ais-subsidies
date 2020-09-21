@@ -1,30 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Form, Col } from 'react-bootstrap';
+import { useField } from 'formik';
+import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
 
-import './CustomSelect.scss';
+const CustomSelect = ({ name, data, label, placeholder, isLoading, isDisabled }) => {
+  const [field, meta, helpers] = useField(name);
+  const isInvalid = meta.touched && meta.error;
 
-const CustomSelect = ({ name, data, label, placeholder, isLoading, isDisabled, error, col }) => {
+  let className = field.value ? 'has-value' : '';
+  if (isInvalid) {
+    className += ' is-invalid';
+  }
+
   return (
-    <Form.Group as={Col} md={col}>
-      <div className="custom-select2">
-        <Select
-          className={Object.keys(error).length && 'is-invalid'}
-          classNamePrefix="react-select"
-          name={name}
-          options={data}
-          placeholder={placeholder}
-          isClearable="true"
-          isLoading={isLoading}
-          isDisabled={isDisabled}
-        />
+    <div className="custom-select2">
+      <Select
+        className={className}
+        classNamePrefix="react-select"
+        name={name}
+        options={data}
+        value={field.value}
+        onChange={(val) => helpers.setValue(val)}
+        onBlur={field.onBlur}
+        placeholder={placeholder}
+        isClearable="true"
+        isLoading={isLoading}
+        isDisabled={isDisabled}
+      />
 
-        <Form.Label>{label}</Form.Label>
-        {Object.keys(error).length ? <p className="is-invalid-text mb-0">{error.message}</p> : ''}
-      </div>
-    </Form.Group>
+      <Form.Label>{label}</Form.Label>
+      <Form.Control.Feedback className="invalid-tooltip" type="invalidd">
+        {meta.error}
+      </Form.Control.Feedback>
+    </div>
   );
 };
 
@@ -33,8 +43,6 @@ CustomSelect.defaultProps = {
   placeholder: 'Выберите из вариантов',
   isLoading: false,
   isDisabled: false,
-  error: {},
-  col: '12',
 };
 
 CustomSelect.propTypes = {
@@ -44,12 +52,6 @@ CustomSelect.propTypes = {
   placeholder: PropTypes.string,
   isLoading: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  error: PropTypes.shape({
-    message: PropTypes.string,
-    type: PropTypes.string,
-    ref: PropTypes.instanceOf(Element),
-  }),
-  col: PropTypes.string,
 };
 
 export default CustomSelect;
