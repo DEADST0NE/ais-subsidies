@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Calculator_Result.scss';
+import './CalculatorResult.scss';
 
 const CalculatorResult = () => {
   return (

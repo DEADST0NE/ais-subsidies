@@ -10,9 +10,12 @@
     .actions-table {
       display: flex;
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: center;
       button {
         padding: 0px;
+        &:not(:first-child) {
+          margin-left: 15px;
+        }
         svg {
           width: 18px;
           height: 18px;

@@ -1,6 +1,6 @@
 .search-global-grup {
   display: flex;
-  width: 100%;
+  width: 90%;
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@
     padding-left: 15px;
     border: 0;
     background-color: #ffffff26;
-    border-radius: 20px 0px 0px 20px;
+    border-radius: 0.5rem 0 0 0.5rem;
     outline: none;
     transition: background-color 0.5s ease 0.3s;
     &::placeholder {
@@ -33,13 +33,14 @@
     height: 100%;
     border: 0;
     background-color: #ffffff26;
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 0 0.5rem 0.5rem 0;
     outline: none;
     transition: background-color 0.5s ease 0.3s;
     svg {
       width: 60%;
       height: 60%;
       fill: #ffffff63;
+      transition: fill 0.5s ease 0.3s;
     }
   }
 }

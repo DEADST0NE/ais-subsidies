@@ -52,7 +52,9 @@ SortTable.defaultProps = {
 };
 
 SortTable.propTypes = {
-  array: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  array: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]))
+  ),
   setMass: PropTypes.func,
   nameSort: PropTypes.string,
   setSortName: PropTypes.func,

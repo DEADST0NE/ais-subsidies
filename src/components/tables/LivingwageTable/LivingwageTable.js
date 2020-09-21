@@ -14,7 +14,7 @@ import ErrorIndicator from '../../generic/ErrorIndicator';
 
 import '../GlobalStyleTable.scss';
 
-const EmployessTable = ({ array, loading, error }) => {
+const LivingwageTable = ({ array, loading, error }) => {
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -33,77 +33,72 @@ const EmployessTable = ({ array, loading, error }) => {
     <div className="castom_table">
       <table className="table table-striped">
         <colgroup>
-          <col style={{ width: '4%' }} />
-          <col style={{ width: '35%' }} />
+          <col style={{ width: '5%' }} />
+          <col style={{ width: '40%' }} />
+          <col style={{ width: '20%' }} />
           <col style={{ width: '20%' }} />
           <col style={{ width: '15%' }} />
-          <col style={{ width: '10%' }} />
-          <col style={{ width: '10%' }} />
         </colgroup>
         <thead>
           <tr>
             <th className="text-center">№</th>
             <th>
               <div className="d-flex align-items-center">
-                ФИО
+                Размер заработной платы
                 <SortTable
                   array={arrayTable}
                   setMass={setArrayTable}
                   nameSort={sortName}
-                  name="name"
+                  name="wageValue"
                   setSortName={setSortName}
                 />
               </div>
             </th>
             <th>
               <div className="d-flex align-items-center">
-                Должность
+                Дата начала
                 <SortTable
                   array={arrayTable}
                   setMass={setArrayTable}
                   nameSort={sortName}
-                  name="address"
+                  name="dateStart"
                   setSortName={setSortName}
                 />
               </div>
             </th>
-            <th>Email</th>
-            <th>Телефон</th>
+            <th>
+              <div className="d-flex align-items-center">
+                Дата окончания
+                <SortTable
+                  array={arrayTable}
+                  setMass={setArrayTable}
+                  nameSort={sortName}
+                  name="dateStop"
+                  setSortName={setSortName}
+                />
+              </div>
+            </th>
             <th className="text-center">Действия</th>
           </tr>
         </thead>
       </table>
-      <div className="table-content" style={{ height: 'calc(100vh - 315px)' }}>
+      <div className="table-content" style={{ height: 'calc(100vh - 395px)' }}>
         <Scrollbars>
           <table className="table">
             <colgroup>
-              <col style={{ width: '4%' }} />
-              <col style={{ width: '35%' }} />
+              <col style={{ width: '5%' }} />
+              <col style={{ width: '40%' }} />
+              <col style={{ width: '20%' }} />
               <col style={{ width: '20%' }} />
               <col style={{ width: '15%' }} />
-              <col style={{ width: '10%' }} />
-              <col style={{ width: '10%' }} />
             </colgroup>
             <tbody>
               {arrayTable.map((item, idx) => (
                 <tr key={item.id} className="table-row">
-                  <td className="text-center">
-                    <div
-                      className="status-employess"
-                      title={item.isActive ? 'Работает' : 'Не работает'}
-                    >
-                      {item.isActive ? (
-                        <Icon title="Работает" name="unlock" className="ullock" />
-                      ) : (
-                        <Icon title="Не работает" name="lock" className="lock" />
-                      )}
-                      {idx + 1}
-                    </div>
-                  </td>
-                  <td>{item.fio}</td>
-                  <td>{item.jobPosition}</td>
-                  <td>{item.email ? item.email : '-'}</td>
-                  <td>{item.phoneNumber1}</td>
+                  <td className="text-center">{idx + 1}</td>
+                  <td>{item.wageValue}</td>
+                  <td>{item.dateStart}</td>
+                  <td>{item.dateStop ? item.dateStop : '-'}</td>
                   <td>
                     <div className="actions-table">
                       <button title="Изменить" className="btn pencil-item-table" type="button">
@@ -138,17 +133,17 @@ const EmployessTable = ({ array, loading, error }) => {
   );
 };
 
-EmployessTable.defaultProps = {
+LivingwageTable.defaultProps = {
   array: [],
   error: {},
 };
 
-EmployessTable.propTypes = {
+LivingwageTable.propTypes = {
   array: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]))
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
   ),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
 };
 
-export default EmployessTable;
+export default LivingwageTable;

@@ -69,7 +69,7 @@ export const NAV_ITEMS = [
   },
   {
     label: 'Ошибки в ЕГИССО',
-    icon: 'error',
+    icon: 'outline-error',
     link: '/errors',
   },
   {

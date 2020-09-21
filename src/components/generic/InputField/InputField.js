@@ -5,9 +5,10 @@ import { Col, Form } from 'react-bootstrap';
 
 import './InputField.scss';
 
-const InputField = ({ size, name, type, placeholder, error, col, Ref }) => {
+const InputField = ({ size, name, type, placeholder, label, error, col, Ref }) => {
   return (
     <Form.Group as={Col} md={col} controlId={name}>
+      {label ? <Form.Label>{label}</Form.Label> : null}
       <Form.Control
         size={size}
         className={Object.keys(error).length && 'is-invalid'}
@@ -28,9 +29,11 @@ InputField.defaultProps = {
   error: {},
   col: '12',
   Ref: () => {},
+  label: '',
 };
 
 InputField.propTypes = {
+  label: PropTypes.string,
   size: PropTypes.string,
   name: PropTypes.string.isRequired,
   type: PropTypes.string,

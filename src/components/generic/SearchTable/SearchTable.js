@@ -43,7 +43,9 @@ SearchTable.defaultProps = {
 };
 
 SearchTable.propTypes = {
-  array: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  array: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]))
+  ),
   setMass: PropTypes.func,
 };
 

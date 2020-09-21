@@ -7,14 +7,20 @@ import PropTypes from 'prop-types';
 
 import Icon from '../../generic/Icon';
 import SortTable from '../../generic/SortTable';
-import Сonfirmation from '../../Сonfirmation';
 
 import LoadingIndicator from '../../generic/LoadingIndicator';
 import ErrorIndicator from '../../generic/ErrorIndicator';
 
 import '../GlobalStyleTable.scss';
 
-const BanksTable = ({ array, loading, error }) => {
+const BanksTable = ({
+  array,
+  loading,
+  error,
+  setBanksId,
+  setShowConfirmation,
+  setShowWindowFormPut,
+}) => {
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -28,7 +34,6 @@ const BanksTable = ({ array, loading, error }) => {
   }
   const [arrayTable, setArrayTable] = useState(array);
   const [sortName, setSortName] = useState(null);
-  const [showConfirmation, setShowConfirmation] = useState(false);
   return (
     <div className="castom_table">
       <table className="table table-striped">
@@ -94,12 +99,18 @@ const BanksTable = ({ array, loading, error }) => {
                   <td className="text-center">{item.bik}</td>
                   <td>
                     <div className="actions-table">
-                      <button title="Изменить" className="btn pencil-item-table" type="button">
+                      <button
+                        title="Изменить"
+                        className="btn pencil-item-table"
+                        type="button"
+                        onClick={() => setShowWindowFormPut(true)}
+                      >
                         <Icon name="pencil" />
                       </button>
                       <button
                         title="Удалить"
                         onClick={() => {
+                          setBanksId(item.id);
                           setShowConfirmation(true);
                         }}
                         className="btn trash-item-table"
@@ -115,13 +126,6 @@ const BanksTable = ({ array, loading, error }) => {
           </table>
         </Scrollbars>
       </div>
-      <Сonfirmation
-        show={showConfirmation}
-        onClosed={setShowConfirmation}
-        onSuccess={() => {
-          console.log(1);
-        }}
-      />
     </div>
   );
 };
@@ -129,12 +133,18 @@ const BanksTable = ({ array, loading, error }) => {
 BanksTable.defaultProps = {
   array: [],
   error: {},
+  setBanksId: () => {},
+  setShowConfirmation: () => {},
+  setShowWindowFormPut: () => {},
 };
 
 BanksTable.propTypes = {
   array: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
+  setBanksId: PropTypes.func,
+  setShowConfirmation: PropTypes.func,
+  setShowWindowFormPut: PropTypes.func,
 };
 
 export default BanksTable;

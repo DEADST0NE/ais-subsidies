@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import CalculatorForm from '../forms/Calculator_Form';
-import CalculatorResult from '../Calculator_Result';
+import CalculatorResult from '../CalculatorResult';
 
 import './Home.scss';
 

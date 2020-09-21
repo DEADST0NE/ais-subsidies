@@ -25,7 +25,7 @@ const AppView = () => (
         <Route path="/directory/employees">
           <EmployeesPage />
         </Route>
-        <Route path="/directory/livingwage">
+        <Route path="/directory/livingwage/:idSocialgroups?">
           <Livingwage />
         </Route>
         <Route>

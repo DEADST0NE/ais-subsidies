@@ -8,7 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import GlobalSearchInput from '../generic/GlobalSearchInput';
 import sidebarBurgerShow from '../../store/sidebar/actions';
 import Icon from '../generic/Icon';
-import HeaderUser from '../Header_User';
+import HeaderUser from '../HeaderUser';
 
 import './AppHeader.scss';
 

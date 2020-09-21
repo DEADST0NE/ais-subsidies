@@ -1,43 +1,36 @@
 import {
-  BANKS_GET_REQUEST,
-  BANKS_GET_SUCCESS,
-  BANKS_GET_ERROR,
-  BANKS_DELETE_SUCCESS,
+  SOCIALGROUPS_GET_REQUEST,
+  SOCIALGROUPS_GET_SUCCESS,
+  SOCIALGROUPS_GET_ERROR,
 } from '../actions';
 
 const INIT_STATE = {
-  banks: [],
+  socialgroups: [],
   loading: true,
   error: null,
 };
 
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
-    case BANKS_GET_REQUEST:
+    case SOCIALGROUPS_GET_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
       };
 
-    case BANKS_GET_SUCCESS:
+    case SOCIALGROUPS_GET_SUCCESS:
       return {
         ...state,
-        banks: action.payload,
+        socialgroups: action.payload,
         loading: false,
       };
 
-    case BANKS_GET_ERROR:
+    case SOCIALGROUPS_GET_ERROR:
       return {
         ...state,
         loading: false,
         error: action.payload,
-      };
-
-    case BANKS_DELETE_SUCCESS:
-      return {
-        ...state,
-        banks: state.banks.filter((item) => item.id !== action.payload),
       };
 
     default:

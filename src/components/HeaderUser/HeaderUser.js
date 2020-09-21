@@ -48,7 +48,7 @@ class HeaderUser extends Component {
       </div>
     ) : (
       <Nav.Link as={NavLink} to="/login">
-        Войти
+        Вход
       </Nav.Link>
     );
   }

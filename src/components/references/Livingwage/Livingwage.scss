@@ -1,0 +1,61 @@
+.livingwage {
+  .socialgroups-tabs-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+    a {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border-bottom: 1px solid #b5babe;
+      color: var(--secondary);
+      font-size: 20px;
+      svg {
+        width: 25px;
+        height: 25px;
+        margin-right: 20px;
+        fill: var(--secondary);
+      }
+      &:hover {
+        color: var(--primary);
+        svg {
+          fill: var(--primary);
+        }
+      }
+    }
+    .active {
+      border-bottom: 1px solid var(--primary);
+      color: var(--primary);
+      svg {
+        fill: var(--primary);
+      }
+    }
+  }
+  .livingwage-tab-content {
+    margin-top: 2.5rem;
+    .сontrol-table-grup {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      .search-table-grup {
+        width: 100%;
+        height: 50px;
+      }
+      button {
+        display: flex;
+        align-items: center;
+        padding: 11px 22px;
+        margin-left: 15px;
+        svg {
+          width: 25px;
+          height: 25px;
+          fill: #fff;
+        }
+      }
+    }
+  }
+}
