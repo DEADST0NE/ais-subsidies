@@ -12,16 +12,15 @@ import SubmitBtn from '../generic/SubmitBtn';
 import CustomField from '../generic/CustomField';
 
 const validationSchema = Yup.object().shape({
+  parentId: Yup.string().required('Обязательное поле'),
+  orgUnitId: Yup.string().required('Обязательное поле'),
   name: Yup.string().required('Обязательное поле'),
   address: Yup.string().required('Обязательное поле'),
-  city: Yup.string().required('Обязательное поле'),
-  ks: Yup.number()
-    .min(20, 'Заполните корреспондентский счет до конца')
-    .required('Обязательное поле'),
-  bik: Yup.number().min(9, 'Заполните бик до конца').required('Обязательное поле'),
+  eMail: Yup.string().required('Обязательное поле'),
+  phoneNumber1: Yup.string().required('Обязательное поле'),
 });
 
-const EmployeesForm = ({ defautValueForm, employeeId, onClosed, onSuccess, loading }) => {
+const OrgstructureForm = ({ defautValueForm, orgstructureId, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
   return (
     <Formik
@@ -30,7 +29,7 @@ const EmployeesForm = ({ defautValueForm, employeeId, onClosed, onSuccess, loadi
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         const formDate = objectOfFormDate(values);
-        if (employeeId) formDate.append('id', employeeId);
+        if (orgstructureId) formDate.append('id', orgstructureId);
         dispatch(onSuccess(formDate, onClosed));
       }}
     >
@@ -42,9 +41,19 @@ const EmployeesForm = ({ defautValueForm, employeeId, onClosed, onSuccess, loadi
                 <Form.Group>
                   <CustomField
                     type="text"
-                    label="Количество трудоспособных"
-                    placeholder="Количество трудоспособных"
-                    name="name"
+                    label="Идентификатор над структуры"
+                    placeholder="Идентификатор над структуры"
+                    name="parentId"
+                  />
+                </Form.Group>
+              </Col>
+              <Col sm="12">
+                <Form.Group>
+                  <CustomField
+                    type="number"
+                    label="Идентификатор организованной единцы"
+                    placeholder="Идентификатор орг единцы"
+                    name="orgUnitId"
                   />
                 </Form.Group>
               </Col>
@@ -52,18 +61,8 @@ const EmployeesForm = ({ defautValueForm, employeeId, onClosed, onSuccess, loadi
                 <Form.Group>
                   <CustomField
                     type="text"
-                    label="Город расположения банка"
-                    placeholder="Город расположения банка"
-                    name="city"
-                  />
-                </Form.Group>
-              </Col>
-              <Col sm="12">
-                <Form.Group>
-                  <CustomField
-                    type="text"
-                    label="Адрес банка"
-                    placeholder="Адрес банка"
+                    label="Адрес организованной единцы структуры"
+                    placeholder="Адрес организованной единцы структуры"
                     name="address"
                   />
                 </Form.Group>
@@ -72,17 +71,32 @@ const EmployeesForm = ({ defautValueForm, employeeId, onClosed, onSuccess, loadi
                 <Form.Group>
                   <CustomField
                     type="text"
-                    mask="ks"
-                    label="Корреспондентский счет"
-                    placeholder="Корреспондентский счет"
-                    name="ks"
+                    label="Адрес электронной почты"
+                    placeholder="Адрес электронной почты"
+                    name="eMail"
                   />
                 </Form.Group>
               </Col>
-
-              <Col sm="12">
+              <Col sm="6">
                 <Form.Group>
-                  <CustomField type="text" mask="bik" label="Бик" placeholder="Бик" name="bik" />
+                  <CustomField
+                    type="text"
+                    mask="tel"
+                    label="Телефон основной"
+                    placeholder="Телефон основной"
+                    name="phoneNumber1"
+                  />
+                </Form.Group>
+              </Col>
+              <Col sm="6">
+                <Form.Group>
+                  <CustomField
+                    type="text"
+                    mask="tel"
+                    label="Телефон дополнительный"
+                    placeholder="Телефон дополнительный"
+                    name="phoneNumber2"
+                  />
                 </Form.Group>
               </Col>
               <div className="d-flex w-100 position-absolute left-0 bottom-0">
@@ -114,26 +128,28 @@ const EmployeesForm = ({ defautValueForm, employeeId, onClosed, onSuccess, loadi
   );
 };
 
-EmployeesForm.defaultProps = {
+OrgstructureForm.defaultProps = {
   defautValueForm: {
+    parentId: '',
+    orgUnitId: '',
     name: '',
     address: '',
-    city: '',
-    ks: '',
-    bik: '',
+    eMail: '',
+    phoneNumber1: '',
+    phoneNumber2: '',
   },
   onClosed: () => {},
   onSuccess: () => {},
   loading: false,
-  employeeId: '',
+  orgstructureId: '',
 };
 
-EmployeesForm.propTypes = {
+OrgstructureForm.propTypes = {
   defautValueForm: PropTypes.oneOfType([PropTypes.string, PropTypes.objectOf(PropTypes.string)]),
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,
-  employeeId: PropTypes.string,
+  orgstructureId: PropTypes.string,
 };
 
-export default EmployeesForm;
+export default OrgstructureForm;

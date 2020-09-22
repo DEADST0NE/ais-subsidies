@@ -31,14 +31,24 @@ export const NAV_ITEMS = [
         link: '/directory/livingwage',
       },
       {
-        label: 'ССЖКУ',
-        icon: 'ssjcu',
-        link: '/directory/SSJKU',
-      },
-      {
         label: 'Сотрудники',
         icon: 'team',
         link: '/directory/employees',
+      },
+      {
+        label: 'Должности',
+        icon: 'jobpositions',
+        link: '/directory/jobpositions',
+      },
+      {
+        label: 'Роли',
+        icon: 'role',
+        link: '/directory/role',
+      },
+      {
+        label: 'Организ-ные структуры',
+        icon: 'orgstructure',
+        link: '/directory/orgstructure',
       },
       {
         label: 'Лицевые счета',
@@ -49,6 +59,11 @@ export const NAV_ITEMS = [
         label: 'Банки',
         icon: 'bank',
         link: '/directory/bank',
+      },
+      {
+        label: 'ССЖКУ',
+        icon: 'ssjcu',
+        link: '/directory/SSJKU',
       },
     ],
   },

@@ -13,7 +13,15 @@ import ErrorIndicator from '../../generic/ErrorIndicator';
 
 import '../GlobalStyleTable.scss';
 
-const LivingwageTable = ({ array, loading, error, setShowConfirmation }) => {
+const OrgstructureTable = ({
+  array,
+  loading,
+  error,
+  setOrgstructureId,
+  setShowConfirmation,
+  setShowWindowFormPut,
+  setOrgstructureVal,
+}) => {
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -32,9 +40,10 @@ const LivingwageTable = ({ array, loading, error, setShowConfirmation }) => {
       <table className="table table-striped">
         <colgroup>
           <col style={{ width: '5%' }} />
-          <col style={{ width: '40%' }} />
-          <col style={{ width: '20%' }} />
-          <col style={{ width: '20%' }} />
+          <col style={{ width: '30%' }} />
+          <col style={{ width: '30%' }} />
+          <col style={{ width: '15%' }} />
+          <col style={{ width: '10%' }} />
           <col style={{ width: '15%' }} />
         </colgroup>
         <thead>
@@ -42,66 +51,70 @@ const LivingwageTable = ({ array, loading, error, setShowConfirmation }) => {
             <th className="text-center">№</th>
             <th>
               <div className="d-flex align-items-center">
-                Размер заработной платы
+                Название
                 <SortTable
                   array={arrayTable}
                   setMass={setArrayTable}
                   nameSort={sortName}
-                  name="wageValue"
+                  name="name"
                   setSortName={setSortName}
                 />
               </div>
             </th>
             <th>
               <div className="d-flex align-items-center">
-                Дата начала
+                Адрес
                 <SortTable
                   array={arrayTable}
                   setMass={setArrayTable}
                   nameSort={sortName}
-                  name="dateStart"
+                  name="address"
                   setSortName={setSortName}
                 />
               </div>
             </th>
-            <th>
-              <div className="d-flex align-items-center">
-                Дата окончания
-                <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
-                  nameSort={sortName}
-                  name="dateStop"
-                  setSortName={setSortName}
-                />
-              </div>
-            </th>
+            <th>Email</th>
+            <th className="text-center">Телефон</th>
             <th className="text-center">Действия</th>
           </tr>
         </thead>
       </table>
-      <div className="table-content" style={{ height: 'calc(100vh - 395px)' }}>
+      <div className="table-content" style={{ height: 'calc(100vh - 315px)' }}>
         <Scrollbars>
           <table className="table">
             <colgroup>
               <col style={{ width: '5%' }} />
-              <col style={{ width: '40%' }} />
-              <col style={{ width: '20%' }} />
-              <col style={{ width: '20%' }} />
+              <col style={{ width: '30%' }} />
+              <col style={{ width: '30%' }} />
+              <col style={{ width: '15%' }} />
+              <col style={{ width: '10%' }} />
               <col style={{ width: '15%' }} />
             </colgroup>
             <tbody>
               {arrayTable.map((item, idx) => (
                 <tr key={item.id} className="table-row">
                   <td className="text-center">{idx + 1}</td>
-                  <td>{item.wageValue}</td>
-                  <td>{item.dateStart}</td>
-                  <td>{item.dateStop ? item.dateStop : '-'}</td>
+                  <td>{item.name}</td>
+                  <td>{item.address}</td>
+                  <td>{item.eMail}</td>
+                  <td className="text-center">{item.phoneNumber1}</td>
                   <td>
                     <div className="actions-table">
                       <button
+                        title="Изменить"
+                        className="btn pencil-item-table"
+                        type="button"
+                        onClick={() => {
+                          setShowWindowFormPut(true);
+                          setOrgstructureVal(item);
+                        }}
+                      >
+                        <Icon name="pencil" />
+                      </button>
+                      <button
                         title="Удалить"
                         onClick={() => {
+                          setOrgstructureId(item.id);
                           setShowConfirmation(true);
                         }}
                         className="btn trash-item-table"
@@ -121,19 +134,23 @@ const LivingwageTable = ({ array, loading, error, setShowConfirmation }) => {
   );
 };
 
-LivingwageTable.defaultProps = {
+OrgstructureTable.defaultProps = {
   array: [],
   error: {},
+  setOrgstructureId: () => {},
   setShowConfirmation: () => {},
+  setShowWindowFormPut: () => {},
+  setOrgstructureVal: () => {},
 };
 
-LivingwageTable.propTypes = {
-  array: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
-  ),
+OrgstructureTable.propTypes = {
+  array: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   loading: PropTypes.bool.isRequired,
-  setShowConfirmation: PropTypes.func,
   error: PropTypes.objectOf(PropTypes.string),
+  setOrgstructureId: PropTypes.func,
+  setShowConfirmation: PropTypes.func,
+  setShowWindowFormPut: PropTypes.func,
+  setOrgstructureVal: PropTypes.func,
 };
 
-export default LivingwageTable;
+export default OrgstructureTable;

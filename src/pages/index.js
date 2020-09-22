@@ -9,7 +9,11 @@ const HomePage = lazy(() => import('./home-page'));
 const BanksPage = lazy(() => import('./banks-page'));
 const EmployeesPage = lazy(() => import('./employees-page'));
 const NotFoundPage = lazy(() => import('./not-found-page'));
-const Livingwage = lazy(() => import('./livingwage-page'));
+const LivingwagePage = lazy(() => import('./livingwage-page'));
+const AddressPage = lazy(() => import('./address-page'));
+const JobpositionsPage = lazy(() => import('./jobpositions-page'));
+const RolePage = lazy(() => import('./role-page'));
+const OrgstructurePage = lazy(() => import('./orgstructure-page'));
 
 const AppView = () => (
   <AppLayout>
@@ -26,7 +30,19 @@ const AppView = () => (
           <EmployeesPage />
         </Route>
         <Route path="/directory/livingwage/:idSocialgroups?">
-          <Livingwage />
+          <LivingwagePage />
+        </Route>
+        <Route path="/directory/address">
+          <AddressPage />
+        </Route>
+        <Route path="/directory/jobpositions">
+          <JobpositionsPage />
+        </Route>
+        <Route path="/directory/role">
+          <RolePage />
+        </Route>
+        <Route path="/directory/orgstructure">
+          <OrgstructurePage />
         </Route>
         <Route>
           <NotFoundPage />

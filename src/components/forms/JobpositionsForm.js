@@ -1,6 +1,6 @@
 /* eslint-disable no-sequences */
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Form, Col, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
@@ -10,22 +10,13 @@ import PropTypes from 'prop-types';
 import objectOfFormDate from '../../utils/objectOfFormDate';
 import SubmitBtn from '../generic/SubmitBtn';
 import CustomField from '../generic/CustomField';
-import DatePicker from '../generic/DatePicker';
-import ErrorIndicator from '../generic/ErrorIndicator';
 
-const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, loading }) => {
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required('Обязательное поле'),
+});
+
+const JobpositionsForm = ({ defautValueForm, jobPositionId, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
-  const { socialgroups, error } = useSelector(({ socialgroups }) => socialgroups);
-
-  const validatObject = {
-    name: Yup.string().required('Обязательное поле'),
-    address: Yup.string().required('Обязательное поле'),
-    DateStart: Yup.string().required('Обязательное поле'),
-  };
-  validatObject[`wageValue${socialGroupId}`] = Yup.string().required('Обязательное поле');
-
-  const validationSchema = Yup.object().shape(validatObject);
-
   return (
     <Formik
       initialValues={defautValueForm}
@@ -33,31 +24,22 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         const formDate = objectOfFormDate(values);
-        if (socialGroupId) formDate.append('socialGroupId', socialGroupId);
+        if (jobPositionId) formDate.append('id', jobPositionId);
         dispatch(onSuccess(formDate, onClosed));
       }}
     >
       {({ handleSubmit }) => {
-        if (error) return <ErrorIndicator error={error} />;
         return (
           <form style={{ paddingBottom: '4rem' }} onSubmit={handleSubmit}>
             <Form.Row>
-              {socialgroups.map((item) => (
-                <Col key={item.id} sm="4">
-                  <Form.Group>
-                    <CustomField
-                      type="text"
-                      label={item.name}
-                      placeholder={item.name}
-                      name={`wageValue${item.id}`}
-                    />
-                  </Form.Group>
-                </Col>
-              ))}
-
               <Col sm="12">
                 <Form.Group>
-                  <DatePicker label="Дата начала" name="DateStart" />
+                  <CustomField
+                    type="text"
+                    placeholder="Наименнование должности"
+                    label="Наименнование должности"
+                    name="name"
+                  />
                 </Form.Group>
               </Col>
               <div className="d-flex w-100 position-absolute left-0 bottom-0">
@@ -89,26 +71,22 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
   );
 };
 
-LivingwageForm.defaultProps = {
+JobpositionsForm.defaultProps = {
   defautValueForm: {
     name: '',
-    address: '',
-    city: '',
-    ks: '',
-    bik: '',
   },
   onClosed: () => {},
   onSuccess: () => {},
   loading: false,
-  socialGroupId: '',
+  jobPositionId: '',
 };
 
-LivingwageForm.propTypes = {
+JobpositionsForm.propTypes = {
   defautValueForm: PropTypes.oneOfType([PropTypes.string, PropTypes.objectOf(PropTypes.string)]),
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,
-  socialGroupId: PropTypes.string,
+  jobPositionId: PropTypes.string,
 };
 
-export default LivingwageForm;
+export default JobpositionsForm;
