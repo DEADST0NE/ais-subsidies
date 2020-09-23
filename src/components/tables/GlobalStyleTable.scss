@@ -6,6 +6,11 @@
     }
     td {
       font-size: 14px;
+      .badge {
+        &:not(:last-child) {
+          margin-right: 5px;
+        }
+      }
     }
     .actions-table {
       display: flex;

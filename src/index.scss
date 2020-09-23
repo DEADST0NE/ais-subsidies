@@ -9,6 +9,15 @@ html {
   font-size: 16px;
 }
 
+.react-select__multi-value {
+  display: flex;
+  height: 26px;
+  align-items: center;
+}
+.react-select__multi-value__remove {
+  height: 26px;
+}
+
 .form-control {
   padding-left: 14px !important;
 }

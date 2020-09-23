@@ -40,8 +40,9 @@ const OrgstructureTable = ({
       <table className="table table-striped">
         <colgroup>
           <col style={{ width: '5%' }} />
-          <col style={{ width: '30%' }} />
-          <col style={{ width: '30%' }} />
+          <col style={{ width: '20%' }} />
+          <col style={{ width: '15%' }} />
+          <col style={{ width: '25%' }} />
           <col style={{ width: '15%' }} />
           <col style={{ width: '10%' }} />
           <col style={{ width: '15%' }} />
@@ -57,6 +58,18 @@ const OrgstructureTable = ({
                   setMass={setArrayTable}
                   nameSort={sortName}
                   name="name"
+                  setSortName={setSortName}
+                />
+              </div>
+            </th>
+            <th>
+              <div className="d-flex align-items-center">
+                Тип орг
+                <SortTable
+                  array={arrayTable}
+                  setMass={setArrayTable}
+                  nameSort={sortName}
+                  name="orgUnitName"
                   setSortName={setSortName}
                 />
               </div>
@@ -84,8 +97,9 @@ const OrgstructureTable = ({
           <table className="table">
             <colgroup>
               <col style={{ width: '5%' }} />
-              <col style={{ width: '30%' }} />
-              <col style={{ width: '30%' }} />
+              <col style={{ width: '20%' }} />
+              <col style={{ width: '15%' }} />
+              <col style={{ width: '25%' }} />
               <col style={{ width: '15%' }} />
               <col style={{ width: '10%' }} />
               <col style={{ width: '15%' }} />
@@ -95,6 +109,7 @@ const OrgstructureTable = ({
                 <tr key={item.id} className="table-row">
                   <td className="text-center">{idx + 1}</td>
                   <td>{item.name}</td>
+                  <td>{item.orgUnitName}</td>
                   <td>{item.address}</td>
                   <td>{item.eMail}</td>
                   <td className="text-center">{item.phoneNumber1}</td>
@@ -105,6 +120,7 @@ const OrgstructureTable = ({
                         className="btn pencil-item-table"
                         type="button"
                         onClick={() => {
+                          setOrgstructureId(item.id);
                           setShowWindowFormPut(true);
                           setOrgstructureVal(item);
                         }}
@@ -144,7 +160,9 @@ OrgstructureTable.defaultProps = {
 };
 
 OrgstructureTable.propTypes = {
-  array: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  array: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
+  ),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
   setOrgstructureId: PropTypes.func,

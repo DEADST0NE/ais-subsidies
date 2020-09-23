@@ -14,6 +14,8 @@ const AddressPage = lazy(() => import('./address-page'));
 const JobpositionsPage = lazy(() => import('./jobpositions-page'));
 const RolePage = lazy(() => import('./role-page'));
 const OrgstructurePage = lazy(() => import('./orgstructure-page'));
+const MaxcostsPage = lazy(() => import('./maxcosts-page'));
+const RelationsPage = lazy(() => import('./relations-page'));
 
 const AppView = () => (
   <AppLayout>
@@ -43,6 +45,12 @@ const AppView = () => (
         </Route>
         <Route path="/directory/orgstructure">
           <OrgstructurePage />
+        </Route>
+        <Route path="/directory/maxcosts">
+          <MaxcostsPage />
+        </Route>
+        <Route path="/directory/relations">
+          <RelationsPage />
         </Route>
         <Route>
           <NotFoundPage />

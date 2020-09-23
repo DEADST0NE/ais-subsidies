@@ -33,15 +33,15 @@ const Address = () => {
 
   return (
     <div>
-      <div className="steps">
+      <div>
         <Redirect from="/directory/address" to={array[0].url} exact />
-        <ul>
+        <ul className="steps">
           {array.map((item, idx) => (
-            <li>
-              <NavLink key={item.url} to={item.url} exact={item.url}>
-                <div className="steps-number">{idx + 1}</div>
-                <div className="steps-text">{item.name}</div>
+            <li key={item.url} className="step-wrapper">
+              <NavLink className="step" key={item.url} to={item.url} exact>
+                <div className="step-text">{item.name}</div>
               </NavLink>
+              {array.length === idx + 1 ? '' : <span className="step-selected">{item.name}</span>}
             </li>
           ))}
         </ul>

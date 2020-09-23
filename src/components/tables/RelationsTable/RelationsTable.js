@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 import Scrollbars from 'react-custom-scrollbars';
-import Alert from 'react-bootstrap/Alert';
+import { Alert, Badge } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 import Icon from '../../generic/Icon';
@@ -13,14 +13,14 @@ import ErrorIndicator from '../../generic/ErrorIndicator';
 
 import '../GlobalStyleTable.scss';
 
-const RoleTable = ({
+const RelationsTable = ({
   array,
   loading,
   error,
-  setRoleId,
+  setId,
   setShowConfirmation,
   setShowWindowFormPut,
-  setRoleDataVal,
+  setDefautValueForm,
 }) => {
   if (loading) {
     return <LoadingIndicator />;
@@ -40,7 +40,8 @@ const RoleTable = ({
       <table className="table table-striped">
         <colgroup>
           <col style={{ width: '5%' }} />
-          <col style={{ width: '80%' }} />
+          <col style={{ width: '20%' }} />
+          <col style={{ width: '60%' }} />
           <col style={{ width: '15%' }} />
         </colgroup>
         <thead>
@@ -48,7 +49,7 @@ const RoleTable = ({
             <th className="text-center">№</th>
             <th>
               <div className="d-flex align-items-center">
-                Роли должности
+                Название
                 <SortTable
                   array={arrayTable}
                   setMass={setArrayTable}
@@ -58,6 +59,7 @@ const RoleTable = ({
                 />
               </div>
             </th>
+            <th>Отношения</th>
             <th className="text-center">Действия</th>
           </tr>
         </thead>
@@ -67,14 +69,20 @@ const RoleTable = ({
           <table className="table">
             <colgroup>
               <col style={{ width: '5%' }} />
-              <col style={{ width: '80%' }} />
+              <col style={{ width: '20%' }} />
+              <col style={{ width: '60%' }} />
               <col style={{ width: '15%' }} />
             </colgroup>
             <tbody>
               {arrayTable.map((item, idx) => (
                 <tr key={item.id} className="table-row">
                   <td className="text-center">{idx + 1}</td>
-                  <td>{item.nameRus}</td>
+                  <td>{item.relation.name}</td>
+                  <td>
+                    {item.relationDependences.map((item) => (
+                      <Badge variant="secondary">{item.name}</Badge>
+                    ))}
+                  </td>
                   <td>
                     <div className="actions-table">
                       <button
@@ -82,8 +90,9 @@ const RoleTable = ({
                         className="btn pencil-item-table"
                         type="button"
                         onClick={() => {
+                          setId(item.id);
                           setShowWindowFormPut(true);
-                          setRoleDataVal(item);
+                          setDefautValueForm(item);
                         }}
                       >
                         <Icon name="pencil" />
@@ -91,7 +100,7 @@ const RoleTable = ({
                       <button
                         title="Удалить"
                         onClick={() => {
-                          setRoleId(item.id);
+                          setId(item.id);
                           setShowConfirmation(true);
                         }}
                         className="btn trash-item-table"
@@ -111,25 +120,25 @@ const RoleTable = ({
   );
 };
 
-RoleTable.defaultProps = {
+RelationsTable.defaultProps = {
   array: [],
   error: {},
-  setRoleId: () => {},
+  setId: () => {},
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
-  setRoleDataVal: () => {},
+  setDefautValueForm: () => {},
 };
 
-RoleTable.propTypes = {
+RelationsTable.propTypes = {
   array: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
   ),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
-  setRoleId: PropTypes.func,
+  setId: PropTypes.func,
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
-  setRoleDataVal: PropTypes.func,
+  setDefautValueForm: PropTypes.func,
 };
 
-export default RoleTable;
+export default RelationsTable;

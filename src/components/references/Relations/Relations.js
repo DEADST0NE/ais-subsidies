@@ -2,41 +2,41 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  getOrgstructures,
-  deleteOrgstructures,
-  postOrgstructures,
-  putOrgstructures,
-} from '../../../store/orgstructure/actions';
+  getRelations,
+  deleteRelations,
+  postRelations,
+  putRelations,
+} from '../../../store/relation/actions';
 
 import Сonfirmation from '../../generic/Сonfirmation';
-import OrgstructureForm from '../../forms/OrgstructureForm';
+import RelationsFrom from '../../forms/RelationsFrom';
 import ModalWindow from '../../generic/ModalWindow';
 import SearchTable from '../../generic/SearchTable';
-import OrgstructureTable from '../../tables/OrgstructureTable';
+import RelationsTable from '../../tables/RelationsTable';
 import Icon from '../../generic/Icon';
 
-import './Orgstructure.scss';
+import './Relations.scss';
 
-const Orgstructure = () => {
+const Relations = () => {
   const [searchArray, setSearchArray] = useState([]);
-  const { orgstructures, loading, error, deleteLoading, postLoading, putLoading } = useSelector(
-    ({ orgstructure }) => orgstructure
+  const { relations, loading, error, deleteLoading, postLoading, putLoading } = useSelector(
+    ({ relation }) => relation
   );
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getOrgstructures());
+    dispatch(getRelations());
   }, [dispatch, searchArray]);
 
-  const [orgstructureId, setOrgstructureId] = useState(''); // id Банка
+  const [id, setId] = useState(''); // id Банка
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
   const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
   const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
-  const [orgstructureVal, setOrgstructureVal] = useState('');
+  const [defautValueForm, setDefautValueForm] = useState('');
   return (
-    <div className="orgstructure">
+    <div className="relations">
       <div className="сontrol-table-grup">
-        <SearchTable array={orgstructures} setMass={setSearchArray} />
+        <SearchTable array={relations} setMass={setSearchArray} />
         <button
           type="button"
           className="btn btn-primary"
@@ -47,15 +47,15 @@ const Orgstructure = () => {
           <Icon name="addNewInfo" />
         </button>
       </div>
-      <OrgstructureTable
-        array={searchArray.length ? searchArray : orgstructures}
+      <RelationsTable
+        array={searchArray.length ? searchArray : relations}
         loading={loading}
         error={error}
         setMass={setSearchArray}
-        setOrgstructureId={setOrgstructureId}
+        setId={setId}
         setShowConfirmation={setShowConfirmation}
         setShowWindowFormPut={setShowWindowFormPut}
-        setOrgstructureVal={setOrgstructureVal}
+        setDefautValueForm={setDefautValueForm}
       />
 
       {/* Модальное окно формы изменеиния данных о банке */}
@@ -64,13 +64,13 @@ const Orgstructure = () => {
         show={showWindowFormPut}
         onClosed={setShowWindowFormPut}
       >
-        <OrgstructureForm
+        <RelationsFrom
           onClosed={setShowWindowFormPut}
-          orgstructureId={orgstructureId}
-          onSuccess={putOrgstructures}
+          orgstructureId={id}
+          onSuccess={putRelations}
           loading={putLoading}
-          defautValueForm={orgstructureVal}
-          orgstructuresArray={orgstructures}
+          defautValueForm={defautValueForm}
+          relationsArray={relations}
         />
       </ModalWindow>
 
@@ -80,11 +80,11 @@ const Orgstructure = () => {
         show={showWindowFormPost}
         onClosed={setShowWindowFormPost}
       >
-        <OrgstructureForm
+        <RelationsFrom
           onClosed={setShowWindowFormPost}
           loading={postLoading}
-          onSuccess={postOrgstructures}
-          orgstructuresArray={orgstructures}
+          onSuccess={postRelations}
+          relationsArray={relations}
         />
       </ModalWindow>
 
@@ -93,10 +93,10 @@ const Orgstructure = () => {
         show={showConfirmation}
         onClosed={setShowConfirmation}
         loading={deleteLoading}
-        onSuccess={() => dispatch(deleteOrgstructures(orgstructureId, setShowConfirmation))}
+        onSuccess={() => dispatch(deleteRelations(id, setShowConfirmation))}
       />
     </div>
   );
 };
 
-export default Orgstructure;
+export default Relations;

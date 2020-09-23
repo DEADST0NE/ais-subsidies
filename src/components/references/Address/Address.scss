@@ -1,56 +1,63 @@
 .steps {
-  ul {
-    display: flex;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    li {
-      position: relative;
-      width: 100%;
-      height: 60px;
-      &::before {
-        position: absolute;
-        z-index: 0;
-        top: 52%;
-        left: 0;
-        display: block;
-        width: 100%;
-        border-top: 1px solid #dee2e6;
-        margin-top: -1rem;
-        content: ' ';
-      }
-      a {
-        position: absolute;
-        z-index: 1;
-        left: 40%;
-        .steps-number {
-          left: 50%;
-          display: flex;
-          width: 2rem;
-          height: 2rem;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid #3d3d3d;
-          margin: 0 auto;
-          margin-bottom: 5px;
-          background: #ffffff;
-          border-radius: 50%;
-          color: #3d3d3d;
-          font-size: 1.143rem;
-          line-height: 2rem;
-          text-align: center;
-        }
-        .steps-text {
-          color: #3d3d3d;
-          font-size: 13px;
-          text-align: center;
-        }
-      }
-      .active .steps-number {
-        border: 1px solid #ffffff;
-        background: #2196f3;
-        color: #ffffff;
-      }
-    }
+  position: relative;
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  padding: 0px;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.step-wrapper {
+  position: relative;
+}
+.step-selected {
+  position: absolute;
+  bottom: 45px;
+  width: calc(100% - 25px);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.step-wrapper:not(:last-of-type) {
+  flex-grow: 1;
+}
+
+.step-wrapper:not(:last-of-type)::after {
+  position: absolute;
+  top: 16%;
+  left: 25px;
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin-top: 1px;
+  background-color: #5293c45c;
+  content: '';
+}
+
+.step {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border: 5px solid #5293c4;
+  background-color: #fff;
+  border-radius: 50%;
+  color: #fff;
+  line-height: 50px;
+  text-align: center;
+  &.active {
+    background-color: #5293c4;
   }
+}
+
+.step .step-text {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  color: #333;
+  font-size: 15px;
+  line-height: 12px;
+  white-space: nowrap;
 }

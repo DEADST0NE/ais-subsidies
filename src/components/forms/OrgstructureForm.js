@@ -10,21 +10,59 @@ import PropTypes from 'prop-types';
 import objectOfFormDate from '../../utils/objectOfFormDate';
 import SubmitBtn from '../generic/SubmitBtn';
 import CustomField from '../generic/CustomField';
+import CustomSelect from '../generic/CustomSelect';
 
 const validationSchema = Yup.object().shape({
   parentId: Yup.string().required('Обязательное поле'),
-  orgUnitId: Yup.string().required('Обязательное поле'),
+  orgUnitId: Yup.number().required('Обязательное поле'),
   name: Yup.string().required('Обязательное поле'),
   address: Yup.string().required('Обязательное поле'),
   eMail: Yup.string().required('Обязательное поле'),
   phoneNumber1: Yup.string().required('Обязательное поле'),
 });
 
-const OrgstructureForm = ({ defautValueForm, orgstructureId, onClosed, onSuccess, loading }) => {
+const OrgstructureForm = ({
+  defautValueForm,
+  orgstructureId,
+  onClosed,
+  onSuccess,
+  loading,
+  orgstructuresArray,
+}) => {
   const dispatch = useDispatch();
+  const bosParent = '00000000-0000-0000-0000-000000000000'; // Главная над структура
+  const optionsParent = orgstructuresArray // Строим option над структур
+    .filter((item) => item.parentId !== bosParent)
+    .map((item) => ({
+      value: item.parentId,
+      label: `Филиал ${item.name}`,
+    }));
+  optionsParent.unshift({
+    value: bosParent,
+    label: 'Главный отдел',
+  });
+  const defautVForm = defautValueForm;
+  const searchParentOgr = (array, id) => {
+    // Функция определяет значение по умолчаню полю "Над структура"
+    const idArray = array.findIndex((item) => item.id === id);
+    if (idArray !== -1) {
+      const { parentId } = array[idArray];
+      if (parentId === bosParent) return { value: bosParent, label: 'Главный отдел' };
+      const idx = array.findIndex((item) => item.id === parentId);
+      if (idx !== -1) return { value: array[idx].id, label: `Филиал ${array[idx].name}` };
+    }
+    return '';
+  };
+  if (defautValueForm.orgUnitId) {
+    defautVForm.orgUnitId = {
+      value: defautValueForm.orgUnitId,
+      label: defautValueForm.orgUnitName,
+    };
+  }
+  defautVForm.parentId = searchParentOgr(orgstructuresArray, orgstructureId);
   return (
     <Formik
-      initialValues={defautValueForm}
+      initialValues={defautVForm}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
@@ -39,21 +77,24 @@ const OrgstructureForm = ({ defautValueForm, orgstructureId, onClosed, onSuccess
             <Form.Row>
               <Col sm="12">
                 <Form.Group>
-                  <CustomField
-                    type="text"
-                    label="Идентификатор над структуры"
-                    placeholder="Идентификатор над структуры"
+                  <CustomSelect
+                    placeholder="Выберите над структуру"
+                    label="Над структура"
                     name="parentId"
+                    data={optionsParent}
                   />
                 </Form.Group>
               </Col>
               <Col sm="12">
                 <Form.Group>
-                  <CustomField
-                    type="number"
-                    label="Идентификатор организованной единцы"
-                    placeholder="Идентификатор орг единцы"
+                  <CustomSelect
+                    placeholder="Выберите тип орг"
+                    label="Тип орг"
                     name="orgUnitId"
+                    data={[
+                      { value: '1', label: 'Филиал' },
+                      { value: '2', label: 'Отдел' },
+                    ]}
                   />
                 </Form.Group>
               </Col>
@@ -130,8 +171,10 @@ const OrgstructureForm = ({ defautValueForm, orgstructureId, onClosed, onSuccess
 
 OrgstructureForm.defaultProps = {
   defautValueForm: {
+    id: '',
     parentId: '',
     orgUnitId: '',
+    orgUnitName: '',
     name: '',
     address: '',
     eMail: '',
@@ -142,14 +185,27 @@ OrgstructureForm.defaultProps = {
   onSuccess: () => {},
   loading: false,
   orgstructureId: '',
+  orgstructuresArray: [],
 };
 
 OrgstructureForm.propTypes = {
-  defautValueForm: PropTypes.oneOfType([PropTypes.string, PropTypes.objectOf(PropTypes.string)]),
+  defautValueForm: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+      ])
+    ),
+  ]),
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,
   orgstructureId: PropTypes.string,
+  orgstructuresArray: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
+  ),
 };
 
 export default OrgstructureForm;

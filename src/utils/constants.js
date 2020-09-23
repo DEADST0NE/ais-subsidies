@@ -46,6 +46,11 @@ export const NAV_ITEMS = [
         link: '/directory/role',
       },
       {
+        label: 'Максима-ая доля расходов',
+        icon: 'handSpendingMoney',
+        link: '/directory/maxcosts',
+      },
+      {
         label: 'Организ-ные структуры',
         icon: 'orgstructure',
         link: '/directory/orgstructure',
@@ -54,6 +59,11 @@ export const NAV_ITEMS = [
         label: 'Лицевые счета',
         icon: 'userPayments',
         link: '/directory/userScore',
+      },
+      {
+        label: 'Отношения',
+        icon: 'relations',
+        link: '/directory/relations',
       },
       {
         label: 'Банки',

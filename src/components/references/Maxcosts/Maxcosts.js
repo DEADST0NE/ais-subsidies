@@ -2,75 +2,71 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  getOrgstructures,
-  deleteOrgstructures,
-  postOrgstructures,
-  putOrgstructures,
-} from '../../../store/orgstructure/actions';
+  getMaxcosts,
+  postMaxcosts,
+  putMaxcosts,
+  deleteMaxcosts,
+} from '../../../store/maxcost/actions';
 
+import MaxcostsForm from '../../forms/MaxcostsForm';
 import Сonfirmation from '../../generic/Сonfirmation';
-import OrgstructureForm from '../../forms/OrgstructureForm';
 import ModalWindow from '../../generic/ModalWindow';
 import SearchTable from '../../generic/SearchTable';
-import OrgstructureTable from '../../tables/OrgstructureTable';
+import MaxcostsTable from '../../tables/MaxcostsTable';
 import Icon from '../../generic/Icon';
 
-import './Orgstructure.scss';
+import './Maxcosts.scss';
 
-const Orgstructure = () => {
-  const [searchArray, setSearchArray] = useState([]);
-  const { orgstructures, loading, error, deleteLoading, postLoading, putLoading } = useSelector(
-    ({ orgstructure }) => orgstructure
-  );
-
+const Maxcosts = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getOrgstructures());
-  }, [dispatch, searchArray]);
 
-  const [orgstructureId, setOrgstructureId] = useState(''); // id Банка
+  const [id, setId] = useState(''); // id Банка
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
   const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
   const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
-  const [orgstructureVal, setOrgstructureVal] = useState('');
+  const [defautValueForm, setDefautValueForm] = useState(''); // Ткущие данные для изменения
+  const { maxcosts, loading, error, postLoading, putLoading, deleteLoading } = useSelector(
+    ({ maxcost }) => maxcost
+  );
+  const [searchArray, setSearchArray] = useState([]);
+  useEffect(() => {
+    dispatch(getMaxcosts());
+  }, [dispatch, searchArray]);
+
   return (
-    <div className="orgstructure">
+    <div className="maxcosts">
       <div className="сontrol-table-grup">
-        <SearchTable array={orgstructures} setMass={setSearchArray} />
+        <SearchTable array={maxcosts} setMass={setSearchArray} />
         <button
+          onClick={() => setShowWindowFormPost(true)}
           type="button"
           className="btn btn-primary"
-          onClick={() => {
-            setShowWindowFormPost(true);
-          }}
         >
           <Icon name="addNewInfo" />
         </button>
       </div>
-      <OrgstructureTable
-        array={searchArray.length ? searchArray : orgstructures}
+      <MaxcostsTable
+        array={searchArray.length ? searchArray : maxcosts}
         loading={loading}
         error={error}
         setMass={setSearchArray}
-        setOrgstructureId={setOrgstructureId}
-        setShowConfirmation={setShowConfirmation}
+        setId={setId}
+        setDefautValueForm={setDefautValueForm}
         setShowWindowFormPut={setShowWindowFormPut}
-        setOrgstructureVal={setOrgstructureVal}
+        setShowConfirmation={setShowConfirmation}
       />
-
       {/* Модальное окно формы изменеиния данных о банке */}
       <ModalWindow
         title="Изменение данных банка"
         show={showWindowFormPut}
         onClosed={setShowWindowFormPut}
       >
-        <OrgstructureForm
+        <MaxcostsForm
           onClosed={setShowWindowFormPut}
-          orgstructureId={orgstructureId}
-          onSuccess={putOrgstructures}
+          id={id}
+          onSuccess={putMaxcosts}
           loading={putLoading}
-          defautValueForm={orgstructureVal}
-          orgstructuresArray={orgstructures}
+          defautValueForm={defautValueForm}
         />
       </ModalWindow>
 
@@ -80,11 +76,10 @@ const Orgstructure = () => {
         show={showWindowFormPost}
         onClosed={setShowWindowFormPost}
       >
-        <OrgstructureForm
+        <MaxcostsForm
           onClosed={setShowWindowFormPost}
           loading={postLoading}
-          onSuccess={postOrgstructures}
-          orgstructuresArray={orgstructures}
+          onSuccess={postMaxcosts}
         />
       </ModalWindow>
 
@@ -93,10 +88,10 @@ const Orgstructure = () => {
         show={showConfirmation}
         onClosed={setShowConfirmation}
         loading={deleteLoading}
-        onSuccess={() => dispatch(deleteOrgstructures(orgstructureId, setShowConfirmation))}
+        onSuccess={() => dispatch(deleteMaxcosts(id, setShowConfirmation))}
       />
     </div>
   );
 };
 
-export default Orgstructure;
+export default Maxcosts;

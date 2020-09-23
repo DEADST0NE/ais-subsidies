@@ -3,8 +3,10 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
 
+import './ModalWindow.scss';
+
 const ModalWindow = ({ show, onClosed, size, title, children }) => (
-  <Modal size={size} show={show} onHide={() => onClosed(false)}>
+  <Modal className="castom-modal-window" size={size} show={show} onHide={() => onClosed(false)}>
     <Modal.Title className="p-4">{title}</Modal.Title>
     <Modal.Body>{children}</Modal.Body>
   </Modal>

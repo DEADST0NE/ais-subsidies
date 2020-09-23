@@ -8,7 +8,9 @@ import livingwages from './livingwage/reducer';
 import socialgroups from './socialgroups/reducer';
 import jobpositions from './jobpositions/reducer';
 import role from './role/reducer';
+import relation from './relation/reducer';
 import orgstructure from './orgstructure/reducer';
+import maxcost from './maxcost/reducer';
 
 const reducers = combineReducers({
   user,
@@ -20,6 +22,8 @@ const reducers = combineReducers({
   jobpositions,
   role,
   orgstructure,
+  maxcost,
+  relation,
 });
 
 export default reducers;

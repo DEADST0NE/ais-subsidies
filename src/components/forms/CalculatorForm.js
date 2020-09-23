@@ -36,7 +36,6 @@ const CalculatorForm = () => {
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        console.log(values);
       }}
     >
       {({ handleSubmit }) => {
