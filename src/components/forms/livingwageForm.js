@@ -18,14 +18,10 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
   const { socialgroups, error } = useSelector(({ socialgroups }) => socialgroups);
 
   const validatObject = {
-    name: Yup.string().required('Обязательное поле'),
-    address: Yup.string().required('Обязательное поле'),
-    DateStart: Yup.string().required('Обязательное поле'),
+    dateStart: Yup.string().required('Обязательное поле'),
   };
-  validatObject[`wageValue${socialGroupId}`] = Yup.string().required('Обязательное поле');
-
+  validatObject[socialGroupId] = Yup.string().required('Обязательное поле');
   const validationSchema = Yup.object().shape(validatObject);
-
   return (
     <Formik
       initialValues={defautValueForm}
@@ -33,8 +29,8 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         const formDate = objectOfFormDate(values);
-        if (socialGroupId) formDate.append('socialGroupId', socialGroupId);
-        dispatch(onSuccess(formDate, onClosed));
+        console.log(values);
+        // dispatch(onSuccess(formDate, onClosed));
       }}
     >
       {({ handleSubmit }) => {
@@ -49,7 +45,7 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
                       type="text"
                       label={item.name}
                       placeholder={item.name}
-                      name={`wageValue${item.id}`}
+                      name={`${item.id}`}
                     />
                   </Form.Group>
                 </Col>
@@ -57,7 +53,7 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
 
               <Col sm="12">
                 <Form.Group>
-                  <DatePicker label="Дата начала" name="DateStart" />
+                  <DatePicker label="Дата начала" name="dateStart" />
                 </Form.Group>
               </Col>
               <div className="d-flex w-100 position-absolute left-0 bottom-0">
@@ -76,9 +72,6 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
                   isSubmitting={loading}
                   className="w-100"
                   text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
-                  onClick={() => {
-                    onSuccess();
-                  }}
                 />
               </div>
             </Form.Row>
@@ -91,11 +84,10 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
 
 LivingwageForm.defaultProps = {
   defautValueForm: {
-    name: '',
-    address: '',
-    city: '',
-    ks: '',
-    bik: '',
+    1: '',
+    2: '',
+    3: '',
+    dateStart: '',
   },
   onClosed: () => {},
   onSuccess: () => {},

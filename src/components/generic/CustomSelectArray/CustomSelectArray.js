@@ -16,13 +16,14 @@ const CustomSelectArray = ({ name, data, label, placeholder, isLoading, isDisabl
   }
 
   return (
-    <div className="custom-select2">
+    <div className="custom-select2 multi-custom-select2">
       <Select
         components={makeAnimated()}
         className={className}
         classNamePrefix="react-select"
         name={name}
         isMulti
+        closeMenuOnSelect={false}
         options={data}
         value={field.value}
         onChange={(val) => helpers.setValue(val)}

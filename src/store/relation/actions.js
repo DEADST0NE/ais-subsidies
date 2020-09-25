@@ -61,13 +61,7 @@ const deleteRelationSuccess = (id) => ({
 });
 
 const deleteRelationRequest = async (id) => {
-  return axios
-    .delete('Directory/relationdependences', {
-      params: {
-        id,
-      },
-    })
-    .then((response) => response.data);
+  return axios.delete(`Directory/relation${id}`).then((response) => response.data);
 };
 
 export const deleteRelations = (id, onClose) => (dispatch) => {
@@ -100,7 +94,7 @@ const postRelationSuccess = (object) => ({
 });
 
 const postRelationRequest = async (formDara) => {
-  return axios.post('Directory/relationdependences', formDara).then((response) => response.data);
+  return axios.post('Directory/relationdependence', formDara).then((response) => response.data);
 };
 
 export const postRelations = (formDara, onClose) => (dispatch) => {
@@ -132,7 +126,7 @@ const putRelationSuccess = (object) => ({
 });
 
 const putRelationRequest = async (formDara) => {
-  return axios.put('Directory/relationdependences', formDara).then((response) => response.data);
+  return axios.put('Directory/relationdependence', formDara).then((response) => response.data);
 };
 
 export const putRelations = (formDara, onClose) => (dispatch) => {

@@ -14,8 +14,10 @@ import CustomSelect from '../generic/CustomSelect';
 import CustomSelectArray from '../generic/CustomSelectArray';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Обязательное поле'),
-  isNear: Yup.number().required('Обязательное поле'),
+  relation: {
+    name: Yup.string().required('Обязательное поле'),
+    isNear: Yup.number().required('Обязательное поле'),
+  },
 });
 
 const RelationsFrom = ({
@@ -27,13 +29,16 @@ const RelationsFrom = ({
   relationsArray,
 }) => {
   const dispatch = useDispatch();
+  // Устанавливаем значение по умолчанию
   let initialValues;
   if (defautValueForm?.relation) {
     initialValues = {
-      name: defautValueForm.relation.name,
-      isNear: {
-        value: defautValueForm.relation.isNear,
-        label: defautValueForm.relation.isNear ? 'Да' : 'Нет',
+      relation: {
+        name: defautValueForm.relation.name,
+        isNear: {
+          value: defautValueForm.relation.isNear,
+          label: defautValueForm.relation.isNear ? 'Да' : 'Нет',
+        },
       },
       relationIdDependences: defautValueForm?.relationDependences?.map((item) => ({
         value: item.id,
@@ -41,7 +46,6 @@ const RelationsFrom = ({
       })),
     };
   }
-
   return (
     <Formik
       initialValues={initialValues}
@@ -50,7 +54,8 @@ const RelationsFrom = ({
         setSubmitting(true);
         const formDate = objectOfFormDate(values);
         if (orgstructureId) formDate.append('id', orgstructureId);
-        dispatch(onSuccess(formDate, onClosed));
+        console.log(values);
+        // dispatch(onSuccess(formDate, onClosed));
       }}
     >
       {({ handleSubmit }) => {
@@ -61,9 +66,9 @@ const RelationsFrom = ({
                 <Form.Group>
                   <CustomField
                     type="text"
-                    label="Наименование отношения ФЛ"
-                    placeholder="Наименование отношения ФЛ"
-                    name="name"
+                    label="Наименование отношения"
+                    placeholder="Наименование отношения"
+                    name="relation.name"
                   />
                 </Form.Group>
               </Col>
@@ -72,7 +77,7 @@ const RelationsFrom = ({
                   <CustomSelect
                     placeholder="Ближайщий родственик"
                     label="Ближайщий родственик"
-                    name="isNear"
+                    name="relation.isNear"
                     data={[
                       { value: true, label: 'Да' },
                       { value: false, label: 'Нет' },
@@ -124,9 +129,10 @@ const RelationsFrom = ({
 
 RelationsFrom.defaultProps = {
   defautValueForm: {
-    id: '',
-    name: '',
-    isNear: '',
+    relation: {
+      name: '',
+      isNear: '',
+    },
     relationIdDependences: '',
   },
   onClosed: () => {},
@@ -138,8 +144,8 @@ RelationsFrom.defaultProps = {
 
 RelationsFrom.propTypes = {
   defautValueForm: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.objectOf(
+    PropTypes.objectOf(PropTypes.string, PropTypes.bool),
+    PropTypes.arrayOf(
       PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,

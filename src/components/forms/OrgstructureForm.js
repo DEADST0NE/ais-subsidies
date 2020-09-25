@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
   orgUnitId: Yup.number().required('Обязательное поле'),
   name: Yup.string().required('Обязательное поле'),
   address: Yup.string().required('Обязательное поле'),
-  eMail: Yup.string().required('Обязательное поле'),
+  eMail: Yup.string().email('Некорректная электронная почта'),
   phoneNumber1: Yup.string().required('Обязательное поле'),
 });
 
@@ -100,12 +100,7 @@ const OrgstructureForm = ({
               </Col>
               <Col sm="12">
                 <Form.Group>
-                  <CustomField
-                    type="text"
-                    label="Адрес организованной единцы структуры"
-                    placeholder="Адрес организованной единцы структуры"
-                    name="address"
-                  />
+                  <CustomField type="text" label="Адрес" placeholder="Адрес" name="address" />
                 </Form.Group>
               </Col>
               <Col sm="12">

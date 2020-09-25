@@ -9,9 +9,16 @@ html {
   font-size: 16px;
 }
 
+.multi-custom-select2 {
+  .react-select__control {
+    height: auto !important;
+    min-height: 54px;
+  }
+}
+
 .react-select__multi-value {
   display: flex;
-  height: 26px;
+  min-height: 26px;
   align-items: center;
 }
 .react-select__multi-value__remove {

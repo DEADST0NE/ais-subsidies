@@ -1,19 +1,24 @@
 .app-header {
   background-color: var(--navbar-bg);
   .logo {
-    display: flex;
-    align-items: center;
-    p {
-      color: #ffffffcc;
+    display: block;
+    height: 30px;
+    span {
+      display: block;
+      color: #d4d6d9;
       font-family: 'Cuprum-400';
-      font-size: 27px;
-    }
-    svg {
-      width: 35px;
-      height: 35px;
+      line-height: 19px;
+      &:first-child {
+        font-size: 30px;
+        letter-spacing: 0px;
+      }
+      &:last-child {
+        margin-left: 3px;
+        font-size: 10px;
+      }
     }
     &:hover {
-      p {
+      span {
         color: #fff;
       }
     }

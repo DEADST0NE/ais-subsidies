@@ -13,7 +13,7 @@ import './AppLayout.scss';
 
 const AppLayout = ({ children }) => {
   const dispatch = useDispatch();
-  const { showParentSidebar } = useSelector(({ sidebar }) => sidebar);
+  const { showParentSidebar, showChildrenSidebar } = useSelector(({ sidebar }) => sidebar);
 
   return (
     <div className="app">
@@ -22,7 +22,9 @@ const AppLayout = ({ children }) => {
         <AppSidebar />
         <main
           className="app-content"
-          onClick={() => (showParentSidebar ? dispatch(sidebarBurgerShow(0, false)) : null)}
+          onClick={() =>
+            showChildrenSidebar ? dispatch(sidebarBurgerShow(showParentSidebar, true)) : null
+          }
         >
           {children}
         </main>

@@ -28,11 +28,11 @@ const Orgstructure = () => {
     dispatch(getOrgstructures());
   }, [dispatch, searchArray]);
 
-  const [orgstructureId, setOrgstructureId] = useState(''); // id Банка
+  const [id, setId] = useState(''); // id Банка
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
   const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
   const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
-  const [orgstructureVal, setOrgstructureVal] = useState('');
+  const [defautValueForm, setDefautValueForm] = useState('');
   return (
     <div className="orgstructure">
       <div className="сontrol-table-grup">
@@ -52,10 +52,10 @@ const Orgstructure = () => {
         loading={loading}
         error={error}
         setMass={setSearchArray}
-        setOrgstructureId={setOrgstructureId}
+        setId={setId}
         setShowConfirmation={setShowConfirmation}
         setShowWindowFormPut={setShowWindowFormPut}
-        setOrgstructureVal={setOrgstructureVal}
+        setDefautValueForm={setDefautValueForm}
       />
 
       {/* Модальное окно формы изменеиния данных о банке */}
@@ -66,10 +66,10 @@ const Orgstructure = () => {
       >
         <OrgstructureForm
           onClosed={setShowWindowFormPut}
-          orgstructureId={orgstructureId}
+          id={id}
           onSuccess={putOrgstructures}
           loading={putLoading}
-          defautValueForm={orgstructureVal}
+          defautValueForm={defautValueForm}
           orgstructuresArray={orgstructures}
         />
       </ModalWindow>
@@ -93,7 +93,7 @@ const Orgstructure = () => {
         show={showConfirmation}
         onClosed={setShowConfirmation}
         loading={deleteLoading}
-        onSuccess={() => dispatch(deleteOrgstructures(orgstructureId, setShowConfirmation))}
+        onSuccess={() => dispatch(deleteOrgstructures(id, setShowConfirmation))}
       />
     </div>
   );

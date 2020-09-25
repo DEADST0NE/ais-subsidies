@@ -1,13 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 export const API_URL = 'http://192.168.35.5:8181/api/';
 
-export const SIDEBAR_PARENT_FIRST_TIME_OPENED = 1;
-export const SIDEBAR_PARENT_SECOND_TIME_OPENED = 2;
-export const SIDEBAR_PARENT_CLOSED = 0;
-export const SIDEBAR_PARENT_ALONE_CLOSED = false;
+export const SIDEBAR_PARENT_ARRAY_OPENED = 1;
+export const SIDEBAR_PARENT_ALONE_OPENED = 4;
 export const SIDEBAR_CHILD_CLOSED = false;
 export const SIDEBAR_CHILD_OPENED = true;
-export const SIDEBAR_PARENT_ALONE_OPENED = 4;
 
 export const NAV_ITEMS = [
   {

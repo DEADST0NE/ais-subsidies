@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import SearchTable from '../../generic/SearchTable';
-import { getLivingwages } from '../../../store/livingwage/actions';
+import {
+  getLivingwages,
+  deleteLivingwage,
+  postLivingwage,
+} from '../../../store/livingwage/actions';
 import LivingwageTable from '../../tables/LivingwageTable';
 import Icon from '../../generic/Icon';
 import LivingwageForm from '../../forms/LivingwageForm';
@@ -52,9 +56,7 @@ const TabContent = ({ id }) => {
         <LivingwageForm
           onClosed={setShowWindowFormPost}
           socialGroupId={id}
-          onSuccess={() => {
-            console.log(1);
-          }}
+          onSuccess={postLivingwage}
           loading={false}
         />
       </ModalWindow>
@@ -62,7 +64,7 @@ const TabContent = ({ id }) => {
         show={showConfirmation}
         onClosed={setShowConfirmation}
         loading={false}
-        onSuccess={() => console.log(1)}
+        onSuccess={deleteLivingwage}
       />
     </div>
   );

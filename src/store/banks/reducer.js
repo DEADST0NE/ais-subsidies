@@ -48,13 +48,13 @@ export default (state = INIT_STATE, action) => {
     case BANK_DELETE_REQUEST:
       return {
         ...state,
-        loadingDelete: true,
+        deleteLoading: true,
       };
 
     case BANK_DELETE_ERROR:
       return {
         ...state,
-        loadingDelete: false,
+        deleteLoading: false,
       };
 
     case BANK_DELETE_SUCCESS:
@@ -80,7 +80,7 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         postLoading: false,
-        banks: state.banks.push(action.payload),
+        // banks: state.banks.push(action.payload),
       };
 
     case BANK_PUT_REQUEST:

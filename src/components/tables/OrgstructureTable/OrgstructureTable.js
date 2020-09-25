@@ -17,10 +17,10 @@ const OrgstructureTable = ({
   array,
   loading,
   error,
-  setOrgstructureId,
+  setId,
   setShowConfirmation,
   setShowWindowFormPut,
-  setOrgstructureVal,
+  setDefautValueForm,
 }) => {
   if (loading) {
     return <LoadingIndicator />;
@@ -120,9 +120,9 @@ const OrgstructureTable = ({
                         className="btn pencil-item-table"
                         type="button"
                         onClick={() => {
-                          setOrgstructureId(item.id);
+                          setId(item.id);
                           setShowWindowFormPut(true);
-                          setOrgstructureVal(item);
+                          setDefautValueForm(item);
                         }}
                       >
                         <Icon name="pencil" />
@@ -130,7 +130,7 @@ const OrgstructureTable = ({
                       <button
                         title="Удалить"
                         onClick={() => {
-                          setOrgstructureId(item.id);
+                          setId(item.id);
                           setShowConfirmation(true);
                         }}
                         className="btn trash-item-table"
@@ -153,10 +153,10 @@ const OrgstructureTable = ({
 OrgstructureTable.defaultProps = {
   array: [],
   error: {},
-  setOrgstructureId: () => {},
+  setId: () => {},
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
-  setOrgstructureVal: () => {},
+  setDefautValueForm: () => {},
 };
 
 OrgstructureTable.propTypes = {
@@ -165,10 +165,10 @@ OrgstructureTable.propTypes = {
   ),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
-  setOrgstructureId: PropTypes.func,
+  setId: PropTypes.func,
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
-  setOrgstructureVal: PropTypes.func,
+  setDefautValueForm: PropTypes.func,
 };
 
 export default OrgstructureTable;

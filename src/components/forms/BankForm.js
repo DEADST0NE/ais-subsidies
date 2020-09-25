@@ -15,13 +15,13 @@ const validationSchema = Yup.object().shape({
   name: Yup.string().required('Обязательное поле'),
   address: Yup.string().required('Обязательное поле'),
   city: Yup.string().required('Обязательное поле'),
-  ks: Yup.number()
+  ks: Yup.string()
     .min(20, 'Заполните корреспондентский счет до конца')
     .required('Обязательное поле'),
-  bik: Yup.number().min(9, 'Заполните бик до конца').required('Обязательное поле'),
+  bik: Yup.string().min(9, 'Заполните бик до конца').required('Обязательное поле'),
 });
 
-const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) => {
+const BankForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
   return (
     <Formik
@@ -29,9 +29,9 @@ const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) =>
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        const formDate = objectOfFormDate(values);
-        if (banksId) formDate.append('id', banksId);
-        dispatch(onSuccess(formDate, onClosed));
+        const formData = objectOfFormDate(values);
+        if (id) formData.append('id', id);
+        dispatch(onSuccess(formData, onClosed));
       }}
     >
       {({ handleSubmit }) => {
@@ -42,8 +42,8 @@ const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) =>
                 <Form.Group>
                   <CustomField
                     type="text"
-                    label="Количество трудоспособных"
-                    placeholder="Количество трудоспособных"
+                    label="Наименование банка"
+                    placeholder="Наименование банка"
                     name="name"
                   />
                 </Form.Group>
@@ -71,8 +71,7 @@ const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) =>
               <Col sm="12">
                 <Form.Group>
                   <CustomField
-                    type="text"
-                    mask="ks"
+                    type="number"
                     label="Корреспондентский счет"
                     placeholder="Корреспондентский счет"
                     name="ks"
@@ -82,7 +81,7 @@ const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) =>
 
               <Col sm="12">
                 <Form.Group>
-                  <CustomField type="text" mask="bik" label="Бик" placeholder="Бик" name="bik" />
+                  <CustomField type="number" label="Бик" placeholder="Бик" name="bik" />
                 </Form.Group>
               </Col>
               <div className="d-flex w-100 position-absolute left-0 bottom-0">
@@ -101,9 +100,6 @@ const BankForm = ({ defautValueForm, banksId, onClosed, onSuccess, loading }) =>
                   isSubmitting={loading}
                   className="w-100"
                   text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
-                  onClick={() => {
-                    onSuccess();
-                  }}
                 />
               </div>
             </Form.Row>
@@ -125,7 +121,7 @@ BankForm.defaultProps = {
   onClosed: () => {},
   onSuccess: () => {},
   loading: false,
-  banksId: '',
+  id: '',
 };
 
 BankForm.propTypes = {
@@ -133,7 +129,7 @@ BankForm.propTypes = {
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,
-  banksId: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default BankForm;

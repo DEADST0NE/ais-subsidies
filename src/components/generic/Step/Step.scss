@@ -1,0 +1,126 @@
+.steps {
+  position: relative;
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  padding: 0px;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.step-wrapper {
+  position: relative;
+}
+.step-selected {
+  position: absolute;
+  bottom: 45px;
+  width: calc(100% - 25px);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.step-wrapper:not(:last-of-type) {
+  flex-grow: 1;
+}
+
+.step {
+  svg {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 20px;
+    height: 20px;
+    fill: #5293c4;
+  }
+}
+
+.step-wrapper-active {
+  .step {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 5px solid #5293c4;
+    background-color: #fff;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    &.active {
+      background-color: #5293c4;
+      .step-text {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        color: #333;
+        font-size: 15px;
+        line-height: 12px;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.step-wrapper-not-active {
+  a {
+    cursor: default;
+  }
+  .step {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 5px solid #5293c4a2;
+    background-color: #fff;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    &.active {
+      background-color: #5293c4;
+      .step-text {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        color: #333333;
+        font-size: 15px;
+        line-height: 12px;
+        white-space: nowrap;
+      }
+    }
+    .step-text {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      color: #3333338c;
+      font-size: 15px;
+      line-height: 12px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.step-wrapper-not-active:not(:last-of-type)::after {
+  position: absolute;
+  top: 16%;
+  left: 25px;
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin-top: 1px;
+  background-color: #5293c45c;
+  content: '';
+}
+
+.step-wrapper-active:not(:last-of-type)::after {
+  position: absolute;
+  top: 16%;
+  left: 25px;
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin-top: 1px;
+  background-color: #5293c4;
+  content: '';
+}

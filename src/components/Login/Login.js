@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import LoginForm from './LoginForm';
-import Icon from '../generic/Icon';
 import formLoginImg from '../../images/form-login-img.jpg';
 
 import './Login.scss';
@@ -19,10 +18,9 @@ const Login = () => (
           </Col>
           <Col md={7} className="login-form-card-body">
             <div className="login-form-card-logo brand-wrapper d-flex align-items-center mb-3">
-              <Icon name="logo" className="mr-3" />
-              <div>
-                <h1 className="mb-0">Субсидии</h1>
-                <h6 className="ml-1">ЖКУ</h6>
+              <div className="logo">
+                <span>Субсидии</span>
+                <span>жку</span>
               </div>
             </div>
             <p className="login-form-card-description mb-3">Войдите в свой аккаунт</p>

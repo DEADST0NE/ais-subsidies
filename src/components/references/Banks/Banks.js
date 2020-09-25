@@ -21,13 +21,13 @@ const ConteinerBanks = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBanks());
-  }, [dispatch, searchArray]);
+  }, [dispatch, searchArray, putLoading, postLoading, deleteLoading]);
 
-  const [banksId, setBanksId] = useState(''); // id Банка
+  const [id, setId] = useState(''); // id Банка
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
   const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
   const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
-  const [banksDataVal, setBanksDataVal] = useState('');
+  const [defautValueForm, setDefautValueForm] = useState('');
 
   return (
     <div className="banks">
@@ -48,10 +48,10 @@ const ConteinerBanks = () => {
         loading={loading}
         error={error}
         setMass={setSearchArray}
-        setBanksId={setBanksId}
+        setId={setId}
         setShowConfirmation={setShowConfirmation}
         setShowWindowFormPut={setShowWindowFormPut}
-        setBanksDataVal={setBanksDataVal}
+        setDefautValueForm={setDefautValueForm}
       />
 
       {/* Модальное окно формы изменеиния данных о банке */}
@@ -62,10 +62,10 @@ const ConteinerBanks = () => {
       >
         <BankForm
           onClosed={setShowWindowFormPut}
-          banksId={banksId}
+          id={id}
           onSuccess={putBanks}
           loading={putLoading}
-          defautValueForm={banksDataVal}
+          defautValueForm={defautValueForm}
         />
       </ModalWindow>
 
@@ -83,7 +83,7 @@ const ConteinerBanks = () => {
         show={showConfirmation}
         onClosed={setShowConfirmation}
         loading={deleteLoading}
-        onSuccess={() => dispatch(deleteBanks(banksId, setShowConfirmation))}
+        onSuccess={() => dispatch(deleteBanks(id, setShowConfirmation))}
       />
     </div>
   );

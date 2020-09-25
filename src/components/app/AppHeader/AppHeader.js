@@ -25,13 +25,13 @@ const AppHeader = () => {
           dispatch(sidebarBurgerShow(showParentSidebar, showChildrenSidebar));
         }}
       >
-        <Icon className={showParentSidebar ? 'svgActive' : 'svgNotActive'} name="burgerMenuMin" />
+        <Icon className="svgActive" name="burgerMenuMin" />
         <Icon className={showChildrenSidebar ? 'svgActive' : 'svgNotActive'} name="burgerMenuBig" />
       </button>
       <Navbar.Brand as={Link} to="/home" className="pt-0 pb-0 d-flex">
         <div className="logo">
-          <Icon className="mr-2" name="logo" />
-          <p className="mb-0">Субсидии</p>
+          <span>Субсидии</span>
+          <span>жку</span>
         </div>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

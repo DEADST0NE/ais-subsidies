@@ -80,7 +80,9 @@ const RelationsTable = ({
                   <td>{item.relation.name}</td>
                   <td>
                     {item.relationDependences.map((item) => (
-                      <Badge variant="secondary">{item.name}</Badge>
+                      <Badge key={item.id} variant="secondary">
+                        {item.name}
+                      </Badge>
                     ))}
                   </td>
                   <td>

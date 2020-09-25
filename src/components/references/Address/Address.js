@@ -1,51 +1,28 @@
-import React from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import AddressAreas from './AddressAreas';
+import AddressRegions from './AddressRegions';
+import Step from '../../generic/Step';
+// import AddressNextTable from '../../tables/AddressNextTable';
 import './Address.scss';
 
 const Address = () => {
-  const array = [
-    {
-      name: 'Регионы',
-      url: '/directory/address/regions',
-    },
-    {
-      name: 'Районы',
-      url: '/directory/address/areas',
-    },
-    {
-      name: 'Населенные пункты',
-      url: '/directory/address/city',
-    },
-    {
-      name: 'Улицы',
-      url: '/directory/address/streets',
-    },
-    {
-      name: 'Дома',
-      url: '/directory/address/house',
-    },
-    {
-      name: 'Квартиры',
-      url: '/directory/address/apartments',
-    },
-  ];
-
+  const [selectedArray, setSelectedArray] = useState([]);
   return (
     <div>
-      <div>
-        <Redirect from="/directory/address" to={array[0].url} exact />
-        <ul className="steps">
-          {array.map((item, idx) => (
-            <li key={item.url} className="step-wrapper">
-              <NavLink className="step" key={item.url} to={item.url} exact>
-                <div className="step-text">{item.name}</div>
-              </NavLink>
-              {array.length === idx + 1 ? '' : <span className="step-selected">{item.name}</span>}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <BrowserRouter>
+        <Step selectedArray={selectedArray} />
+        <Switch>
+          <Route path="/directory/address/regions" exact>
+            <AddressRegions selectedArray={selectedArray} setSelectedArray={setSelectedArray} />
+          </Route>
+
+          <Route path="/directory/address/regions/:parentId?/areas" exact>
+            <AddressAreas />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 };

@@ -11,6 +11,7 @@ import role from './role/reducer';
 import relation from './relation/reducer';
 import orgstructure from './orgstructure/reducer';
 import maxcost from './maxcost/reducer';
+import addressesRegions from './addresses/regions/reducer';
 
 const reducers = combineReducers({
   user,
@@ -24,6 +25,7 @@ const reducers = combineReducers({
   orgstructure,
   maxcost,
   relation,
+  addressesRegions,
 });
 
 export default reducers;

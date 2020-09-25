@@ -1,3 +1,22 @@
+.logo {
+  display: block;
+  span {
+    display: block;
+    color: #3a3939;
+    font-family: monospace;
+    font-family: 'Cuprum-400';
+    line-height: 26px;
+    &:first-child {
+      font-size: 40px;
+      letter-spacing: 0px;
+    }
+    &:last-child {
+      margin-left: 5px;
+      font-size: 12px;
+    }
+  }
+}
+
 .login-form {
   background-color: #e8e8e8;
   &-card {

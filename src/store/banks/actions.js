@@ -3,6 +3,7 @@ import {
   toastMessageError,
   toastMessageSuccess,
 } from '../../components/generic/ToastMessage/ToastMessage';
+import formDataAtObject from '../../utils/formDataAtObject';
 
 import {
   BANKS_GET_REQUEST,
@@ -61,13 +62,7 @@ const deleteBankSuccess = (id) => ({
 });
 
 const deleteBankRequest = async (id) => {
-  return axios
-    .delete('Directory/banks', {
-      params: {
-        id,
-      },
-    })
-    .then((response) => response.data);
+  return axios.delete(`Directory/bank/${id}`).then((response) => response.data);
 };
 
 export const deleteBanks = (id, onClose) => (dispatch) => {
@@ -100,7 +95,7 @@ const postBankSuccess = (object) => ({
 });
 
 const postBankRequest = async (formDara) => {
-  return axios.post('Directory/banks', formDara).then((response) => response.data);
+  return axios.post('Directory/bank', formDara).then((response) => response.data);
 };
 
 export const postBanks = (formDara, onClose) => (dispatch) => {
@@ -108,6 +103,8 @@ export const postBanks = (formDara, onClose) => (dispatch) => {
   postBankRequest(formDara)
     .then((data) => {
       onClose(false);
+      const newObject = formDataAtObject(formDara);
+      newObject.id = data;
       postBankSuccess(data);
       toastMessageSuccess('Банк успешно добавлен');
     })
@@ -132,15 +129,15 @@ const putBankSuccess = (object) => ({
 });
 
 const putBankRequest = async (formDara) => {
-  return axios.put('Directory/banks', formDara).then((response) => response.data);
+  return axios.put('Directory/bank', formDara).then((response) => response.data);
 };
 
 export const putBanks = (formDara, onClose) => (dispatch) => {
   dispatch(putBankRequested());
   putBankRequest(formDara)
-    .then((data) => {
+    .then(() => {
       onClose(false);
-      putBankSuccess(data);
+      dispatch(putBankSuccess(formDataAtObject(formDara)));
       toastMessageSuccess('Данные о банке успешно изменены');
     })
     .catch((err) => {

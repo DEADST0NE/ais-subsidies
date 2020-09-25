@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 400 110" xml:space="preserve">
+<desc>Sdelano: LOGOZA.RU</desc>
+<defs>
+
+                <style type="text/css">
+                    @font-face {
+                        font-family: "AAlternaNr";
+                        src: url("AAlternaNr.woff") format("woff");
+                        src: url("AAlternaNr.ttf") format("truetype");
+                        font-weight: normal;
+                        font-style: normal;
+                        font-display: swap;
+                    }
+                </style>
+
+                <style type="text/css">
+                    @import url(http://fonts.googleapis.com/css?family=Open+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i)
+                </style>
+
+</defs>
+<g transform="matrix(1 0 0 1 182.5 52.5)"  >
+<g style=""   >
+		<g transform="matrix(0.2 0 0 0.2 -131.32 1)"  >
+<filter id="SVGID_24711" y="-20%" height="140%" x="-20%" width="140%" >
+	<feGaussianBlur in="SourceAlpha" stdDeviation="0"></feGaussianBlur>
+	<feOffset dx="0" dy="0" result="oBlur" ></feOffset>
+	<feFlood flood-color="rgb(0,0,0)" flood-opacity="1"/>
+	<feComposite in2="oBlur" operator="in" />
+	<feMerge>
+		<feMergeNode></feMergeNode>
+		<feMergeNode in="SourceGraphic"></feMergeNode>
+	</feMerge>
+</filter>
+<g style="filter: url(#SVGID_24711);">
+
+		<g transform="matrix(1.02 0 0 1.02 -5.62 5.62)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,85,38); fill-rule: nonzero; opacity: 1;"  transform=" translate(-245, -256)" d="M 245 51 C 131.782 51 40 142.782 40 256 s 91.782 205 205 205 s 205 -91.782 205 -205 S 358.218 51 245 51 z M 245 381 c -69.036 0 -125 -55.964 -125 -125 s 55.964 -125 125 -125 s 125 55.964 125 125 S 314.036 381 245 381 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 -134.01 134.01)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,178,60); fill-rule: nonzero; opacity: 1;"  transform=" translate(-119.37, -381.63)" d="M 229 392 c 0 41.269 -20.835 77.669 -52.558 99.264 C 96.26 467.937 33.063 404.74 9.736 324.558 C 31.331 292.835 67.731 272 109 272 C 175.274 272 229 325.726 229 392 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 -143.9 143.9)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,201,129); fill-rule: nonzero; opacity: 1;"  transform=" translate(-109.69, -391.31)" d="M 187.261 392 c 0 38.215 -27.397 70.013 -63.617 76.873 c -38.081 -21.757 -69.76 -53.435 -91.516 -91.516 c 6.859 -36.22 38.657 -63.617 76.872 -63.617 C 152.222 313.739 187.261 348.778 187.261 392 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 -130.96 144.48)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,214,158); fill-rule: nonzero; opacity: 1;"  transform=" translate(-122.35, -391.88)" d="M 187.261 392 c 0 38.223 -27.415 70.006 -63.646 76.856 c -23.039 -13.167 -43.727 -29.971 -61.299 -49.623 c -3.15 -8.481 -4.876 -17.654 -4.876 -27.233 c 0 -38.668 28.052 -70.765 64.911 -77.104 C 159.209 321.235 187.261 353.332 187.261 392 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 -136.05 136.05)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(238,149,0); fill-rule: nonzero; opacity: 1;"  transform=" translate(-117.38, -383.63)" d="M 98.565 292.87 c 0 -5.763 4.672 -10.435 10.435 -10.435 s 10.435 4.672 10.435 10.435 c 0 5.763 -4.672 10.435 -10.435 10.435 S 98.565 298.632 98.565 292.87 z M 142.942 473.944 c -1.618 0.67 -2.972 1.703 -4.019 2.962 c 5.99 2.881 12.122 5.512 18.37 7.909 c 0.206 -1.719 -0.008 -3.511 -0.717 -5.224 C 154.371 474.267 148.267 471.739 142.942 473.944 z M 150.929 290.775 c -5.324 -2.206 -11.428 0.323 -13.634 5.647 c -2.205 5.324 0.323 11.428 5.647 13.633 c 5.324 2.206 11.428 -0.323 13.634 -5.647 S 156.253 292.98 150.929 290.775 z M 46.283 314.526 c -4.075 -4.075 -10.682 -4.075 -14.757 0 c -4.075 4.075 -4.075 10.682 0 14.757 s 10.682 4.075 14.757 0 C 50.358 325.208 50.358 318.601 46.283 314.526 z M 21.409 344.424 c -1.713 -0.709 -3.505 -0.923 -5.224 -0.717 c 2.397 6.249 5.028 12.38 7.909 18.371 c 1.258 -1.047 2.292 -2.402 2.962 -4.02 C 29.261 352.733 26.733 346.629 21.409 344.424 z M 75.058 310.056 c 5.324 -2.205 7.853 -8.309 5.647 -13.633 c -2.205 -5.325 -8.309 -7.853 -13.634 -5.647 c -5.324 2.206 -7.853 8.31 -5.647 13.634 S 69.733 312.261 75.058 310.056 z M 208.131 381.565 c -5.763 0 -10.435 4.671 -10.435 10.435 c 0 5.763 4.672 10.435 10.435 10.435 c 5.763 0 10.435 -4.672 10.435 -10.435 C 218.565 386.237 213.894 381.565 208.131 381.565 z M 204.578 363.705 c 5.324 -2.206 7.853 -8.31 5.647 -13.634 c -2.205 -5.324 -8.309 -7.853 -13.634 -5.647 c -5.324 2.206 -7.853 8.31 -5.647 13.634 S 199.254 365.91 204.578 363.705 z M 171.717 314.526 c -4.075 4.075 -4.075 10.682 0 14.757 c 4.075 4.075 10.682 4.075 14.757 0 s 4.075 -10.682 0 -14.757 C 182.399 310.451 175.792 310.451 171.717 314.526 z M 171.717 454.717 c -4.075 4.075 -4.075 10.682 0 14.757 c 4.075 4.075 10.682 4.075 14.757 0 c 4.075 -4.075 4.075 -10.682 0 -14.757 S 175.792 450.642 171.717 454.717 z M 204.578 420.295 c -5.324 -2.205 -11.428 0.323 -13.634 5.647 s 0.323 11.428 5.647 13.634 c 5.324 2.205 11.428 -0.323 13.634 -5.647 C 212.431 428.604 209.902 422.5 204.578 420.295 z M 147.737 426.58 l -7.12 -7.121 c -1.799 -1.799 -4.633 -1.923 -6.649 -0.372 c -13.383 10.297 -32.709 9.32 -44.962 -2.936 c -4.09 -4.09 -6.919 -8.97 -8.497 -14.152 H 104 c 2.761 0 5 -2.239 5 -5 v -10 c 0 -2.761 -2.239 -5 -5 -5 H 80.508 c 1.578 -5.182 4.406 -10.062 8.497 -14.152 c 12.254 -12.255 31.58 -13.233 44.962 -2.936 c 2.016 1.551 4.851 1.427 6.649 -0.372 l 7.117 -7.117 c 2.079 -2.079 1.945 -5.521 -0.331 -7.381 c -21.837 -17.851 -54.468 -16.069 -74.15 5.342 c -7.045 7.665 -11.47 16.935 -13.27 26.616 H 54 c -2.761 0 -5 2.239 -5 5 v 10 c 0 2.761 2.239 5 5 5 h 5.982 c 1.722 9.293 5.863 18.217 12.46 25.715 c 10.804 12.277 25.758 18.416 40.714 18.416 c 12.168 0 24.337 -4.064 34.269 -12.192 C 149.692 432.084 149.807 428.65 147.737 426.58 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 53.72 18.37)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,245,245); fill-rule: nonzero; opacity: 1;"  transform=" translate(-303.07, -268.47)" d="M 259 460.515 v 20.75 c 0 3.708 -4.115 5.938 -7.221 3.912 l -93.52 -60.993 c -2.825 -1.843 -2.825 -5.98 0 -7.823 l 93.52 -60.993 c 3.106 -2.026 7.221 0.203 7.221 3.911 v 20.937 c 62.444 -6.961 111 -59.914 111 -124.215 c 0 -69.036 -55.964 -125 -125 -125 c -2.012 0 -4.011 0.052 -6 0.146 V 51.094 c 1.994 -0.057 3.992 -0.094 6 -0.094 c 113.218 0 205 91.782 205 205 C 450 364.512 365.687 453.317 259 460.515 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 53.72 18.37)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(216,231,242); fill-rule: nonzero; opacity: 1;"  transform=" translate(-303.07, -268.47)" d="M 450 256 c 0 108.512 -84.313 197.317 -191 204.515 v 20.75 c 0 3.708 -4.115 5.938 -7.221 3.912 l -93.52 -60.993 c -2.825 -1.843 -2.825 -5.98 0 -7.823 l 5.868 -3.827 c 24.22 12.539 51.718 19.628 80.873 19.628 c 97.291 0 176.162 -78.871 176.162 -176.162 S 342.291 79.838 245 79.838 c -2.009 0 -4.007 0.046 -6 0.113 V 51.094 c 1.994 -0.057 3.992 -0.094 6 -0.094 C 358.218 51 450 142.782 450 256 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 133.37 -133.37)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,178,60); fill-rule: nonzero; opacity: 1;"  transform=" translate(-381, -120)" d="M 501 120 c 0 66.274 -53.726 120 -120 120 s -120 -53.726 -120 -120 S 314.726 0 381 0 S 501 53.726 501 120 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 133.37 -133.37)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,201,129); fill-rule: nonzero; opacity: 1;"  transform=" translate(-381, -120)" d="M 459.261 120 c 0 43.222 -35.039 78.261 -78.261 78.261 S 302.739 163.222 302.739 120 S 337.778 41.739 381 41.739 S 459.261 76.778 459.261 120 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 147.01 -133.37)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,214,158); fill-rule: nonzero; opacity: 1;"  transform=" translate(-394.35, -120)" d="M 459.261 120 c 0 38.668 -28.052 70.765 -64.91 77.103 c -36.859 -6.339 -64.91 -38.435 -64.91 -77.103 s 28.052 -70.765 64.91 -77.103 C 431.209 49.235 459.261 81.332 459.261 120 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 133.36 -133.37)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(238,149,0); fill-rule: nonzero; opacity: 1;"  transform=" translate(-381, -120)" d="M 299.056 86.058 c -2.205 5.324 -8.309 7.853 -13.634 5.647 c -5.324 -2.206 -7.853 -8.31 -5.647 -13.634 s 8.309 -7.853 13.634 -5.647 C 298.733 74.629 301.261 80.733 299.056 86.058 z M 303.526 182.717 c -4.075 4.075 -4.075 10.682 0 14.757 c 4.075 4.075 10.682 4.075 14.757 0 c 4.075 -4.075 4.075 -10.682 0 -14.757 C 314.208 178.642 307.601 178.642 303.526 182.717 z M 285.422 148.295 c -5.324 2.206 -7.853 8.31 -5.647 13.634 s 8.309 7.853 13.634 5.647 c 5.324 -2.206 7.853 -8.31 5.647 -13.634 C 296.85 148.618 290.746 146.09 285.422 148.295 z M 381 31.304 c 5.763 0 10.435 -4.672 10.435 -10.435 c 0 -5.763 -4.672 -10.435 -10.435 -10.435 c -5.763 0 -10.435 4.672 -10.435 10.435 C 370.565 26.632 375.237 31.304 381 31.304 z M 476.578 91.705 c 5.324 -2.206 7.853 -8.31 5.647 -13.634 s -8.309 -7.853 -13.634 -5.647 c -5.324 2.206 -7.853 8.31 -5.647 13.634 C 465.149 91.382 471.253 93.91 476.578 91.705 z M 347.058 38.056 c 5.324 -2.205 7.853 -8.309 5.647 -13.633 c -2.205 -5.325 -8.309 -7.853 -13.634 -5.647 s -7.853 8.31 -5.647 13.634 C 335.629 37.733 341.733 40.261 347.058 38.056 z M 292.304 120 c 0 -5.763 -4.672 -10.435 -10.435 -10.435 c -5.763 0 -10.435 4.671 -10.435 10.435 c 0 5.763 4.672 10.435 10.435 10.435 C 287.632 130.435 292.304 125.763 292.304 120 z M 303.526 42.526 c -4.075 4.075 -4.075 10.682 0 14.757 c 4.075 4.075 10.682 4.075 14.757 0 c 4.075 -4.075 4.075 -10.682 0 -14.757 C 314.208 38.451 307.601 38.451 303.526 42.526 z M 381 208.696 c -5.763 0 -10.435 4.671 -10.435 10.435 s 4.672 10.435 10.435 10.435 c 5.763 0 10.435 -4.672 10.435 -10.435 S 386.763 208.696 381 208.696 z M 476.578 148.295 c -5.324 -2.205 -11.428 0.323 -13.634 5.647 c -2.205 5.324 0.323 11.428 5.647 13.634 c 5.324 2.205 11.428 -0.323 13.634 -5.647 S 481.902 150.5 476.578 148.295 z M 443.717 182.717 c -4.075 4.075 -4.075 10.682 0 14.757 c 4.075 4.075 10.682 4.075 14.757 0 c 4.075 -4.075 4.075 -10.682 0 -14.757 C 454.399 178.642 447.792 178.642 443.717 182.717 z M 443.717 42.526 c -4.075 4.075 -4.075 10.682 0 14.757 c 4.075 4.075 10.682 4.075 14.757 0 c 4.075 -4.075 4.075 -10.682 0 -14.757 C 454.399 38.451 447.792 38.451 443.717 42.526 z M 347.058 201.944 c -5.324 -2.206 -11.428 0.323 -13.634 5.647 c -2.205 5.324 0.323 11.428 5.647 13.634 s 11.428 -0.323 13.634 -5.647 C 354.91 210.253 352.382 204.149 347.058 201.944 z M 480.13 109.565 c -5.763 0 -10.435 4.671 -10.435 10.435 c 0 5.763 4.672 10.435 10.435 10.435 c 5.763 0 10.435 -4.672 10.435 -10.435 C 490.565 114.237 485.893 109.565 480.13 109.565 z M 422.929 18.775 c -5.324 -2.206 -11.428 0.323 -13.634 5.647 c -2.205 5.324 0.323 11.428 5.647 13.633 c 5.324 2.206 11.428 -0.323 13.634 -5.647 S 428.253 20.98 422.929 18.775 z M 414.942 201.944 c -5.324 2.205 -7.853 8.309 -5.647 13.633 c 2.205 5.325 8.309 7.853 13.634 5.647 s 7.853 -8.31 5.647 -13.634 S 420.267 199.739 414.942 201.944 z M 397.553 167.535 H 391 v 3.187 c 0 2.761 -2.239 5 -5 5 h -10 c -2.761 0 -5 -2.239 -5 -5 v -3.187 h -20.933 c -2.761 0 -5 -2.239 -5 -5 v -10 c 0 -2.761 2.239 -5 5 -5 H 371 V 130 h -6.553 c -15.654 0 -28.902 -12.25 -29.367 -27.896 c -0.483 -16.258 12.603 -29.638 28.755 -29.638 H 371 v -3.187 c 0 -2.761 2.239 -5 5 -5 h 10 c 2.761 0 5 2.239 5 5 v 3.187 h 20.933 c 2.761 0 5 2.239 5 5 v 10 c 0 2.761 -2.239 5 -5 5 H 391 V 110 h 7.165 c 16.152 0 29.237 13.38 28.755 29.639 C 426.455 155.285 413.207 167.535 397.553 167.535 z M 371 92.465 h -6.856 c -4.665 0 -8.745 3.512 -9.057 8.167 c -0.342 5.105 3.715 9.368 8.747 9.368 H 371 V 92.465 z M 398.165 130 H 391 v 17.535 h 6.856 c 4.665 0 8.745 -3.513 9.057 -8.167 C 407.254 134.263 403.197 130 398.165 130 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 30.59 -162.43)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,85,38); fill-rule: nonzero; opacity: 1;"  transform=" translate(-280.43, -91.56)" d="M 236.221 26.656 l 93.52 60.993 c 2.825 1.842 2.825 5.98 0 7.823 l -93.52 60.993 c -3.106 2.026 -7.221 -0.203 -7.221 -3.911 V 30.568 C 229 26.859 233.115 24.63 236.221 26.656 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1.02 0 0 1.02 -65.99 -93.72)" id="Capa_1"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,73,39); fill-rule: nonzero; opacity: 1;"  transform=" translate(-185.93, -158.8)" d="M 329.741 95.472 l -5.131 3.346 c -23.911 -12.135 -50.96 -18.98 -79.61 -18.98 c -5.395 0 -10.729 0.256 -16 0.731 v 0.005 C 139.406 88.7 68.838 164.339 68.839 256.001 c 0 7.591 0.481 15.07 1.412 22.408 c -9.661 3.295 -18.77 7.781 -27.145 13.295 c -2.09 -11.9 -3.161 -24.152 -3.103 -36.665 C 40.495 148.035 123.917 59.823 229 51.627 V 30.568 c 0 -3.708 4.115 -5.938 7.221 -3.912 l 93.52 60.993 C 332.566 89.492 332.566 93.629 329.741 95.472 z" stroke-linecap="round" />
+</g>
+</g>
+</g>
+		<g transform="matrix(1 0 0 1 54.92 -10.12)" style="filter: url(#SVGID_24712);"  >
+<filter id="SVGID_24712" y="-20%" height="140%" x="-20%" width="140%" >
+	<feGaussianBlur in="SourceAlpha" stdDeviation="0"></feGaussianBlur>
+	<feOffset dx="0" dy="0" result="oBlur" ></feOffset>
+	<feFlood flood-color="rgb(0,0,0)" flood-opacity="1"/>
+	<feComposite in2="oBlur" operator="in" />
+	<feMerge>
+		<feMergeNode></feMergeNode>
+		<feMergeNode in="SourceGraphic"></feMergeNode>
+	</feMerge>
+</filter>
+		<text xml:space="preserve" font-family="AAlternaNr" font-size="82.75" font-style="normal" font-weight="400" style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: #fff; fill-rule: nonzero; opacity: 1; white-space: pre;" paint-order="stroke"  ><tspan x="-126.4" y="26" >Субсидии</tspan></text>
+</g>
+		<g transform="matrix(1 0 0 1 -48.08 43.88)" style="filter: url(#SVGID_24713);"  >
+<filter id="SVGID_24713" y="-20%" height="140%" x="-20%" width="140%" >
+	<feGaussianBlur in="SourceAlpha" stdDeviation="0"></feGaussianBlur>
+	<feOffset dx="0" dy="0" result="oBlur" ></feOffset>
+	<feFlood flood-color="rgb(0,0,0)" flood-opacity="1"/>
+	<feComposite in2="oBlur" operator="in" />
+	<feMerge>
+		<feMergeNode></feMergeNode>
+		<feMergeNode in="SourceGraphic"></feMergeNode>
+	</feMerge>
+</filter>
+		<text xml:space="preserve" font-family="Open Sans" font-size="23" font-style="normal" font-weight="400" style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: #fff; fill-rule: nonzero; opacity: 1; white-space: pre;" paint-order="stroke"  ><tspan x="-23.89" y="7.23" >ЖКУ</tspan></text>
+</g>
+</g>
+</g>
+</svg>

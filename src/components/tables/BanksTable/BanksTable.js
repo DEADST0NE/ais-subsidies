@@ -17,10 +17,10 @@ const BanksTable = ({
   array,
   loading,
   error,
-  setBanksId,
+  setId,
   setShowConfirmation,
   setShowWindowFormPut,
-  setBanksDataVal,
+  setDefautValueForm,
 }) => {
   if (loading) {
     return <LoadingIndicator />;
@@ -106,7 +106,7 @@ const BanksTable = ({
                         type="button"
                         onClick={() => {
                           setShowWindowFormPut(true);
-                          setBanksDataVal(item);
+                          setDefautValueForm(item);
                         }}
                       >
                         <Icon name="pencil" />
@@ -114,7 +114,7 @@ const BanksTable = ({
                       <button
                         title="Удалить"
                         onClick={() => {
-                          setBanksId(item.id);
+                          setId(item.id);
                           setShowConfirmation(true);
                         }}
                         className="btn trash-item-table"
@@ -137,20 +137,20 @@ const BanksTable = ({
 BanksTable.defaultProps = {
   array: [],
   error: {},
-  setBanksId: () => {},
+  setId: () => {},
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
-  setBanksDataVal: () => {},
+  setDefautValueForm: () => {},
 };
 
 BanksTable.propTypes = {
   array: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
-  setBanksId: PropTypes.func,
+  setId: PropTypes.func,
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
-  setBanksDataVal: PropTypes.func,
+  setDefautValueForm: PropTypes.func,
 };
 
 export default BanksTable;

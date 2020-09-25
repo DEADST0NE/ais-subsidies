@@ -7,14 +7,21 @@ import PropTypes from 'prop-types';
 
 import Icon from '../../generic/Icon';
 import SortTable from '../../generic/SortTable';
-import Сonfirmation from '../../generic/Сonfirmation';
 
 import LoadingIndicator from '../../generic/LoadingIndicator';
 import ErrorIndicator from '../../generic/ErrorIndicator';
 
 import '../GlobalStyleTable.scss';
 
-const EmployessTable = ({ array, loading, error }) => {
+const EmployessTable = ({
+  array,
+  loading,
+  error,
+  setId,
+  setShowConfirmation,
+  setShowWindowFormPut,
+  setDefautFormVal,
+}) => {
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -28,7 +35,6 @@ const EmployessTable = ({ array, loading, error }) => {
   }
   const [arrayTable, setArrayTable] = useState(array);
   const [sortName, setSortName] = useState(null);
-  const [showConfirmation, setShowConfirmation] = useState(false);
   return (
     <div className="castom_table">
       <table className="table table-striped">
@@ -106,12 +112,21 @@ const EmployessTable = ({ array, loading, error }) => {
                   <td>{item.phoneNumber1}</td>
                   <td>
                     <div className="actions-table">
-                      <button title="Изменить" className="btn pencil-item-table" type="button">
+                      <button
+                        title="Изменить"
+                        className="btn pencil-item-table"
+                        type="button"
+                        onClick={() => {
+                          setShowWindowFormPut(true);
+                          setDefautFormVal(item);
+                        }}
+                      >
                         <Icon name="pencil" />
                       </button>
                       <button
                         title="Удалить"
                         onClick={() => {
+                          setId(item.id);
                           setShowConfirmation(true);
                         }}
                         className="btn trash-item-table"
@@ -127,13 +142,6 @@ const EmployessTable = ({ array, loading, error }) => {
           </table>
         </Scrollbars>
       </div>
-      <Сonfirmation
-        show={showConfirmation}
-        onClosed={setShowConfirmation}
-        onSuccess={() => {
-          console.log(1);
-        }}
-      />
     </div>
   );
 };
@@ -141,6 +149,10 @@ const EmployessTable = ({ array, loading, error }) => {
 EmployessTable.defaultProps = {
   array: [],
   error: {},
+  setId: () => {},
+  setShowConfirmation: () => {},
+  setShowWindowFormPut: () => {},
+  setDefautFormVal: () => {},
 };
 
 EmployessTable.propTypes = {
@@ -149,6 +161,10 @@ EmployessTable.propTypes = {
   ),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
+  setId: PropTypes.func,
+  setShowConfirmation: PropTypes.func,
+  setShowWindowFormPut: PropTypes.func,
+  setDefautFormVal: PropTypes.func,
 };
 
 export default EmployessTable;
