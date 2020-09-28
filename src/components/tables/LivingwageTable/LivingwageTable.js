@@ -5,6 +5,7 @@ import Scrollbars from 'react-custom-scrollbars';
 import Alert from 'react-bootstrap/Alert';
 import PropTypes from 'prop-types';
 
+import convertDate from '../../../utils/convertDate';
 import Icon from '../../generic/Icon';
 import SortTable from '../../generic/SortTable';
 
@@ -13,7 +14,7 @@ import ErrorIndicator from '../../generic/ErrorIndicator';
 
 import '../GlobalStyleTable.scss';
 
-const LivingwageTable = ({ array, loading, error, setShowConfirmation }) => {
+const LivingwageTable = ({ array, loading, error, setShowConfirmation, setId }) => {
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -91,17 +92,18 @@ const LivingwageTable = ({ array, loading, error, setShowConfirmation }) => {
               <col style={{ width: '15%' }} />
             </colgroup>
             <tbody>
-              {arrayTable.map((item, idx) => (
+              {array.map((item, idx) => (
                 <tr key={item.id} className="table-row">
                   <td className="text-center">{idx + 1}</td>
                   <td>{item.wageValue}</td>
-                  <td>{item.dateStart}</td>
-                  <td>{item.dateStop ? item.dateStop : '-'}</td>
+                  <td>{convertDate(item.dateStart)}</td>
+                  <td>{item.dateStop ? convertDate(item.dateStop) : '-'}</td>
                   <td>
                     <div className="actions-table">
                       <button
                         title="Удалить"
                         onClick={() => {
+                          setId(item.id);
                           setShowConfirmation(true);
                         }}
                         className="btn trash-item-table"
@@ -124,6 +126,7 @@ const LivingwageTable = ({ array, loading, error, setShowConfirmation }) => {
 LivingwageTable.defaultProps = {
   array: [],
   error: {},
+  setId: () => {},
   setShowConfirmation: () => {},
 };
 
@@ -131,6 +134,7 @@ LivingwageTable.propTypes = {
   array: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
   ),
+  setId: PropTypes.func,
   loading: PropTypes.bool.isRequired,
   setShowConfirmation: PropTypes.func,
   error: PropTypes.objectOf(PropTypes.string),

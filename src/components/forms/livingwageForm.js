@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Form, Col, Button } from 'react-bootstrap';
+import { Form, Col, Button, Modal } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
@@ -20,7 +20,7 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
     dateStart: Yup.string().required('Обязательное поле'),
   };
   dynamic[socialGroupId] = Yup.string().required('Обязательное поле');
-  validatObject.array = Yup.object().shape({ ...dynamic });
+  validatObject.livingwageGrup = Yup.object().shape({ ...dynamic });
   const validationSchema = Yup.object().shape(validatObject);
   return (
     <Formik
@@ -43,7 +43,7 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
                       type="text"
                       label={item.name}
                       placeholder={item.name}
-                      name={`array.${item.id}`}
+                      name={`livingwageGrup.${item.id}`}
                     />
                   </Form.Group>
                 </Col>
@@ -54,12 +54,12 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
                   <DatePicker label="Дата начала" name="dateStart" />
                 </Form.Group>
               </Col>
-              <div className="d-flex w-100 position-absolute left-0 bottom-0">
+              <Modal.Footer className="w-100 left-0 bottom-0 position-absolute d-flex">
                 <Button
                   onClick={() => {
                     onClosed(false);
                   }}
-                  className="w-100"
+                  className="rounded"
                   variant="secondary"
                   disabled={loading}
                 >
@@ -67,11 +67,11 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
                 </Button>
 
                 <SubmitBtn
+                  className="rounded"
                   isSubmitting={loading}
-                  className="w-100"
                   text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
                 />
-              </div>
+              </Modal.Footer>
             </Form.Row>
           </form>
         );
@@ -82,7 +82,7 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
 
 LivingwageForm.defaultProps = {
   defautValueForm: {
-    array: {
+    livingwageGrup: {
       1: '',
       2: '',
       3: '',
@@ -96,7 +96,16 @@ LivingwageForm.defaultProps = {
 };
 
 LivingwageForm.propTypes = {
-  defautValueForm: PropTypes.oneOfType([PropTypes.string, PropTypes.objectOf(PropTypes.string)]),
+  defautValueForm: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+      ])
+    ),
+  ]),
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,

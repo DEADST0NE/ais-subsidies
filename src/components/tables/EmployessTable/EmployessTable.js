@@ -1,10 +1,12 @@
 /* eslint-disable import/no-unresolved */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Scrollbars from 'react-custom-scrollbars';
 import Alert from 'react-bootstrap/Alert';
 import PropTypes from 'prop-types';
-
+import { getOrgstructures } from '../../../store/orgstructure/actions';
+import FilterTable from '../../generic/FilterTable';
 import Icon from '../../generic/Icon';
 import SortTable from '../../generic/SortTable';
 
@@ -33,15 +35,26 @@ const EmployessTable = ({
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
+
+  const { orgstructures, loading: orgstLoading, error: orgstError } = useSelector(
+    ({ orgstructure }) => orgstructure
+  );
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getOrgstructures());
+  }, [dispatch]);
+
   const [arrayTable, setArrayTable] = useState(array);
   const [sortName, setSortName] = useState(null);
   return (
     <div className="castom_table">
       <table className="table table-striped">
         <colgroup>
-          <col style={{ width: '4%' }} />
-          <col style={{ width: '35%' }} />
+          <col style={{ width: '5%' }} />
+          <col style={{ width: '25%' }} />
           <col style={{ width: '20%' }} />
+          <col style={{ width: '15%' }} />
           <col style={{ width: '15%' }} />
           <col style={{ width: '10%' }} />
           <col style={{ width: '10%' }} />
@@ -59,6 +72,12 @@ const EmployessTable = ({
                   name="name"
                   setSortName={setSortName}
                 />
+              </div>
+            </th>
+            <th>
+              <div className="d-flex align-items-center">
+                Огр структура
+                <FilterTable loading={orgstLoading} error={orgstError} data={orgstructures} />
               </div>
             </th>
             <th>
@@ -83,9 +102,10 @@ const EmployessTable = ({
         <Scrollbars>
           <table className="table">
             <colgroup>
-              <col style={{ width: '4%' }} />
-              <col style={{ width: '35%' }} />
+              <col style={{ width: '5%' }} />
+              <col style={{ width: '25%' }} />
               <col style={{ width: '20%' }} />
+              <col style={{ width: '15%' }} />
               <col style={{ width: '15%' }} />
               <col style={{ width: '10%' }} />
               <col style={{ width: '10%' }} />
@@ -107,6 +127,7 @@ const EmployessTable = ({
                     </div>
                   </td>
                   <td>{item.fio}</td>
+                  <td>{item.orgStructureName}</td>
                   <td>{item.jobPosition}</td>
                   <td>{item.email ? item.email : '-'}</td>
                   <td>{item.phoneNumber1}</td>

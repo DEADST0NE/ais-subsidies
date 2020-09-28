@@ -8,24 +8,27 @@ import {
   deleteLivingwage,
   postLivingwage,
 } from '../../../store/livingwage/actions';
-import LivingwageTable from '../../tables/LivingwageTable';
 import LivingwageForm from '../../forms/LivingwageForm';
+import LivingwageTable from '../../tables/LivingwageTable';
 import Icon from '../../generic/Icon';
 import ModalWindow from '../../generic/ModalWindow';
 import Сonfirmation from '../../generic/Сonfirmation';
 
 import './Livingwage.scss';
 
-const TabContent = ({ id }) => {
+const TabContent = ({ socialgroupId }) => {
+  const [id, setId] = useState(''); // id
   const [searchArray, setSearchArray] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
   const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
-  const { livingwages, loading, error } = useSelector(({ livingwages }) => livingwages);
+  const { livingwages, loading, error, deleteLoading, postLoading } = useSelector(
+    ({ livingwages }) => livingwages
+  );
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getLivingwages(id));
-  }, [dispatch, id, searchArray]);
+    dispatch(getLivingwages(socialgroupId));
+  }, [dispatch, socialgroupId, searchArray]);
   return (
     <div className="livingwage-tab-content">
       <div className="сontrol-table-grup">
@@ -44,6 +47,7 @@ const TabContent = ({ id }) => {
         array={searchArray.length ? searchArray : livingwages}
         loading={loading}
         error={error}
+        setId={setId}
         setMass={setSearchArray}
         setShowConfirmation={setShowConfirmation}
         setShowWindowFormPost={setShowWindowFormPost}
@@ -55,27 +59,27 @@ const TabContent = ({ id }) => {
       >
         <LivingwageForm
           onClosed={setShowWindowFormPost}
-          socialGroupId={id}
+          socialGroupId={socialgroupId}
           onSuccess={postLivingwage}
-          loading={false}
+          loading={postLoading}
         />
       </ModalWindow>
       <Сonfirmation
         show={showConfirmation}
         onClosed={setShowConfirmation}
-        loading={false}
-        onSuccess={deleteLivingwage}
+        loading={deleteLoading}
+        onSuccess={() => dispatch(deleteLivingwage(id, setShowConfirmation, socialgroupId))}
       />
     </div>
   );
 };
 
 TabContent.defaultProps = {
-  id: '',
+  socialgroupId: '',
 };
 
 TabContent.propTypes = {
-  id: PropTypes.string,
+  socialgroupId: PropTypes.string,
 };
 
 export default TabContent;

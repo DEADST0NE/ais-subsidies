@@ -10,7 +10,9 @@ import './Livingwage.scss';
 const Livingwage = withRouter(({ match }) => (
   <div className="livingwage">
     <SocialgroupsTabs />
-    {match?.params?.idSocialgroups ? <TabContent id={match?.params?.idSocialgroups} /> : null}
+    {match?.params?.idSocialgroups ? (
+      <TabContent socialgroupId={match?.params?.idSocialgroups} />
+    ) : null}
   </div>
 ));
 

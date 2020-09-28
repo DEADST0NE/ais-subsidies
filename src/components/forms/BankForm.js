@@ -125,7 +125,16 @@ BankForm.defaultProps = {
 };
 
 BankForm.propTypes = {
-  defautValueForm: PropTypes.oneOfType([PropTypes.string, PropTypes.objectOf(PropTypes.string)]),
+  defautValueForm: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+      ])
+    ),
+  ]),
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,

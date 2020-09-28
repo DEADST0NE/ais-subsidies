@@ -1,0 +1,44 @@
+.filter-table {
+  position: relative;
+  margin-left: 5px;
+  button {
+    outline: none;
+    &:focus {
+      .filter-list {
+        display: block;
+      }
+    }
+  }
+  svg {
+    width: 15px;
+    height: 18px;
+    fill: #202020;
+  }
+  .filter-list {
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    left: 25px;
+    display: none;
+    background-color: #f8f6f6;
+    border-radius: 3px;
+    box-shadow: 0 1px 15px rgba(160, 118, 118, 0.425);
+    ul {
+      padding: 0px;
+      margin: 0;
+      li {
+        display: flex;
+        padding: 5px 10px;
+        border-bottom: 1px solid #ddd;
+        margin: 0px;
+        list-style: none;
+        &:hover {
+          background-color: #ddd;
+        }
+        &:last-child {
+          border-bottom: 0px;
+        }
+      }
+    }
+  }
+}

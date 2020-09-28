@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Form, Col, Button } from 'react-bootstrap';
+import { Form, Col, Button, Modal } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
@@ -58,12 +58,12 @@ const RoleForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
                   <CustomField type="number" placeholder="Ранг" label="Ранг" name="rang" />
                 </Form.Group>
               </Col>
-              <div className="d-flex w-100 position-absolute left-0 bottom-0">
+              <Modal.Footer className="w-100 left-0 bottom-0 position-absolute d-flex">
                 <Button
                   onClick={() => {
                     onClosed(false);
                   }}
-                  className="w-100"
+                  className="rounded"
                   variant="secondary"
                   disabled={loading}
                 >
@@ -71,11 +71,11 @@ const RoleForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
                 </Button>
 
                 <SubmitBtn
+                  className="rounded"
                   isSubmitting={loading}
-                  className="w-100"
                   text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
                 />
-              </div>
+              </Modal.Footer>
             </Form.Row>
           </form>
         );

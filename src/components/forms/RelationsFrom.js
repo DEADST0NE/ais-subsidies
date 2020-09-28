@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Form, Col, Button } from 'react-bootstrap';
+import { Form, Col, Button, Modal } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
@@ -93,12 +93,12 @@ const RelationsFrom = ({ defautValueForm, onClosed, onSuccess, loading, relation
                   />
                 </Form.Group>
               </Col>
-              <div className="d-flex w-100 position-absolute left-0 bottom-0">
+              <Modal.Footer className="w-100 left-0 bottom-0 position-absolute d-flex">
                 <Button
                   onClick={() => {
                     onClosed(false);
                   }}
-                  className="w-100"
+                  className="rounded"
                   variant="secondary"
                   disabled={loading}
                 >
@@ -106,11 +106,11 @@ const RelationsFrom = ({ defautValueForm, onClosed, onSuccess, loading, relation
                 </Button>
 
                 <SubmitBtn
+                  className="rounded"
                   isSubmitting={loading}
-                  className="w-100"
-                  text={defautValueForm?.relation?.name ? 'Изменить' : 'Добавить'}
+                  text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
                 />
-              </div>
+              </Modal.Footer>
             </Form.Row>
           </form>
         );
@@ -139,16 +139,26 @@ RelationsFrom.propTypes = {
     PropTypes.shape({
       relation: PropTypes.shape({
         id: PropTypes.string,
-        isNear: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
         name: PropTypes.string,
+        isNear: PropTypes.oneOfType([
+          PropTypes.bool,
+          PropTypes.shape({
+            value: PropTypes.bool,
+            label: PropTypes.string,
+          }),
+        ]),
       }),
       relationDependences: PropTypes.arrayOf(
         PropTypes.shape({
-          relation: PropTypes.shape({
-            id: PropTypes.string,
-            isNear: PropTypes.bool,
-            name: PropTypes.string,
-          }),
+          id: PropTypes.string,
+          name: PropTypes.string,
+          isNear: PropTypes.oneOfType([
+            PropTypes.bool,
+            PropTypes.shape({
+              value: PropTypes.bool,
+              label: PropTypes.string,
+            }),
+          ]),
         })
       ),
     }),

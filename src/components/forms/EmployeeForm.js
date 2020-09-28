@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Form, Col, Button } from 'react-bootstrap';
+import { Form, Col, Button, Modal } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
@@ -233,12 +233,12 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
                 </Form.Group>
               </Col>
 
-              <div className="d-flex w-100 position-absolute left-0 bottom-0">
+              <Modal.Footer className="w-100 left-0 bottom-0 position-absolute d-flex">
                 <Button
                   onClick={() => {
                     onClosed(false);
                   }}
-                  className="w-100"
+                  className="rounded"
                   variant="secondary"
                   disabled={loading}
                 >
@@ -246,22 +246,11 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
                 </Button>
 
                 <SubmitBtn
-                  isSubmitting={
-                    loading ||
-                    loadingJobPositions ||
-                    loadingOrgstructures ||
-                    loadingRroles ||
-                    errorJobPositions ||
-                    errorOrgstructures ||
-                    errorRoles
-                  }
-                  className="w-100"
+                  className="rounded"
+                  isSubmitting={loading}
                   text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
-                  onClick={() => {
-                    onSuccess();
-                  }}
                 />
-              </div>
+              </Modal.Footer>
             </Form.Row>
           </form>
         );

@@ -3,6 +3,7 @@ import {
   toastMessageError,
   toastMessageSuccess,
 } from '../../components/generic/ToastMessage/ToastMessage';
+import objectOfFormDate from '../../utils/objectOfFormDate';
 
 import {
   LIVINGWAGES_GET_REQUEST,
@@ -32,7 +33,7 @@ const getLivingwagesError = (error) => ({
 });
 
 const getLivingwagesRequest = async (id) => {
-  return axios.get(`Directory/Livingwages/${id}`).then((response) => response.data);
+  return axios.get(`Directory/livingwages/${id}`).then((response) => response.data);
 };
 
 export const getLivingwages = (id) => (dispatch) => {
@@ -61,22 +62,32 @@ const postLivingwageRequest = async (formDara) => {
   return axios.post('Directory/livingwage', formDara).then((response) => response.data);
 };
 
-export const postLivingwage = (formDara, onClose) => (dispatch) => {
+export const postLivingwage = (object, onClose) => (dispatch) => {
   dispatch(postLivingwageRequested());
-  postLivingwageRequest(formDara)
-    .then((data) => {
-      onClose(false);
-      postLivingwageSuccess(data);
-      toastMessageSuccess('Должность успешна добавлена');
-    })
-    .catch((err) => {
-      toastMessageError(err.title);
-      dispatch(postLivingwageError());
-    });
+  Object.keys(object.livingwageGrup).forEach((item) => {
+    if (object.livingwageGrup[item]) {
+      postLivingwageRequest(
+        objectOfFormDate({
+          socialGroupId: item,
+          wageValue: object.livingwageGrup[item],
+          dateStart: object.dateStart.toISOString(),
+        })
+      )
+        .then((data) => {
+          onClose(false);
+          postLivingwageSuccess(data);
+          toastMessageSuccess('Прожиточный минимум успешна добавлен');
+        })
+        .catch((err) => {
+          toastMessageError(err.title);
+          dispatch(postLivingwageError());
+        });
+    }
+  });
 };
 /* --------------------------------------- */
 
-/* Все относится к запросу удаления максимальной доля расходов  */
+/* Все относится к запросу удаления прожиточного минимума  */
 const deleteLivingwageRequested = () => ({
   type: LIVINGWAGE_DELETE_REQUEST,
 });
@@ -91,19 +102,21 @@ const deleteLivingwageSuccess = (id) => ({
 });
 
 const deleteLivingwageRequest = async (id) => {
-  return axios.delete(`Directory/livingwage${id}`).then((response) => response.data);
+  return axios.delete(`Directory/livingwage/${id}`).then((response) => response.data);
 };
 
-export const deleteLivingwage = (id, onClose) => (dispatch) => {
+export const deleteLivingwage = (id, onClose, socialgroupId) => (dispatch) => {
   dispatch(deleteLivingwageRequested());
   deleteLivingwageRequest(id)
     .then(() => {
       onClose(false);
+      dispatch(getLivingwages(socialgroupId));
+      dispatch(deleteLivingwageSuccess(id));
       toastMessageSuccess('Прожиточный минимум успешно удалена из списка');
       dispatch(deleteLivingwageSuccess(id));
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err.response.title);
       dispatch(deleteLivingwageError());
     });
 };
