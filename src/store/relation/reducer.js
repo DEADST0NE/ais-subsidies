@@ -61,7 +61,6 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         loadingDelete: false,
-        relations: state.relations.filter((item) => item.id !== action.payload),
       };
 
     case RELATION_POST_REQUEST:
@@ -80,7 +79,6 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         postLoading: false,
-        relations: state.relations.push(action.payload),
       };
 
     case RELATION_PUT_REQUEST:
@@ -99,10 +97,6 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         putLoading: false,
-        relations: state.relations.map((item) => {
-          if (item.id !== action.payload.id) return item;
-          return action.payload;
-        }),
       };
 
     default:

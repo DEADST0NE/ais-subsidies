@@ -15,7 +15,7 @@ const validationSchema = Yup.object().shape({
   name: Yup.string().required('Обязательное поле'),
 });
 
-const JobpositionsForm = ({ defautValueForm, jobPositionId, onClosed, onSuccess, loading }) => {
+const JobpositionsForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
   return (
     <Formik
@@ -24,13 +24,12 @@ const JobpositionsForm = ({ defautValueForm, jobPositionId, onClosed, onSuccess,
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         const formDate = objectOfFormDate(values);
-        if (jobPositionId) formDate.append('id', jobPositionId);
         dispatch(onSuccess(formDate, onClosed));
       }}
     >
       {({ handleSubmit }) => {
         return (
-          <form style={{ paddingBottom: '4rem' }} onSubmit={handleSubmit}>
+          <form style={{ paddingBottom: '5rem' }} onSubmit={handleSubmit}>
             <Form.Row>
               <Col sm="12">
                 <Form.Group>
@@ -78,7 +77,6 @@ JobpositionsForm.defaultProps = {
   onClosed: () => {},
   onSuccess: () => {},
   loading: false,
-  jobPositionId: '',
 };
 
 JobpositionsForm.propTypes = {
@@ -86,7 +84,6 @@ JobpositionsForm.propTypes = {
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,
-  jobPositionId: PropTypes.string,
 };
 
 export default JobpositionsForm;

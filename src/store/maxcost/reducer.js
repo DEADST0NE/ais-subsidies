@@ -60,8 +60,8 @@ export default (state = INIT_STATE, action) => {
     case MAXCOST_DELETE_SUCCESS:
       return {
         ...state,
+        maxcosts: state.maxcosts.filter((item) => item.id !== action.payload),
         loadingDelete: false,
-        maxcosts: state.jobpositions.filter((item) => item.id !== action.payload),
       };
 
     case MAXCOST_POST_REQUEST:
@@ -79,8 +79,8 @@ export default (state = INIT_STATE, action) => {
     case MAXCOST_POST_SUCCESS:
       return {
         ...state,
+        maxcosts: [...state.maxcosts, action.payload],
         postLoading: false,
-        maxcosts: state.jobpositions.push(action.payload),
       };
 
     case MAXCOST_PUT_REQUEST:
@@ -99,7 +99,7 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         putLoading: false,
-        maxcosts: state.jobpositions.map((item) => {
+        maxcosts: state.maxcosts.map((item) => {
           if (item.id !== action.payload.id) return item;
           return action.payload;
         }),

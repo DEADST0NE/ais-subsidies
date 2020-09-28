@@ -17,10 +17,10 @@ const JobpositionsTable = ({
   array,
   loading,
   error,
-  setJobPositionsId,
+  setId,
   setShowConfirmation,
   setShowWindowFormPut,
-  setJobPositionsDataVal,
+  setDefautValueForm,
 }) => {
   if (loading) {
     return <LoadingIndicator />;
@@ -71,7 +71,7 @@ const JobpositionsTable = ({
               <col style={{ width: '15%' }} />
             </colgroup>
             <tbody>
-              {arrayTable.map((item, idx) => (
+              {array.map((item, idx) => (
                 <tr key={item.id} className="table-row">
                   <td className="text-center">{idx + 1}</td>
                   <td>{item.name}</td>
@@ -83,7 +83,7 @@ const JobpositionsTable = ({
                         type="button"
                         onClick={() => {
                           setShowWindowFormPut(true);
-                          setJobPositionsDataVal(item);
+                          setDefautValueForm(item);
                         }}
                       >
                         <Icon name="pencil" />
@@ -91,7 +91,7 @@ const JobpositionsTable = ({
                       <button
                         title="Удалить"
                         onClick={() => {
-                          setJobPositionsId(item.id);
+                          setId(item.id);
                           setShowConfirmation(true);
                         }}
                         className="btn trash-item-table"
@@ -114,20 +114,20 @@ const JobpositionsTable = ({
 JobpositionsTable.defaultProps = {
   array: [],
   error: {},
-  setJobPositionsId: () => {},
+  setId: () => {},
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
-  setJobPositionsDataVal: () => {},
+  setDefautValueForm: () => {},
 };
 
 JobpositionsTable.propTypes = {
   array: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
-  setJobPositionsId: PropTypes.func,
+  setId: PropTypes.func,
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
-  setJobPositionsDataVal: PropTypes.func,
+  setDefautValueForm: PropTypes.func,
 };
 
 export default JobpositionsTable;

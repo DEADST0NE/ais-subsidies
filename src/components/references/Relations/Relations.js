@@ -30,8 +30,8 @@ const Relations = () => {
 
   const [id, setId] = useState(''); // id Банка
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
-  const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
-  const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
+  const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных
+  const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления
   const [defautValueForm, setDefautValueForm] = useState('');
   return (
     <div className="relations">
@@ -58,15 +58,14 @@ const Relations = () => {
         setDefautValueForm={setDefautValueForm}
       />
 
-      {/* Модальное окно формы изменеиния данных о банке */}
+      {/* Модальное окно формы изменеиния данных об отношения */}
       <ModalWindow
-        title="Изменение данных банка"
+        title="Изменение данных отношения"
         show={showWindowFormPut}
         onClosed={setShowWindowFormPut}
       >
         <RelationsFrom
           onClosed={setShowWindowFormPut}
-          orgstructureId={id}
           onSuccess={putRelations}
           loading={putLoading}
           defautValueForm={defautValueForm}
@@ -74,9 +73,9 @@ const Relations = () => {
         />
       </ModalWindow>
 
-      {/* Модальное окно формы добавления банка */}
+      {/* Модальное окно формы добавления отношения */}
       <ModalWindow
-        title="Добавление нового банка"
+        title="Добавление нового отношения"
         show={showWindowFormPost}
         onClosed={setShowWindowFormPost}
       >
@@ -88,7 +87,7 @@ const Relations = () => {
         />
       </ModalWindow>
 
-      {/* Модальное окно подтверждения удаления банка */}
+      {/* Модальное окно подтверждения удаления отношения */}
       <Сonfirmation
         show={showConfirmation}
         onClosed={setShowConfirmation}

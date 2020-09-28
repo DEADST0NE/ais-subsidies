@@ -61,7 +61,7 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         loadingDelete: false,
-        roles: state.role.filter((item) => item.id !== action.payload),
+        // roles: state.role.filter((item) => item.id !== action.payload),
       };
 
     case ROLE_POST_REQUEST:
@@ -80,7 +80,7 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         postLoading: false,
-        roles: state.roles.push(action.payload),
+        roles: [...state.roles, action.payload],
       };
 
     case ROLE_PUT_REQUEST:
@@ -100,7 +100,7 @@ export default (state = INIT_STATE, action) => {
         ...state,
         putLoading: false,
         roles: state.roles.map((item) => {
-          if (item.id !== action.payload.id) return item;
+          if (String(item.id) !== action.payload.id) return item;
           return action.payload;
         }),
       };

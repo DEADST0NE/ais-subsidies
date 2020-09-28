@@ -3,6 +3,7 @@ import {
   toastMessageError,
   toastMessageSuccess,
 } from '../../components/generic/ToastMessage/ToastMessage';
+import formDataAtObject from '../../utils/formDataAtObject';
 
 import {
   ROLES_GET_REQUEST,
@@ -55,31 +56,26 @@ const deleteRoleError = () => ({
   type: ROLE_DELETE_ERROR,
 });
 
-const deleteRoleSuccess = (id) => ({
+const deleteRoleSuccess = () => ({
   type: ROLE_DELETE_SUCCESS,
-  payload: id,
+  // payload: id,
 });
 
 const deleteRoleRequest = async (id) => {
-  return axios
-    .delete('Directory/roles', {
-      params: {
-        id,
-      },
-    })
-    .then((response) => response.data);
+  return axios.delete(`Directory/roles/${id}`).then((response) => response.data);
 };
 
 export const deleteRoles = (id, onClose) => (dispatch) => {
   dispatch(deleteRoleRequested());
   deleteRoleRequest(id)
     .then(() => {
+      dispatch(deleteRoleSuccess(id));
+      dispatch(getRoles());
       onClose(false);
       toastMessageSuccess('Должность успешно удалена из списка');
-      dispatch(deleteRoleSuccess(id));
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err.data);
       dispatch(deleteRoleError());
     });
 };
@@ -100,7 +96,7 @@ const postRoleSuccess = (object) => ({
 });
 
 const postRoleRequest = async (formDara) => {
-  return axios.post('Directory/roles', formDara).then((response) => response.data);
+  return axios.post('Directory/role', formDara).then((response) => response.data);
 };
 
 export const postRoles = (formDara, onClose) => (dispatch) => {
@@ -108,7 +104,9 @@ export const postRoles = (formDara, onClose) => (dispatch) => {
   postRoleRequest(formDara)
     .then((data) => {
       onClose(false);
-      postRoleSuccess(data);
+      const newObject = formDataAtObject(formDara);
+      newObject.id = data;
+      dispatch(postRoleSuccess(newObject));
       toastMessageSuccess('Должность успешна добавлена');
     })
     .catch((err) => {
@@ -133,15 +131,15 @@ const putRoleSuccess = (object) => ({
 });
 
 const putRoleRequest = async (formDara) => {
-  return axios.put('Directory/roles', formDara).then((response) => response.data);
+  return axios.put('Directory/role', formDara).then((response) => response.data);
 };
 
 export const putRoles = (formDara, onClose) => (dispatch) => {
   dispatch(putRoleRequested());
   putRoleRequest(formDara)
-    .then((data) => {
+    .then(() => {
       onClose(false);
-      putRoleSuccess(data);
+      dispatch(putRoleSuccess(formDataAtObject(formDara)));
       toastMessageSuccess('Данные о банке успешно изменены');
     })
     .catch((err) => {

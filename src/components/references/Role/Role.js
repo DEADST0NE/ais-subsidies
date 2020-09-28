@@ -15,7 +15,7 @@ import './Role.scss';
 const Role = () => {
   const dispatch = useDispatch();
 
-  const [roleId, setRoleId] = useState(''); // id Банка
+  const [id, setId] = useState(''); // id
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
   const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
   const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
@@ -47,7 +47,7 @@ const Role = () => {
         loading={loading}
         error={error}
         setMass={setSearchArray}
-        setRoleId={setRoleId}
+        setRoleId={setId}
         setRoleDataVal={setRoleDataVal}
         setShowWindowFormPut={setShowWindowFormPut}
         setShowConfirmation={setShowConfirmation}
@@ -60,8 +60,7 @@ const Role = () => {
       >
         <RoleForm
           onClosed={setShowWindowFormPut}
-          jobPositionId={roleId}
-          onSuccess={postRoles}
+          onSuccess={putRoles}
           loading={putLoading}
           defautValueForm={roleDataVal}
         />
@@ -73,7 +72,7 @@ const Role = () => {
         show={showWindowFormPost}
         onClosed={setShowWindowFormPost}
       >
-        <RoleForm onClosed={setShowWindowFormPost} loading={postLoading} onSuccess={putRoles} />
+        <RoleForm onClosed={setShowWindowFormPost} loading={postLoading} onSuccess={postRoles} />
       </ModalWindow>
 
       {/* Модальное окно подтверждения удаления банка */}
@@ -81,7 +80,7 @@ const Role = () => {
         show={showConfirmation}
         onClosed={setShowConfirmation}
         loading={deleteLoading}
-        onSuccess={() => dispatch(deleteRoles(roleId, setShowConfirmation))}
+        onSuccess={() => dispatch(deleteRoles(id, setShowConfirmation))}
       />
     </div>
   );

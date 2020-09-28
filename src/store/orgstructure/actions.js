@@ -59,27 +59,21 @@ const deleteOrgstructureSuccess = (id) => ({
   type: ORGSTRUCTURE_DELETE_SUCCESS,
   payload: id,
 });
-
 const deleteOrgstructureRequest = async (id) => {
-  return axios
-    .delete('Directory/orgstructure', {
-      params: {
-        id,
-      },
-    })
-    .then((response) => response.data);
+  return axios.delete(`Directory/orgstructure/${id}`).then((response) => response.data);
 };
 
-export const deleteOrgstructures = (id, onClose) => (dispatch) => {
+export const deleteOrgstructure = (id, onClose) => (dispatch) => {
   dispatch(deleteOrgstructureRequested());
   deleteOrgstructureRequest(id)
     .then(() => {
+      dispatch(getOrgstructures());
       onClose(false);
-      toastMessageSuccess('Должность успешно удалена из списка');
+      toastMessageSuccess('Организационная структура успешно удалена из списка');
       dispatch(deleteOrgstructureSuccess(id));
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err.response.data);
       dispatch(deleteOrgstructureError());
     });
 };
@@ -94,25 +88,25 @@ const postOrgstructureError = () => ({
   type: ORGSTRUCTURE_POST_ERROR,
 });
 
-const postOrgstructureSuccess = (object) => ({
+const postOrgstructureSuccess = () => ({
   type: ORGSTRUCTURE_POST_SUCCESS,
-  payload: object,
 });
 
 const postOrgstructureRequest = async (formDara) => {
   return axios.post('Directory/orgstructure', formDara).then((response) => response.data);
 };
 
-export const postOrgstructures = (formDara, onClose) => (dispatch) => {
+export const postOrgstructure = (formDara, onClose) => (dispatch) => {
   dispatch(postOrgstructureRequested());
   postOrgstructureRequest(formDara)
-    .then((data) => {
+    .then(() => {
       onClose(false);
-      postOrgstructureSuccess(data);
-      toastMessageSuccess('Должность успешна добавлена');
+      dispatch(getOrgstructures());
+      postOrgstructureSuccess();
+      toastMessageSuccess('Организационная структура успешна добавлена');
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err.response.data);
       dispatch(postOrgstructureError());
     });
 };
@@ -126,25 +120,25 @@ const putOrgstructureError = () => ({
   type: ORGSTRUCTURE_PUT_ERROR,
 });
 
-const putOrgstructureSuccess = (object) => ({
+const putOrgstructureSuccess = () => ({
   type: ORGSTRUCTURE_PUT_SUCCESS,
-  payload: object,
 });
 
 const putOrgstructureRequest = async (formDara) => {
   return axios.put('Directory/orgstructure', formDara).then((response) => response.data);
 };
 
-export const putOrgstructures = (formDara, onClose) => (dispatch) => {
+export const putOrgstructure = (formDara, onClose) => (dispatch) => {
   dispatch(putOrgstructureRequested());
   putOrgstructureRequest(formDara)
-    .then((data) => {
+    .then(() => {
+      dispatch(getOrgstructures());
+      dispatch(putOrgstructureSuccess());
       onClose(false);
-      putOrgstructureSuccess(data);
-      toastMessageSuccess('Данные о банке успешно изменены');
+      toastMessageSuccess('Данные о организационой структуры успешно изменены');
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err.response.data);
       dispatch(putOrgstructureError());
     });
 };

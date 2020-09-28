@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   getOrgstructures,
-  deleteOrgstructures,
-  postOrgstructures,
-  putOrgstructures,
+  deleteOrgstructure,
+  postOrgstructure,
+  putOrgstructure,
 } from '../../../store/orgstructure/actions';
 
 import Сonfirmation from '../../generic/Сonfirmation';
@@ -28,10 +28,10 @@ const Orgstructure = () => {
     dispatch(getOrgstructures());
   }, [dispatch, searchArray]);
 
-  const [id, setId] = useState(''); // id Банка
+  const [id, setId] = useState(''); // id
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
-  const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
-  const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
+  const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных
+  const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления
   const [defautValueForm, setDefautValueForm] = useState('');
   return (
     <div className="orgstructure">
@@ -58,42 +58,41 @@ const Orgstructure = () => {
         setDefautValueForm={setDefautValueForm}
       />
 
-      {/* Модальное окно формы изменеиния данных о банке */}
+      {/* Модальное окно формы изменеиния */}
       <ModalWindow
-        title="Изменение данных банка"
+        title="Изменение данных организационой структуры"
         show={showWindowFormPut}
         onClosed={setShowWindowFormPut}
       >
         <OrgstructureForm
           onClosed={setShowWindowFormPut}
-          id={id}
-          onSuccess={putOrgstructures}
+          onSuccess={putOrgstructure}
           loading={putLoading}
           defautValueForm={defautValueForm}
           orgstructuresArray={orgstructures}
         />
       </ModalWindow>
 
-      {/* Модальное окно формы добавления банка */}
+      {/* Модальное окно формы добавления */}
       <ModalWindow
-        title="Добавление нового банка"
+        title="Добавление новой организационой структуры"
         show={showWindowFormPost}
         onClosed={setShowWindowFormPost}
       >
         <OrgstructureForm
           onClosed={setShowWindowFormPost}
           loading={postLoading}
-          onSuccess={postOrgstructures}
+          onSuccess={postOrgstructure}
           orgstructuresArray={orgstructures}
         />
       </ModalWindow>
 
-      {/* Модальное окно подтверждения удаления банка */}
+      {/* Модальное окно подтверждения удаления */}
       <Сonfirmation
         show={showConfirmation}
         onClosed={setShowConfirmation}
         loading={deleteLoading}
-        onSuccess={() => dispatch(deleteOrgstructures(id, setShowConfirmation))}
+        onSuccess={() => dispatch(deleteOrgstructure(id, setShowConfirmation))}
       />
     </div>
   );

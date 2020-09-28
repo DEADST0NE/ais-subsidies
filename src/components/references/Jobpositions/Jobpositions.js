@@ -20,10 +20,10 @@ import './Jobpositions.scss';
 const Jobpositions = () => {
   const dispatch = useDispatch();
 
-  const [jobPositionId, setJobPositionId] = useState(''); // id Банка
+  const [id, setId] = useState(''); // id
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
-  const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
-  const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
+  const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных
+  const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления
   const [jobPositionsDataVal, setJobPositionsDataVal] = useState(''); // Ткущие данные для изменения
   const { jobpositions, loading, error, postLoading, putLoading, deleteLoading } = useSelector(
     ({ jobpositions }) => jobpositions
@@ -52,8 +52,8 @@ const Jobpositions = () => {
         loading={loading}
         error={error}
         setMass={setSearchArray}
-        setJobPositionId={setJobPositionId}
-        setJobPositionsDataVal={setJobPositionsDataVal}
+        setId={setId}
+        setDefautValueForm={setJobPositionsDataVal}
         setShowWindowFormPut={setShowWindowFormPut}
         setShowConfirmation={setShowConfirmation}
       />
@@ -65,7 +65,7 @@ const Jobpositions = () => {
       >
         <JobpositionsForm
           onClosed={setShowWindowFormPut}
-          jobPositionId={jobPositionId}
+          jobPositionId={id}
           onSuccess={putJobpositions}
           loading={putLoading}
           defautValueForm={jobPositionsDataVal}
@@ -90,7 +90,7 @@ const Jobpositions = () => {
         show={showConfirmation}
         onClosed={setShowConfirmation}
         loading={deleteLoading}
-        onSuccess={() => dispatch(deleteJobpositions(jobPositionId, setShowConfirmation))}
+        onSuccess={() => dispatch(deleteJobpositions(id, setShowConfirmation))}
       />
     </div>
   );

@@ -5,6 +5,7 @@ import Scrollbars from 'react-custom-scrollbars';
 import Alert from 'react-bootstrap/Alert';
 import PropTypes from 'prop-types';
 
+import convertDate from '../../../utils/convertDate';
 import Icon from '../../generic/Icon';
 import SortTable from '../../generic/SortTable';
 
@@ -34,7 +35,6 @@ const MaxcostsTable = ({
     return <Alert variant="warning">Нет данных</Alert>;
   }
   const [arrayTable, setArrayTable] = useState(array);
-  console.log(arrayTable);
   const [sortName, setSortName] = useState(null);
   return (
     <div className="castom_table">
@@ -78,12 +78,12 @@ const MaxcostsTable = ({
               <col style={{ width: '15%' }} />
             </colgroup>
             <tbody>
-              {arrayTable.map((item, idx) => (
+              {array.map((item, idx) => (
                 <tr key={item.id} className="table-row">
                   <td className="text-center">{idx + 1}</td>
                   <td>{item.maxCost}</td>
-                  <td>{item.dateStart}</td>
-                  <td>{item.dateStop}</td>
+                  <td>{convertDate(item.dateStart)}</td>
+                  <td>{item.dateStop ? convertDate(item.dateStop) : '-'}</td>
                   <td>
                     <div className="actions-table">
                       <button

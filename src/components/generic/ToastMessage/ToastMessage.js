@@ -7,7 +7,8 @@ import './ToastMessage.scss';
 export const toastMessageSuccess = (massage) =>
   toast.success(
     <div className="content-toast-message">
-      <Icon name="success" /> {massage}
+      <Icon name="success" />
+      <span>{massage}</span>
     </div>,
     {
       position: 'top-right',
@@ -25,7 +26,8 @@ export const toastMessageSuccess = (massage) =>
 export const toastMessageError = (massage) =>
   toast.error(
     <div className="content-toast-message">
-      <Icon name="error" /> {massage}
+      <Icon name="error" />
+      <span>{massage}</span>
     </div>,
     {
       position: 'top-right',

@@ -42,11 +42,11 @@ export const getRelations = () => (dispatch) => {
   dispatch(getRelationsRequested());
   getRelationsRequest()
     .then((data) => dispatch(getRelationsSuccess(data)))
-    .catch((err) => dispatch(getRelationsError(err)));
+    .catch((err) => dispatch(getRelationsError(err?.response?.data)));
 };
 /* --------------------------------------- */
 
-/* Все относится к запросу удаления банка  */
+/* Все относится к запросу удаления отношения  */
 const deleteRelationRequested = () => ({
   type: RELATION_DELETE_REQUEST,
 });
@@ -55,13 +55,12 @@ const deleteRelationError = () => ({
   type: RELATION_DELETE_ERROR,
 });
 
-const deleteRelationSuccess = (id) => ({
+const deleteRelationSuccess = () => ({
   type: RELATION_DELETE_SUCCESS,
-  payload: id,
 });
 
 const deleteRelationRequest = async (id) => {
-  return axios.delete(`Directory/relation${id}`).then((response) => response.data);
+  return axios.delete(`Directory/relation/${id}`).then((response) => response.data);
 };
 
 export const deleteRelations = (id, onClose) => (dispatch) => {
@@ -71,15 +70,16 @@ export const deleteRelations = (id, onClose) => (dispatch) => {
       onClose(false);
       toastMessageSuccess('Банк успешно удален из списка');
       dispatch(deleteRelationSuccess(id));
+      dispatch(getRelations());
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err?.response?.data);
       dispatch(deleteRelationError());
     });
 };
 /* --------------------------------------- */
 
-/* Все относится к запросу добавления банка  */
+/* Все относится к запросу добавления отношения  */
 const postRelationRequested = () => ({
   type: RELATION_POST_REQUEST,
 });
@@ -88,9 +88,8 @@ const postRelationError = () => ({
   type: RELATION_POST_ERROR,
 });
 
-const postRelationSuccess = (object) => ({
+const postRelationSuccess = () => ({
   type: RELATION_POST_SUCCESS,
-  payload: object,
 });
 
 const postRelationRequest = async (formDara) => {
@@ -100,18 +99,19 @@ const postRelationRequest = async (formDara) => {
 export const postRelations = (formDara, onClose) => (dispatch) => {
   dispatch(postRelationRequested());
   postRelationRequest(formDara)
-    .then((data) => {
+    .then(() => {
       onClose(false);
-      postRelationSuccess(data);
-      toastMessageSuccess('Банк успешно добавлен');
+      dispatch(postRelationSuccess());
+      dispatch(getRelations());
+      toastMessageSuccess('Отношение успешно добавлено');
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err?.response?.data?.title);
       dispatch(postRelationError());
     });
 };
 /* --------------------------------------- */
-/* Все относится к запросу изменения банка  */
+/* Все относится к запросу изменения отношения  */
 const putRelationRequested = () => ({
   type: RELATION_PUT_REQUEST,
 });
@@ -120,9 +120,8 @@ const putRelationError = () => ({
   type: RELATION_PUT_ERROR,
 });
 
-const putRelationSuccess = (object) => ({
+const putRelationSuccess = () => ({
   type: RELATION_PUT_SUCCESS,
-  payload: object,
 });
 
 const putRelationRequest = async (formDara) => {
@@ -132,13 +131,14 @@ const putRelationRequest = async (formDara) => {
 export const putRelations = (formDara, onClose) => (dispatch) => {
   dispatch(putRelationRequested());
   putRelationRequest(formDara)
-    .then((data) => {
+    .then(() => {
+      dispatch(putRelationSuccess());
+      dispatch(getRelations());
       onClose(false);
-      putRelationSuccess(data);
       toastMessageSuccess('Данные о банке успешно изменены');
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err?.response?.data?.title);
       dispatch(putRelationError());
     });
 };

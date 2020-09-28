@@ -6,6 +6,7 @@ import { Form, Col, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
+import Modal from 'react-bootstrap/Modal';
 
 import objectOfFormDate from '../../utils/objectOfFormDate';
 import SubmitBtn from '../generic/SubmitBtn';
@@ -21,7 +22,7 @@ const validationSchema = Yup.object().shape({
   bik: Yup.string().min(9, 'Заполните бик до конца').required('Обязательное поле'),
 });
 
-const BankForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => {
+const BankForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
   return (
     <Formik
@@ -30,13 +31,12 @@ const BankForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => {
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         const formData = objectOfFormDate(values);
-        if (id) formData.append('id', id);
         dispatch(onSuccess(formData, onClosed));
       }}
     >
       {({ handleSubmit }) => {
         return (
-          <form style={{ paddingBottom: '4rem' }} onSubmit={handleSubmit}>
+          <form style={{ paddingBottom: '5rem' }} onSubmit={handleSubmit}>
             <Form.Row>
               <Col sm="12">
                 <Form.Group>
@@ -84,12 +84,13 @@ const BankForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => {
                   <CustomField type="number" label="Бик" placeholder="Бик" name="bik" />
                 </Form.Group>
               </Col>
-              <div className="d-flex w-100 position-absolute left-0 bottom-0">
+
+              <Modal.Footer className="w-100 left-0 bottom-0 position-absolute d-flex">
                 <Button
                   onClick={() => {
                     onClosed(false);
                   }}
-                  className="w-100"
+                  className="rounded"
                   variant="secondary"
                   disabled={loading}
                 >
@@ -97,11 +98,11 @@ const BankForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => {
                 </Button>
 
                 <SubmitBtn
+                  className="rounded"
                   isSubmitting={loading}
-                  className="w-100"
                   text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
                 />
-              </div>
+              </Modal.Footer>
             </Form.Row>
           </form>
         );
@@ -121,7 +122,6 @@ BankForm.defaultProps = {
   onClosed: () => {},
   onSuccess: () => {},
   loading: false,
-  id: '',
 };
 
 BankForm.propTypes = {
@@ -129,7 +129,6 @@ BankForm.propTypes = {
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,
-  id: PropTypes.string,
 };
 
 export default BankForm;

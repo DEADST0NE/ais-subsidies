@@ -113,7 +113,7 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
     >
       {({ handleSubmit }) => {
         return (
-          <form style={{ paddingBottom: '4rem' }} onSubmit={handleSubmit}>
+          <form style={{ paddingBottom: '5rem' }} onSubmit={handleSubmit}>
             <Form.Row>
               <Col sm="12">
                 <Form.Group>

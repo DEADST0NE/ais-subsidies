@@ -71,7 +71,7 @@ const RoleTable = ({
               <col style={{ width: '15%' }} />
             </colgroup>
             <tbody>
-              {arrayTable.map((item, idx) => (
+              {array.map((item, idx) => (
                 <tr key={item.id} className="table-row">
                   <td className="text-center">{idx + 1}</td>
                   <td>{item.nameRus}</td>

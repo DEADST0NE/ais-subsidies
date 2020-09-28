@@ -105,7 +105,7 @@ const OrgstructureTable = ({
               <col style={{ width: '15%' }} />
             </colgroup>
             <tbody>
-              {arrayTable.map((item, idx) => (
+              {array.map((item, idx) => (
                 <tr key={item.id} className="table-row">
                   <td className="text-center">{idx + 1}</td>
                   <td>{item.name}</td>
@@ -120,7 +120,6 @@ const OrgstructureTable = ({
                         className="btn pencil-item-table"
                         type="button"
                         onClick={() => {
-                          setId(item.id);
                           setShowWindowFormPut(true);
                           setDefautValueForm(item);
                         }}

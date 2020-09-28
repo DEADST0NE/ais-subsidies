@@ -80,7 +80,7 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         postLoading: false,
-        // banks: state.banks.push(action.payload),
+        banks: [...state.banks, action.payload],
       };
 
     case BANK_PUT_REQUEST:

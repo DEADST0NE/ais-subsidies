@@ -13,7 +13,6 @@ const CustomSelect = ({ name, data, label, placeholder, isLoading, isDisabled })
   if (isInvalid) {
     className += ' is-invalid';
   }
-
   return (
     <div className="custom-select2">
       <Select

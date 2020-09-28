@@ -63,7 +63,6 @@ const Maxcosts = () => {
       >
         <MaxcostsForm
           onClosed={setShowWindowFormPut}
-          id={id}
           onSuccess={putMaxcosts}
           loading={putLoading}
           defautValueForm={defautValueForm}

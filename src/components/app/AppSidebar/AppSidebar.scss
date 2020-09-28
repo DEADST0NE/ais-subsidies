@@ -10,6 +10,7 @@ aside {
   background-color: rgba(255, 255, 255, 0);
   background-color: #fff;
   border-top-right-radius: 0.75rem;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04);
   overflow-x: hidden;
   overflow-y: auto;
   transition: 250ms;
@@ -158,39 +159,4 @@ aside {
 
 .closedSidebar {
   width: 0px;
-}
-
-@media (max-width: 1000px) {
-  .sidebar {
-    position: absolute !important;
-  }
-  .sidebarContent {
-    position: absolute !important;
-  }
-  &-parent {
-    width: 90px !important;
-  }
-  .openSidebar {
-    width: 90px !important;
-  }
-  .halfOpenSidebar {
-    width: 90px !important;
-  }
-  .sidebar-сhild {
-    left: 90px !important;
-    width: 190px !important;
-    li span {
-      font-size: 12px !important;
-    }
-  }
-  .sidebar-parent-item {
-    a {
-      height: 90px !important;
-      font-size: 12px !important;
-      .icon {
-        width: 22px !important;
-        height: 22px !important;
-      }
-    }
-  }
 }

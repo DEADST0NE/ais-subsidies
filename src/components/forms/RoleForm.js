@@ -14,9 +14,10 @@ import CustomField from '../generic/CustomField';
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Обязательное поле'),
   nameRus: Yup.string().required('Обязательное поле'),
+  rang: Yup.number().required('Обязательное поле'),
 });
 
-const RoleForm = ({ defautValueForm, roleId, onClosed, onSuccess, loading }) => {
+const RoleForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
   return (
     <Formik
@@ -25,13 +26,12 @@ const RoleForm = ({ defautValueForm, roleId, onClosed, onSuccess, loading }) => 
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         const formDate = objectOfFormDate(values);
-        if (roleId) formDate.append('id', roleId);
         dispatch(onSuccess(formDate, onClosed));
       }}
     >
       {({ handleSubmit }) => {
         return (
-          <form style={{ paddingBottom: '4rem' }} onSubmit={handleSubmit}>
+          <form style={{ paddingBottom: '5rem' }} onSubmit={handleSubmit}>
             <Form.Row>
               <Col sm="12">
                 <Form.Group>
@@ -55,7 +55,7 @@ const RoleForm = ({ defautValueForm, roleId, onClosed, onSuccess, loading }) => 
               </Col>
               <Col sm="12">
                 <Form.Group>
-                  <CustomField type="text" placeholder="Ранг" label="Ранг" name="rang" />
+                  <CustomField type="number" placeholder="Ранг" label="Ранг" name="rang" />
                 </Form.Group>
               </Col>
               <div className="d-flex w-100 position-absolute left-0 bottom-0">
@@ -74,9 +74,6 @@ const RoleForm = ({ defautValueForm, roleId, onClosed, onSuccess, loading }) => 
                   isSubmitting={loading}
                   className="w-100"
                   text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
-                  onClick={() => {
-                    onSuccess();
-                  }}
                 />
               </div>
             </Form.Row>
@@ -96,7 +93,6 @@ RoleForm.defaultProps = {
   onClosed: () => {},
   onSuccess: () => {},
   loading: false,
-  roleId: '',
 };
 
 RoleForm.propTypes = {
@@ -104,7 +100,6 @@ RoleForm.propTypes = {
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,
-  roleId: PropTypes.string,
 };
 
 export default RoleForm;

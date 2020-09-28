@@ -14,53 +14,48 @@ import CustomSelect from '../generic/CustomSelect';
 import CustomSelectArray from '../generic/CustomSelectArray';
 
 const validationSchema = Yup.object().shape({
-  relation: {
+  relation: Yup.object().shape({
     name: Yup.string().required('Обязательное поле'),
-    isNear: Yup.number().required('Обязательное поле'),
-  },
+    isNear: Yup.string().required('Обязательное поле'),
+  }),
 });
 
-const RelationsFrom = ({
-  defautValueForm,
-  orgstructureId,
-  onClosed,
-  onSuccess,
-  loading,
-  relationsArray,
-}) => {
+const RelationsFrom = ({ defautValueForm, onClosed, onSuccess, loading, relationsArray }) => {
   const dispatch = useDispatch();
   // Устанавливаем значение по умолчанию
-  let initialValues;
-  if (defautValueForm?.relation) {
-    initialValues = {
-      relation: {
-        name: defautValueForm.relation.name,
-        isNear: {
-          value: defautValueForm.relation.isNear,
-          label: defautValueForm.relation.isNear ? 'Да' : 'Нет',
-        },
-      },
-      relationIdDependences: defautValueForm?.relationDependences?.map((item) => ({
-        value: item.id,
-        label: item.name,
-      })),
-    };
-  }
+  const initialValues = { ...defautValueForm };
+  initialValues.relation.isNear = initialValues.relation.name && {
+    value: initialValues.relation.isNear,
+    label: initialValues.relation.isNear ? 'Да' : 'Нет',
+  };
+  initialValues.relationIdDependences = initialValues?.relationDependences?.map((item) => ({
+    value: item.id,
+    label: item.name,
+  }));
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        const formDate = objectOfFormDate(values);
-        if (orgstructureId) formDate.append('id', orgstructureId);
-        console.log(values);
-        // dispatch(onSuccess(formDate, onClosed));
+        const formDate = objectOfFormDate({
+          relation: {
+            id: values.relation.id,
+            name: values.relation.name,
+            isNear: values.relation.isNear.value,
+          },
+          relationIdDependences: values.relationIdDependences
+            ? values?.relationIdDependences?.map((item) => item.value)
+            : [],
+          name: values.relation.name,
+          isNear: values.relation.isNear.value,
+        });
+        dispatch(onSuccess(formDate, onClosed));
       }}
     >
       {({ handleSubmit }) => {
         return (
-          <form style={{ paddingBottom: '4rem' }} onSubmit={handleSubmit}>
+          <form style={{ paddingBottom: '5rem' }} onSubmit={handleSubmit}>
             <Form.Row>
               <Col sm="12">
                 <Form.Group>
@@ -113,10 +108,7 @@ const RelationsFrom = ({
                 <SubmitBtn
                   isSubmitting={loading}
                   className="w-100"
-                  text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
-                  onClick={() => {
-                    onSuccess();
-                  }}
+                  text={defautValueForm?.relation?.name ? 'Изменить' : 'Добавить'}
                 />
               </div>
             </Form.Row>
@@ -133,30 +125,37 @@ RelationsFrom.defaultProps = {
       name: '',
       isNear: '',
     },
-    relationIdDependences: '',
+    relationDependences: [],
   },
   onClosed: () => {},
   onSuccess: () => {},
   loading: false,
-  orgstructureId: '',
   relationsArray: [],
 };
 
 RelationsFrom.propTypes = {
   defautValueForm: PropTypes.oneOfType([
-    PropTypes.objectOf(PropTypes.string, PropTypes.bool),
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-      ])
-    ),
+    PropTypes.string,
+    PropTypes.shape({
+      relation: PropTypes.shape({
+        id: PropTypes.string,
+        isNear: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        name: PropTypes.string,
+      }),
+      relationDependences: PropTypes.arrayOf(
+        PropTypes.shape({
+          relation: PropTypes.shape({
+            id: PropTypes.string,
+            isNear: PropTypes.bool,
+            name: PropTypes.string,
+          }),
+        })
+      ),
+    }),
   ]),
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,
-  orgstructureId: PropTypes.string,
   relationsArray: PropTypes.arrayOf(
     PropTypes.objectOf(
       PropTypes.oneOfType([

@@ -21,12 +21,12 @@ const ConteinerBanks = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBanks());
-  }, [dispatch, searchArray, putLoading, postLoading, deleteLoading]);
+  }, [dispatch, searchArray]);
 
   const [id, setId] = useState(''); // id Банка
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
-  const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
-  const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
+  const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных
+  const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления
   const [defautValueForm, setDefautValueForm] = useState('');
 
   return (
@@ -62,7 +62,6 @@ const ConteinerBanks = () => {
       >
         <BankForm
           onClosed={setShowWindowFormPut}
-          id={id}
           onSuccess={putBanks}
           loading={putLoading}
           defautValueForm={defautValueForm}

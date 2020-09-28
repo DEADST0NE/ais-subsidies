@@ -74,8 +74,8 @@ const RelationsTable = ({
               <col style={{ width: '15%' }} />
             </colgroup>
             <tbody>
-              {arrayTable.map((item, idx) => (
-                <tr key={item.id} className="table-row">
+              {array.map((item, idx) => (
+                <tr key={item.relation.id} className="table-row">
                   <td className="text-center">{idx + 1}</td>
                   <td>{item.relation.name}</td>
                   <td>
@@ -92,7 +92,7 @@ const RelationsTable = ({
                         className="btn pencil-item-table"
                         type="button"
                         onClick={() => {
-                          setId(item.id);
+                          setId(item.relation.id);
                           setShowWindowFormPut(true);
                           setDefautValueForm(item);
                         }}
@@ -102,7 +102,7 @@ const RelationsTable = ({
                       <button
                         title="Удалить"
                         onClick={() => {
-                          setId(item.id);
+                          setId(item.relation.id);
                           setShowConfirmation(true);
                         }}
                         className="btn trash-item-table"

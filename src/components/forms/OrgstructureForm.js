@@ -14,7 +14,7 @@ import CustomSelect from '../generic/CustomSelect';
 
 const validationSchema = Yup.object().shape({
   parentId: Yup.string().required('Обязательное поле'),
-  orgUnitId: Yup.number().required('Обязательное поле'),
+  orgUnitId: Yup.string().required('Обязательное поле'),
   name: Yup.string().required('Обязательное поле'),
   address: Yup.string().required('Обязательное поле'),
   eMail: Yup.string().email('Некорректная электронная почта'),
@@ -23,58 +23,68 @@ const validationSchema = Yup.object().shape({
 
 const OrgstructureForm = ({
   defautValueForm,
-  orgstructureId,
+  id,
   onClosed,
   onSuccess,
   loading,
   orgstructuresArray,
 }) => {
   const dispatch = useDispatch();
+
   const bosParent = '00000000-0000-0000-0000-000000000000'; // Главная над структура
   const optionsParent = orgstructuresArray // Строим option над структур
-    .filter((item) => item.parentId !== bosParent)
+    .filter((item) => item.id !== bosParent)
     .map((item) => ({
-      value: item.parentId,
-      label: `Филиал ${item.name}`,
+      value: item.id,
+      label: item.name,
     }));
   optionsParent.unshift({
     value: bosParent,
     label: 'Главный отдел',
   });
-  const defautVForm = defautValueForm;
-  const searchParentOgr = (array, id) => {
-    // Функция определяет значение по умолчаню полю "Над структура"
-    const idArray = array.findIndex((item) => item.id === id);
-    if (idArray !== -1) {
-      const { parentId } = array[idArray];
-      if (parentId === bosParent) return { value: bosParent, label: 'Главный отдел' };
-      const idx = array.findIndex((item) => item.id === parentId);
-      if (idx !== -1) return { value: array[idx].id, label: `Филиал ${array[idx].name}` };
-    }
-    return '';
-  };
-  if (defautValueForm.orgUnitId) {
-    defautVForm.orgUnitId = {
-      value: defautValueForm.orgUnitId,
-      label: defautValueForm.orgUnitName,
-    };
-  }
-  defautVForm.parentId = searchParentOgr(orgstructuresArray, orgstructureId);
+
   return (
     <Formik
-      initialValues={defautVForm}
+      initialValues={
+        defautValueForm.id
+          ? {
+              ...defautValueForm,
+              orgUnitId: defautValueForm.orgUnitId && {
+                value: defautValueForm.orgUnitId,
+                label: defautValueForm.orgUnitName,
+              },
+              parentId: defautValueForm.parentId && {
+                value: defautValueForm.parentId,
+                label: optionsParent.find((item) => item.value === defautValueForm.parentId).label,
+              },
+            }
+          : { ...defautValueForm }
+      }
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        const formDate = objectOfFormDate(values);
-        if (orgstructureId) formDate.append('id', orgstructureId);
+        const object = { ...values };
+        object.orgUnitId = values.orgUnitId.value;
+        object.parentId = values.parentId.value;
+        if (id) object.id = id;
+        const formDate = objectOfFormDate(object);
         dispatch(onSuccess(formDate, onClosed));
       }}
     >
       {({ handleSubmit }) => {
         return (
-          <form style={{ paddingBottom: '4rem' }} onSubmit={handleSubmit}>
+          <form style={{ paddingBottom: '5rem' }} onSubmit={handleSubmit}>
             <Form.Row>
+              <Col sm="12">
+                <Form.Group>
+                  <CustomField
+                    type="text"
+                    label="Наименование орг структуры"
+                    placeholder="Наименование орг структуры"
+                    name="name"
+                  />
+                </Form.Group>
+              </Col>
               <Col sm="12">
                 <Form.Group>
                   <CustomSelect
@@ -151,9 +161,6 @@ const OrgstructureForm = ({
                   isSubmitting={loading}
                   className="w-100"
                   text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
-                  onClick={() => {
-                    onSuccess();
-                  }}
                 />
               </div>
             </Form.Row>
@@ -179,7 +186,7 @@ OrgstructureForm.defaultProps = {
   onClosed: () => {},
   onSuccess: () => {},
   loading: false,
-  orgstructureId: '',
+  id: '',
   orgstructuresArray: [],
 };
 
@@ -197,7 +204,7 @@ OrgstructureForm.propTypes = {
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,
-  orgstructureId: PropTypes.string,
+  id: PropTypes.string,
   orgstructuresArray: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
   ),

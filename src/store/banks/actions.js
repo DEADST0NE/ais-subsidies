@@ -105,7 +105,7 @@ export const postBanks = (formDara, onClose) => (dispatch) => {
       onClose(false);
       const newObject = formDataAtObject(formDara);
       newObject.id = data;
-      postBankSuccess(data);
+      dispatch(postBankSuccess(newObject));
       toastMessageSuccess('Банк успешно добавлен');
     })
     .catch((err) => {

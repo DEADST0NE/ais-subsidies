@@ -14,14 +14,12 @@ import CustomField from '../generic/CustomField';
 import DatePicker from '../generic/DatePicker';
 
 const validationSchema = Yup.object().shape({
-  maxCost: Yup.string().required('Обязательное поле'),
+  maxCost: Yup.number().required('Обязательное поле'),
   dateStart: Yup.string().required('Обязательное поле'),
-  dateStop: Yup.string().required('Обязательное поле'),
 });
 
-const MaxcostsForm = ({ defautValueForm, orgstructureId, onClosed, onSuccess, loading }) => {
+const MaxcostsForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
-  console.log(defautValueForm);
   const initialValues = {
     id: defautValueForm.id,
     maxCost: defautValueForm.maxCost,
@@ -34,14 +32,18 @@ const MaxcostsForm = ({ defautValueForm, orgstructureId, onClosed, onSuccess, lo
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        const formDate = objectOfFormDate(values);
-        if (orgstructureId) formDate.append('id', orgstructureId);
+        const formDate = objectOfFormDate({
+          ...values,
+          maxCost: String(values.maxCost).replace('.', ','),
+          dateStart: values.dateStart.toISOString(),
+          dateStop: values.dateStop && values.dateStop.toISOString(),
+        });
         dispatch(onSuccess(formDate, onClosed));
       }}
     >
       {({ handleSubmit }) => {
         return (
-          <form style={{ paddingBottom: '4rem' }} onSubmit={handleSubmit}>
+          <form style={{ paddingBottom: '5rem' }} onSubmit={handleSubmit}>
             <Form.Row>
               <Col sm="12">
                 <Form.Group>
@@ -102,7 +104,6 @@ MaxcostsForm.defaultProps = {
   onClosed: () => {},
   onSuccess: () => {},
   loading: false,
-  orgstructureId: '',
 };
 
 MaxcostsForm.propTypes = {
@@ -119,7 +120,6 @@ MaxcostsForm.propTypes = {
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,
-  orgstructureId: PropTypes.string,
 };
 
 export default MaxcostsForm;

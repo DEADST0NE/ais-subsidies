@@ -3,7 +3,7 @@ import {
   toastMessageError,
   toastMessageSuccess,
 } from '../../components/generic/ToastMessage/ToastMessage';
-
+import formDataAtObject from '../../utils/formDataAtObject';
 import {
   MAXCOSTS_GET_REQUEST,
   MAXCOSTS_GET_SUCCESS,
@@ -61,25 +61,19 @@ const deleteMaxcostSuccess = (id) => ({
 });
 
 const deleteMaxcostRequest = async (id) => {
-  return axios
-    .delete('Directory/maxcost', {
-      params: {
-        id,
-      },
-    })
-    .then((response) => response.data);
+  return axios.delete(`Directory/maxcost/${id}`).then((response) => response.data);
 };
 
 export const deleteMaxcosts = (id, onClose) => (dispatch) => {
   dispatch(deleteMaxcostRequested());
   deleteMaxcostRequest(id)
     .then(() => {
+      dispatch(deleteMaxcostSuccess(id));
       onClose(false);
       toastMessageSuccess('Должность успешно удалена из списка');
-      dispatch(deleteMaxcostSuccess(id));
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err.response);
       dispatch(deleteMaxcostError());
     });
 };
@@ -108,11 +102,13 @@ export const postMaxcosts = (formDara, onClose) => (dispatch) => {
   postMaxcostRequest(formDara)
     .then((data) => {
       onClose(false);
-      postMaxcostSuccess(data);
+      const object = formDataAtObject(formDara);
+      object.id = data;
+      dispatch(postMaxcostSuccess(object));
       toastMessageSuccess('Должность успешна добавлена');
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err.response);
       dispatch(postMaxcostError());
     });
 };
@@ -139,13 +135,15 @@ const putMaxcostRequest = async (formDara) => {
 export const putMaxcosts = (formDara, onClose) => (dispatch) => {
   dispatch(putMaxcostRequested());
   putMaxcostRequest(formDara)
-    .then((data) => {
+    .then(() => {
       onClose(false);
-      putMaxcostSuccess(data);
+      const object = formDataAtObject(formDara);
+      object.maxCost = Number(object.maxCost.replace(',', '.'));
+      dispatch(putMaxcostSuccess(object));
       toastMessageSuccess('Данные о банке успешно изменены');
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err.response);
       dispatch(putMaxcostError());
     });
 };

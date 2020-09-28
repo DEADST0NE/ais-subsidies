@@ -3,6 +3,7 @@ import {
   toastMessageError,
   toastMessageSuccess,
 } from '../../components/generic/ToastMessage/ToastMessage';
+import formDataAtObject from '../../utils/formDataAtObject';
 
 import {
   JOBPOSITIONS_GET_REQUEST,
@@ -61,13 +62,7 @@ const deleteJobpositionSuccess = (id) => ({
 });
 
 const deleteJobpositionRequest = async (id) => {
-  return axios
-    .delete('Directory/jobpositions', {
-      params: {
-        id,
-      },
-    })
-    .then((response) => response.data);
+  return axios.delete(`Directory/jobposition/${id}`).then((response) => response.data);
 };
 
 export const deleteJobpositions = (id, onClose) => (dispatch) => {
@@ -79,7 +74,7 @@ export const deleteJobpositions = (id, onClose) => (dispatch) => {
       dispatch(deleteJobpositionSuccess(id));
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err.response.data);
       dispatch(deleteJobpositionError());
     });
 };
@@ -100,7 +95,7 @@ const postJobpositionSuccess = (object) => ({
 });
 
 const postJobpositionRequest = async (formDara) => {
-  return axios.post('Directory/jobpositions', formDara).then((response) => response.data);
+  return axios.post('Directory/jobposition', formDara).then((response) => response.data);
 };
 
 export const postJobpositions = (formDara, onClose) => (dispatch) => {
@@ -108,7 +103,7 @@ export const postJobpositions = (formDara, onClose) => (dispatch) => {
   postJobpositionRequest(formDara)
     .then((data) => {
       onClose(false);
-      postJobpositionSuccess(data);
+      dispatch(postJobpositionSuccess(data));
       toastMessageSuccess('Должность успешна добавлена');
     })
     .catch((err) => {
@@ -132,15 +127,15 @@ const putJobpositionSuccess = (object) => ({
 });
 
 const putJobpositionRequest = async (formDara) => {
-  return axios.put('Directory/jobpositions', formDara).then((response) => response.data);
+  return axios.put('Directory/jobposition', formDara).then((response) => response.data);
 };
 
 export const putJobpositions = (formDara, onClose) => (dispatch) => {
   dispatch(putJobpositionRequested());
   putJobpositionRequest(formDara)
-    .then((data) => {
+    .then(() => {
       onClose(false);
-      putJobpositionSuccess(data);
+      dispatch(putJobpositionSuccess(formDataAtObject(formDara)));
       toastMessageSuccess('Данные о банке успешно изменены');
     })
     .catch((err) => {

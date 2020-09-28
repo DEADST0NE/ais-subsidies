@@ -9,8 +9,8 @@ import {
   postLivingwage,
 } from '../../../store/livingwage/actions';
 import LivingwageTable from '../../tables/LivingwageTable';
-import Icon from '../../generic/Icon';
 import LivingwageForm from '../../forms/LivingwageForm';
+import Icon from '../../generic/Icon';
 import ModalWindow from '../../generic/ModalWindow';
 import Сonfirmation from '../../generic/Сonfirmation';
 

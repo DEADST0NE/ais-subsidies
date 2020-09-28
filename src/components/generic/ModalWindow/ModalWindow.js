@@ -7,7 +7,7 @@ import './ModalWindow.scss';
 
 const ModalWindow = ({ show, onClosed, size, title, children }) => (
   <Modal className="castom-modal-window" size={size} show={show} onHide={() => onClosed(false)}>
-    <Modal.Title className="p-4">{title}</Modal.Title>
+    <Modal.Title className="p-3">{title}</Modal.Title>
     <Modal.Body>{children}</Modal.Body>
   </Modal>
 );

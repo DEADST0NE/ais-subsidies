@@ -7,7 +7,6 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
-import objectOfFormDate from '../../utils/objectOfFormDate';
 import SubmitBtn from '../generic/SubmitBtn';
 import CustomField from '../generic/CustomField';
 import DatePicker from '../generic/DatePicker';
@@ -16,11 +15,12 @@ import ErrorIndicator from '../generic/ErrorIndicator';
 const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
   const { socialgroups, error } = useSelector(({ socialgroups }) => socialgroups);
-
+  const dynamic = {};
   const validatObject = {
     dateStart: Yup.string().required('Обязательное поле'),
   };
-  validatObject[socialGroupId] = Yup.string().required('Обязательное поле');
+  dynamic[socialGroupId] = Yup.string().required('Обязательное поле');
+  validatObject.array = Yup.object().shape({ ...dynamic });
   const validationSchema = Yup.object().shape(validatObject);
   return (
     <Formik
@@ -28,15 +28,13 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        const formDate = objectOfFormDate(values);
-        console.log(values);
-        // dispatch(onSuccess(formDate, onClosed));
+        dispatch(onSuccess(values, onClosed));
       }}
     >
       {({ handleSubmit }) => {
         if (error) return <ErrorIndicator error={error} />;
         return (
-          <form style={{ paddingBottom: '4rem' }} onSubmit={handleSubmit}>
+          <form style={{ paddingBottom: '5rem' }} onSubmit={handleSubmit}>
             <Form.Row>
               {socialgroups.map((item) => (
                 <Col key={item.id} sm="4">
@@ -45,7 +43,7 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
                       type="text"
                       label={item.name}
                       placeholder={item.name}
-                      name={`${item.id}`}
+                      name={`array.${item.id}`}
                     />
                   </Form.Group>
                 </Col>
@@ -84,9 +82,11 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
 
 LivingwageForm.defaultProps = {
   defautValueForm: {
-    1: '',
-    2: '',
-    3: '',
+    array: {
+      1: '',
+      2: '',
+      3: '',
+    },
     dateStart: '',
   },
   onClosed: () => {},

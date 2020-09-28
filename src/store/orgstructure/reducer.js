@@ -80,7 +80,6 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         postLoading: false,
-        orgstructures: state.orgstructures.push(action.payload),
       };
 
     case ORGSTRUCTURE_PUT_REQUEST:
@@ -99,10 +98,6 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         putLoading: false,
-        orgstructures: state.orgstructures.map((item) => {
-          if (item.id !== action.payload.id) return item;
-          return action.payload;
-        }),
       };
 
     default:
