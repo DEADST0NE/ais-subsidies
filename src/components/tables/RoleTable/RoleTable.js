@@ -17,10 +17,11 @@ const RoleTable = ({
   array,
   loading,
   error,
-  setRoleId,
+  setId,
+  setMass,
   setShowConfirmation,
   setShowWindowFormPut,
-  setRoleDataVal,
+  setDefautValueForm,
 }) => {
   if (loading) {
     return <LoadingIndicator />;
@@ -33,8 +34,9 @@ const RoleTable = ({
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
-  const [arrayTable, setArrayTable] = useState(array);
+
   const [sortName, setSortName] = useState(null);
+
   return (
     <div className="castom_table">
       <table className="table table-striped">
@@ -50,8 +52,8 @@ const RoleTable = ({
               <div className="d-flex align-items-center">
                 Роли должности
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="name"
                   setSortName={setSortName}
@@ -83,7 +85,7 @@ const RoleTable = ({
                         type="button"
                         onClick={() => {
                           setShowWindowFormPut(true);
-                          setRoleDataVal(item);
+                          setDefautValueForm(item);
                         }}
                       >
                         <Icon name="pencil" />
@@ -91,7 +93,7 @@ const RoleTable = ({
                       <button
                         title="Удалить"
                         onClick={() => {
-                          setRoleId(item.id);
+                          setId(item.id);
                           setShowConfirmation(true);
                         }}
                         className="btn trash-item-table"
@@ -114,10 +116,11 @@ const RoleTable = ({
 RoleTable.defaultProps = {
   array: [],
   error: {},
-  setRoleId: () => {},
+  setId: () => {},
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
-  setRoleDataVal: () => {},
+  setDefautValueForm: () => {},
+  setMass: () => {},
 };
 
 RoleTable.propTypes = {
@@ -126,10 +129,11 @@ RoleTable.propTypes = {
   ),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.objectOf(PropTypes.string),
-  setRoleId: PropTypes.func,
+  setId: PropTypes.func,
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
-  setRoleDataVal: PropTypes.func,
+  setDefautValueForm: PropTypes.func,
+  setMass: PropTypes.func,
 };
 
 export default RoleTable;

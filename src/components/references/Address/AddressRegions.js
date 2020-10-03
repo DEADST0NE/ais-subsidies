@@ -6,14 +6,14 @@ import getAddressesRegions from '../../../store/addresses/regions/actions';
 import SearchTable from '../../generic/SearchTable';
 import AddressRegionsTable from '../../tables/AddressRegionsTable';
 
-const AddressRegions = ({ setSelectedArray, selectedArray }) => {
+const AddressRegions = ({ setSelectedArray }) => {
   const [searchArray, setSearchArray] = useState([]);
   const { regions, loading, error } = useSelector(({ addressesRegions }) => addressesRegions);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAddressesRegions());
     setSelectedArray([]);
-  }, [dispatch, searchArray]);
+  }, [dispatch]);
   return (
     <div className="address">
       <div className="сontrol-table-grup">
@@ -23,7 +23,6 @@ const AddressRegions = ({ setSelectedArray, selectedArray }) => {
         array={searchArray.length ? searchArray : regions}
         loading={loading}
         error={error}
-        selectedArray={selectedArray}
         setSelectedArray={setSelectedArray}
       />
     </div>
@@ -32,12 +31,10 @@ const AddressRegions = ({ setSelectedArray, selectedArray }) => {
 
 AddressRegions.defaultProps = {
   setSelectedArray: () => {},
-  selectedArray: [],
 };
 
 AddressRegions.propTypes = {
   setSelectedArray: PropTypes.func,
-  selectedArray: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
 
 export default AddressRegions;

@@ -18,6 +18,7 @@ const OrgstructureTable = ({
   loading,
   error,
   setId,
+  setMass,
   setShowConfirmation,
   setShowWindowFormPut,
   setDefautValueForm,
@@ -33,7 +34,6 @@ const OrgstructureTable = ({
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
-  const [arrayTable, setArrayTable] = useState(array);
   const [sortName, setSortName] = useState(null);
   return (
     <div className="castom_table">
@@ -54,8 +54,8 @@ const OrgstructureTable = ({
               <div className="d-flex align-items-center">
                 Название
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="name"
                   setSortName={setSortName}
@@ -66,8 +66,8 @@ const OrgstructureTable = ({
               <div className="d-flex align-items-center">
                 Тип орг
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="orgUnitName"
                   setSortName={setSortName}
@@ -78,8 +78,8 @@ const OrgstructureTable = ({
               <div className="d-flex align-items-center">
                 Адрес
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="address"
                   setSortName={setSortName}
@@ -156,6 +156,7 @@ OrgstructureTable.defaultProps = {
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
   setDefautValueForm: () => {},
+  setMass: () => {},
 };
 
 OrgstructureTable.propTypes = {
@@ -168,6 +169,7 @@ OrgstructureTable.propTypes = {
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
   setDefautValueForm: PropTypes.func,
+  setMass: PropTypes.func,
 };
 
 export default OrgstructureTable;

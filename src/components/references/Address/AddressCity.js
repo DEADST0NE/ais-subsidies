@@ -3,25 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-import getAddressesAreas from '../../../store/addresses/areas/actions';
+import getAddressesAreas from '../../../store/addresses/city/actions';
 import SearchTable from '../../generic/SearchTable';
-import AddressAreasTable from '../../tables/AddressAreasTable';
+import AddressCityTable from '../../tables/AddressCityTable';
 
-const AddressAreas = withRouter(({ setSelectedArray, selectedArray, match }) => {
+const AddressCity = withRouter(({ setSelectedArray, selectedArray, match }) => {
   const [searchArray, setSearchArray] = useState([]);
-  const { areas, loading, error } = useSelector(({ addressesAreas }) => addressesAreas);
+  const { city, loading, error } = useSelector(({ addressesCity }) => addressesCity);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAddressesAreas(match.params.reginId));
+    dispatch(getAddressesAreas(match.params.areasId));
   }, [dispatch]);
 
   return (
     <div className="address">
       <div className="сontrol-table-grup">
-        <SearchTable array={areas} setMass={setSearchArray} />
+        <SearchTable array={city} setMass={setSearchArray} />
       </div>
-      <AddressAreasTable
-        array={searchArray.length ? searchArray : areas}
+      <AddressCityTable
+        array={searchArray}
         loading={loading}
         error={error}
         selectedArray={selectedArray}
@@ -31,13 +31,13 @@ const AddressAreas = withRouter(({ setSelectedArray, selectedArray, match }) => 
   );
 });
 
-AddressAreas.defaultProps = {
+AddressCity.defaultProps = {
   selectedArray: [],
   setSelectedArray: () => {},
   match: {},
 };
 
-AddressAreas.propTypes = {
+AddressCity.propTypes = {
   match: PropTypes.shape({
     isExact: PropTypes.bool,
     params: PropTypes.objectOf(PropTypes.string),
@@ -48,4 +48,4 @@ AddressAreas.propTypes = {
   selectedArray: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
 
-export default AddressAreas;
+export default AddressCity;

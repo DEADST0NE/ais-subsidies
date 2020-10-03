@@ -55,7 +55,7 @@ const Step = withRouter(({ location, selectedArray }) => {
             }`}
           >
             <NavLink
-              className={`step ${status(item.url).string === item.url ? 'active' : ''}`}
+              className={`step ${item.url.indexOf(status(item.url).string) ? 'active' : ''}`}
               key={item.url}
               to={item.url}
               onClick={(e) => {
@@ -65,7 +65,13 @@ const Step = withRouter(({ location, selectedArray }) => {
               {!status(item.url).status ? <Icon name="success" /> : null}
               <div className="step-text">{item.name}</div>
             </NavLink>
-            <span className="step-selected">{selectedArray[idx]}</span>
+            <span
+              className={`step-selected ${
+                item.url.indexOf(status(item.url).string) ? 'step-selected-active' : ''
+              }`}
+            >
+              {selectedArray[idx]}
+            </span>
           </li>
         ))}
       </ul>

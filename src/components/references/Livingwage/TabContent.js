@@ -8,8 +8,8 @@ import {
   deleteLivingwage,
   postLivingwage,
 } from '../../../store/livingwage/actions';
-import LivingwageForm from '../../forms/LivingwageForm';
 import LivingwageTable from '../../tables/LivingwageTable';
+import LivingwageForm from '../../forms/LivingwageForm';
 import Icon from '../../generic/Icon';
 import ModalWindow from '../../generic/ModalWindow';
 import Сonfirmation from '../../generic/Сonfirmation';
@@ -28,7 +28,7 @@ const TabContent = ({ socialgroupId }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getLivingwages(socialgroupId));
-  }, [dispatch, socialgroupId, searchArray]);
+  }, [dispatch, socialgroupId]);
   return (
     <div className="livingwage-tab-content">
       <div className="сontrol-table-grup">
@@ -44,7 +44,7 @@ const TabContent = ({ socialgroupId }) => {
         </button>
       </div>
       <LivingwageTable
-        array={searchArray.length ? searchArray : livingwages}
+        array={searchArray}
         loading={loading}
         error={error}
         setId={setId}

@@ -31,7 +31,7 @@ const Maxcosts = () => {
   const [searchArray, setSearchArray] = useState([]);
   useEffect(() => {
     dispatch(getMaxcosts());
-  }, [dispatch, searchArray]);
+  }, [dispatch]);
 
   return (
     <div className="maxcosts">
@@ -46,7 +46,7 @@ const Maxcosts = () => {
         </button>
       </div>
       <MaxcostsTable
-        array={searchArray.length ? searchArray : maxcosts}
+        array={searchArray}
         loading={loading}
         error={error}
         setMass={setSearchArray}

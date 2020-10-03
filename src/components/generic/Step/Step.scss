@@ -11,9 +11,15 @@
 .step-wrapper {
   position: relative;
 }
+
+.step-selected-active {
+  display: revert !important;
+}
+
 .step-selected {
   position: absolute;
   bottom: 45px;
+  display: none;
   width: calc(100% - 25px);
   font-size: 12px;
   font-weight: 600;

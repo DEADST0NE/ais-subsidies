@@ -18,6 +18,7 @@ const RelationsTable = ({
   loading,
   error,
   setId,
+  setMass,
   setShowConfirmation,
   setShowWindowFormPut,
   setDefautValueForm,
@@ -33,8 +34,9 @@ const RelationsTable = ({
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
-  const [arrayTable, setArrayTable] = useState(array);
+
   const [sortName, setSortName] = useState(null);
+
   return (
     <div className="castom_table">
       <table className="table table-striped">
@@ -51,8 +53,8 @@ const RelationsTable = ({
               <div className="d-flex align-items-center">
                 Название
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="name"
                   setSortName={setSortName}
@@ -129,6 +131,7 @@ RelationsTable.defaultProps = {
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
   setDefautValueForm: () => {},
+  setMass: () => {},
 };
 
 RelationsTable.propTypes = {
@@ -141,6 +144,7 @@ RelationsTable.propTypes = {
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
   setDefautValueForm: PropTypes.func,
+  setMass: PropTypes.func,
 };
 
 export default RelationsTable;

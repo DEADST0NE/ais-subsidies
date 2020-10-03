@@ -3,8 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AddressAreas from './AddressAreas';
 import AddressRegions from './AddressRegions';
+import AddressCity from './AddressCity';
 import Step from '../../generic/Step';
-// import AddressNextTable from '../../tables/AddressNextTable';
 import './Address.scss';
 
 const Address = () => {
@@ -15,11 +15,15 @@ const Address = () => {
         <Step selectedArray={selectedArray} />
         <Switch>
           <Route path="/directory/address/regions" exact>
-            <AddressRegions selectedArray={selectedArray} setSelectedArray={setSelectedArray} />
+            <AddressRegions setSelectedArray={setSelectedArray} />
           </Route>
 
           <Route path="/directory/address/regions/:reginId?/areas" exact>
-            <AddressAreas />
+            <AddressAreas selectedArray={selectedArray} setSelectedArray={setSelectedArray} />
+          </Route>
+
+          <Route path="/directory/address/regions/:reginId?/areas/:areasId?/city" exact>
+            <AddressCity selectedArray={selectedArray} setSelectedArray={setSelectedArray} />
           </Route>
         </Switch>
       </BrowserRouter>

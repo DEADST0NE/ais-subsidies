@@ -18,6 +18,7 @@ const JobpositionsTable = ({
   loading,
   error,
   setId,
+  setMass,
   setShowConfirmation,
   setShowWindowFormPut,
   setDefautValueForm,
@@ -33,8 +34,9 @@ const JobpositionsTable = ({
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
-  const [arrayTable, setArrayTable] = useState(array);
+
   const [sortName, setSortName] = useState(null);
+
   return (
     <div className="castom_table">
       <table className="table table-striped">
@@ -50,8 +52,8 @@ const JobpositionsTable = ({
               <div className="d-flex align-items-center">
                 Наименование должности
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="name"
                   setSortName={setSortName}
@@ -118,6 +120,7 @@ JobpositionsTable.defaultProps = {
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
   setDefautValueForm: () => {},
+  setMass: () => {},
 };
 
 JobpositionsTable.propTypes = {
@@ -128,6 +131,7 @@ JobpositionsTable.propTypes = {
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
   setDefautValueForm: PropTypes.func,
+  setMass: PropTypes.func,
 };
 
 export default JobpositionsTable;

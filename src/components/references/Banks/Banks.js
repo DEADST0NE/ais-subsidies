@@ -21,14 +21,13 @@ const ConteinerBanks = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBanks());
-  }, [dispatch, searchArray]);
+  }, [dispatch]);
 
   const [id, setId] = useState(''); // id Банка
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
   const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных
   const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления
   const [defautValueForm, setDefautValueForm] = useState('');
-
   return (
     <div className="banks">
       <div className="сontrol-table-grup">
@@ -44,7 +43,7 @@ const ConteinerBanks = () => {
         </button>
       </div>
       <BanksTable
-        array={searchArray.length ? searchArray : banks}
+        array={searchArray}
         loading={loading}
         error={error}
         setMass={setSearchArray}

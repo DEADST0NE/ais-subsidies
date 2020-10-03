@@ -76,21 +76,18 @@ const EmployeeForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
     <Formik
       initialValues={{
         ...defautValueForm,
-        orgStructureId: defautValueForm.orgStructureId
-          ? {
-              value: defautValueForm.orgStructureId,
-              label: defautValueForm.orgStructureName,
-            }
-          : '',
-        jobPositionId: defautValueForm.jobPositionId
-          ? {
-              value: defautValueForm.jobPositionId,
-              label: defautValueForm.jobPosition,
-            }
-          : '',
-        roleId: defautValueForm.roleId
-          ? { value: defautValueForm.roleId, label: defautValueForm.roleName }
-          : '',
+        orgStructureId: defautValueForm.orgStructureId && {
+          value: defautValueForm.orgStructureId,
+          label: defautValueForm.orgStructureName,
+        },
+        jobPositionId: defautValueForm.jobPositionId && {
+          value: defautValueForm.jobPositionId,
+          label: defautValueForm.jobPosition,
+        },
+        roleId: defautValueForm.roleId && {
+          value: defautValueForm.roleId,
+          label: defautValueForm.roleName,
+        },
         isActive: {
           value: defautValueForm.isActive,
           label: defautValueForm.isActive ? 'Активный' : 'Неактивный',

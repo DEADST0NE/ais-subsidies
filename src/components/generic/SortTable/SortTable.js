@@ -10,10 +10,10 @@ const SortTable = ({ array, setMass, nameSort, setSortName, name }) => {
   const [status, setStatus] = useState(false);
   const sort = (array, setMass) => {
     if (status) {
-      setMass(array.sort((a, b) => (a[name] < b[name] ? 1 : -1)));
+      setMass([...array.sort((a, b) => (a[name] < b[name] ? 1 : -1))]);
       setStatus(false);
     } else {
-      setMass(array.sort((a, b) => (a[name] > b[name] ? 1 : -1)));
+      setMass([...array.sort((a, b) => (a[name] > b[name] ? 1 : -1))]);
       setStatus(true);
     }
     return null;

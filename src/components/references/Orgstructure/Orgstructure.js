@@ -26,7 +26,7 @@ const Orgstructure = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getOrgstructures());
-  }, [dispatch, searchArray]);
+  }, [dispatch]);
 
   const [id, setId] = useState(''); // id
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
@@ -48,7 +48,7 @@ const Orgstructure = () => {
         </button>
       </div>
       <OrgstructureTable
-        array={searchArray.length ? searchArray : orgstructures}
+        array={searchArray}
         loading={loading}
         error={error}
         setMass={setSearchArray}

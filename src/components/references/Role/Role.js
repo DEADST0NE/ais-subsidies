@@ -19,14 +19,14 @@ const Role = () => {
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
   const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
   const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
-  const [roleDataVal, setRoleDataVal] = useState(''); // Ткущие данные для изменения
+  const [defautValueForm, setDefautValueForm] = useState(''); // Ткущие данные для изменения
   const { roles, loading, error, postLoading, putLoading, deleteLoading } = useSelector(
     ({ role }) => role
   );
   const [searchArray, setSearchArray] = useState([]);
   useEffect(() => {
     dispatch(getRoles());
-  }, [dispatch, searchArray]);
+  }, [dispatch]);
 
   return (
     <div className="role">
@@ -43,12 +43,12 @@ const Role = () => {
         </button>
       </div>
       <RoleTable
-        array={searchArray.length ? searchArray : roles}
+        array={searchArray}
         loading={loading}
         error={error}
         setMass={setSearchArray}
-        setRoleId={setId}
-        setRoleDataVal={setRoleDataVal}
+        setId={setId}
+        setDefautValueForm={setDefautValueForm}
         setShowWindowFormPut={setShowWindowFormPut}
         setShowConfirmation={setShowConfirmation}
       />
@@ -62,7 +62,7 @@ const Role = () => {
           onClosed={setShowWindowFormPut}
           onSuccess={putRoles}
           loading={putLoading}
-          defautValueForm={roleDataVal}
+          defautValueForm={defautValueForm}
         />
       </ModalWindow>
 

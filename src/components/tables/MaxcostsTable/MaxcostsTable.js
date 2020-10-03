@@ -19,6 +19,7 @@ const MaxcostsTable = ({
   loading,
   error,
   setId,
+  setMass,
   setDefautValueForm,
   setShowConfirmation,
   setShowWindowFormPut,
@@ -34,7 +35,6 @@ const MaxcostsTable = ({
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
-  const [arrayTable, setArrayTable] = useState(array);
   const [sortName, setSortName] = useState(null);
   return (
     <div className="castom_table">
@@ -53,8 +53,8 @@ const MaxcostsTable = ({
               <div className="d-flex align-items-center">
                 Максимальная доля расходов
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="maxCost"
                   setSortName={setSortName}
@@ -128,6 +128,7 @@ MaxcostsTable.defaultProps = {
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
   setDefautValueForm: () => {},
+  setMass: () => {},
 };
 
 MaxcostsTable.propTypes = {
@@ -140,6 +141,7 @@ MaxcostsTable.propTypes = {
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
   setDefautValueForm: PropTypes.func,
+  setMass: PropTypes.func,
 };
 
 export default MaxcostsTable;

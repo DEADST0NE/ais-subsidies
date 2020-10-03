@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
@@ -7,6 +7,10 @@ import './SearchTable.scss';
 
 const SearchTable = ({ array, setMass }) => {
   const [status, setStatus] = useState(false);
+
+  useEffect(() => {
+    setMass(array);
+  }, [array]);
 
   const search = (array, setMass, text) => {
     if (text) {
@@ -20,6 +24,7 @@ const SearchTable = ({ array, setMass }) => {
       setStatus(!mass.length);
       setMass(mass);
     } else {
+      setMass(array);
       setStatus(false);
     }
   };

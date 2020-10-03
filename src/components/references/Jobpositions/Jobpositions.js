@@ -24,14 +24,14 @@ const Jobpositions = () => {
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
   const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных
   const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления
-  const [jobPositionsDataVal, setJobPositionsDataVal] = useState(''); // Ткущие данные для изменения
+  const [defautValueForm, setDefautValueForm] = useState(''); // Ткущие данные для изменения
   const { jobpositions, loading, error, postLoading, putLoading, deleteLoading } = useSelector(
     ({ jobpositions }) => jobpositions
   );
   const [searchArray, setSearchArray] = useState([]);
   useEffect(() => {
     dispatch(getJobpositions());
-  }, [dispatch, searchArray]);
+  }, [dispatch]);
 
   return (
     <div className="jobpositions">
@@ -48,12 +48,12 @@ const Jobpositions = () => {
         </button>
       </div>
       <JobpositionsTable
-        array={searchArray.length ? searchArray : jobpositions}
+        array={searchArray}
         loading={loading}
         error={error}
         setMass={setSearchArray}
         setId={setId}
-        setDefautValueForm={setJobPositionsDataVal}
+        setDefautValueForm={setDefautValueForm}
         setShowWindowFormPut={setShowWindowFormPut}
         setShowConfirmation={setShowConfirmation}
       />
@@ -68,7 +68,7 @@ const Jobpositions = () => {
           jobPositionId={id}
           onSuccess={putJobpositions}
           loading={putLoading}
-          defautValueForm={jobPositionsDataVal}
+          defautValueForm={defautValueForm}
         />
       </ModalWindow>
 

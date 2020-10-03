@@ -33,7 +33,11 @@ const OrgstructureForm = ({
 
   const bosParent = '00000000-0000-0000-0000-000000000000'; // Главная над структура
   const optionsParent = orgstructuresArray // Строим option над структур
-    .filter((item) => item.id !== bosParent)
+    .filter((item) =>
+      defautValueForm?.parentName
+        ? item.id !== bosParent && item.parentName !== defautValueForm.name
+        : item.id !== bosParent
+    )
     .map((item) => ({
       value: item.id,
       label: item.name,
@@ -55,7 +59,7 @@ const OrgstructureForm = ({
               },
               parentId: defautValueForm.parentId && {
                 value: defautValueForm.parentId,
-                label: optionsParent.find((item) => item.value === defautValueForm.parentId).label,
+                label: optionsParent.find((item) => item.value === defautValueForm.parentId)?.label,
               },
             }
           : { ...defautValueForm }

@@ -14,7 +14,7 @@ import ErrorIndicator from '../../generic/ErrorIndicator';
 
 import '../GlobalStyleTable.scss';
 
-const LivingwageTable = ({ array, loading, error, setShowConfirmation, setId }) => {
+const LivingwageTable = ({ array, loading, error, setShowConfirmation, setId, setMass }) => {
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -26,7 +26,6 @@ const LivingwageTable = ({ array, loading, error, setShowConfirmation, setId }) 
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
-  const [arrayTable, setArrayTable] = useState(array);
   const [sortName, setSortName] = useState(null);
   return (
     <div className="castom_table">
@@ -45,8 +44,8 @@ const LivingwageTable = ({ array, loading, error, setShowConfirmation, setId }) 
               <div className="d-flex align-items-center">
                 Размер заработной платы
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="wageValue"
                   setSortName={setSortName}
@@ -57,8 +56,8 @@ const LivingwageTable = ({ array, loading, error, setShowConfirmation, setId }) 
               <div className="d-flex align-items-center">
                 Дата начала
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="dateStart"
                   setSortName={setSortName}
@@ -69,8 +68,8 @@ const LivingwageTable = ({ array, loading, error, setShowConfirmation, setId }) 
               <div className="d-flex align-items-center">
                 Дата окончания
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="dateStop"
                   setSortName={setSortName}
@@ -128,12 +127,14 @@ LivingwageTable.defaultProps = {
   error: {},
   setId: () => {},
   setShowConfirmation: () => {},
+  setMass: () => {},
 };
 
 LivingwageTable.propTypes = {
   array: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
   ),
+  setMass: PropTypes.func,
   setId: PropTypes.func,
   loading: PropTypes.bool.isRequired,
   setShowConfirmation: PropTypes.func,

@@ -10,8 +10,8 @@ import ErrorIndicator from '../../generic/ErrorIndicator';
 
 import '../GlobalStyleTable.scss';
 
-const AddressAreasOrCityTable = withRouter(
-  ({ array, loading, error, history, setSelectedArray, selectedArray }) => {
+const AddressCityTable = withRouter(
+  ({ array, loading, error, history, setSelectedArray, selectedArray, match }) => {
     if (loading) {
       return <LoadingIndicator />;
     }
@@ -23,7 +23,6 @@ const AddressAreasOrCityTable = withRouter(
     if (!array.length) {
       return <Alert variant="warning">Нет данных</Alert>;
     }
-    const selected = selectedArray;
     return (
       <div className="castom_table">
         <table className="table table-striped">
@@ -53,9 +52,11 @@ const AddressAreasOrCityTable = withRouter(
                     key={item.id}
                     className="table-row"
                     onClick={() => {
-                      selected[0] = item.offName;
+                      const selected = [...selectedArray, item.offName];
                       setSelectedArray(selected);
-                      history.push(`/directory/address/regions/${item.id}/areas`);
+                      history.push(
+                        `/directory/address/regions/${match.params.reginId}/areas/${match.params.areasId}/city/${item.id}`
+                      );
                     }}
                   >
                     <td className="text-center">{idx + 1}</td>
@@ -71,13 +72,14 @@ const AddressAreasOrCityTable = withRouter(
   }
 );
 
-AddressAreasOrCityTable.defaultProps = {
+AddressCityTable.defaultProps = {
   array: [],
   error: {},
   setSelectedArray: () => {},
+  match: {},
 };
 
-AddressAreasOrCityTable.propTypes = {
+AddressCityTable.propTypes = {
   array: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
   ),
@@ -92,6 +94,12 @@ AddressAreasOrCityTable.propTypes = {
   }),
   selectedArray: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
   setSelectedArray: PropTypes.func,
+  match: PropTypes.shape({
+    isExact: PropTypes.bool,
+    params: PropTypes.objectOf(PropTypes.string),
+    path: PropTypes.string,
+    url: PropTypes.string,
+  }),
 };
 
-export default AddressAreasOrCityTable;
+export default AddressCityTable;

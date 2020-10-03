@@ -18,6 +18,7 @@ const BanksTable = ({
   loading,
   error,
   setId,
+  setMass,
   setShowConfirmation,
   setShowWindowFormPut,
   setDefautValueForm,
@@ -33,8 +34,9 @@ const BanksTable = ({
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
-  const [arrayTable, setArrayTable] = useState(array);
+
   const [sortName, setSortName] = useState(null);
+
   return (
     <div className="castom_table">
       <table className="table table-striped">
@@ -53,8 +55,8 @@ const BanksTable = ({
               <div className="d-flex align-items-center">
                 Название
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="name"
                   setSortName={setSortName}
@@ -65,8 +67,8 @@ const BanksTable = ({
               <div className="d-flex align-items-center">
                 Адрес
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="address"
                   setSortName={setSortName}
@@ -141,6 +143,7 @@ BanksTable.defaultProps = {
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
   setDefautValueForm: () => {},
+  setMass: () => {},
 };
 
 BanksTable.propTypes = {
@@ -151,6 +154,7 @@ BanksTable.propTypes = {
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
   setDefautValueForm: PropTypes.func,
+  setMass: PropTypes.func,
 };
 
 export default BanksTable;

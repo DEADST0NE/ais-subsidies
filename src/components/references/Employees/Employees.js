@@ -31,7 +31,7 @@ const ConteinerEmployees = () => {
   const [defautValueForm, setDefautValueForm] = useState('');
   useEffect(() => {
     dispatch(getEmployees());
-  }, [dispatch, searchArray]);
+  }, [dispatch]);
 
   return (
     <div className="employess">
@@ -48,7 +48,8 @@ const ConteinerEmployees = () => {
         </button>
       </div>
       <EmployessTable
-        array={searchArray.length ? searchArray : employees}
+        lastArray={employees}
+        array={searchArray}
         loading={loading}
         error={error}
         setMass={setSearchArray}

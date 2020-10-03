@@ -26,7 +26,7 @@ const Relations = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRelations());
-  }, [dispatch, searchArray]);
+  }, [dispatch]);
 
   const [id, setId] = useState(''); // id
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
@@ -48,7 +48,7 @@ const Relations = () => {
         </button>
       </div>
       <RelationsTable
-        array={searchArray.length ? searchArray : relations}
+        array={searchArray}
         loading={loading}
         error={error}
         setMass={setSearchArray}

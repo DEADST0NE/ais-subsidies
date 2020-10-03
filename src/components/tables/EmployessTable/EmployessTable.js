@@ -1,11 +1,9 @@
 /* eslint-disable import/no-unresolved */
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 
 import Scrollbars from 'react-custom-scrollbars';
 import Alert from 'react-bootstrap/Alert';
 import PropTypes from 'prop-types';
-import { getOrgstructures } from '../../../store/orgstructure/actions';
 import FilterTable from '../../generic/FilterTable';
 import Icon from '../../generic/Icon';
 import SortTable from '../../generic/SortTable';
@@ -20,9 +18,11 @@ const EmployessTable = ({
   loading,
   error,
   setId,
+  setMass,
   setShowConfirmation,
   setShowWindowFormPut,
   setDefautFormVal,
+  lastArray,
 }) => {
   if (loading) {
     return <LoadingIndicator />;
@@ -35,21 +35,15 @@ const EmployessTable = ({
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
-  const { orgstructures, loading: orgstLoading, error: orgstError } = useSelector(
-    ({ orgstructure }) => orgstructure
-  );
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getOrgstructures());
-  }, [dispatch]);
-
-  const [arrayTable, setArrayTable] = useState(array);
   const [sortName, setSortName] = useState(null);
 
-  const massFilter = orgstructures.map((item) => ({
-    value: item.name,
-  }));
+  const massFilter = array
+    .filter(
+      (item, pos, array) =>
+        array.map((mapItem) => mapItem.orgStructureName).indexOf(item.orgStructureName) === pos
+    )
+    .map((item) => ({ value: item.orgStructureName }));
 
   return (
     <div className="castom_table">
@@ -70,8 +64,8 @@ const EmployessTable = ({
               <div className="d-flex align-items-center">
                 ФИО
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="name"
                   setSortName={setSortName}
@@ -81,15 +75,21 @@ const EmployessTable = ({
             <th>
               <div className="d-flex align-items-center">
                 Огр структура
-                <FilterTable loading={orgstLoading} error={orgstError} data={massFilter} />
+                <FilterTable
+                  lastArray={lastArray}
+                  array={array}
+                  option={massFilter}
+                  setMass={setMass}
+                  name="orgStructureName"
+                />
               </div>
             </th>
             <th>
               <div className="d-flex align-items-center">
                 Должность
                 <SortTable
-                  array={arrayTable}
-                  setMass={setArrayTable}
+                  array={array}
+                  setMass={setMass}
                   nameSort={sortName}
                   name="address"
                   setSortName={setSortName}
@@ -178,6 +178,8 @@ EmployessTable.defaultProps = {
   setShowConfirmation: () => {},
   setShowWindowFormPut: () => {},
   setDefautFormVal: () => {},
+  setMass: () => {},
+  lastArray: [],
 };
 
 EmployessTable.propTypes = {
@@ -190,6 +192,10 @@ EmployessTable.propTypes = {
   setShowConfirmation: PropTypes.func,
   setShowWindowFormPut: PropTypes.func,
   setDefautFormVal: PropTypes.func,
+  setMass: PropTypes.func,
+  lastArray: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]))
+  ),
 };
 
 export default EmployessTable;
