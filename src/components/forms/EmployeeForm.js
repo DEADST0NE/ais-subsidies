@@ -16,19 +16,7 @@ import SubmitBtn from '../generic/SubmitBtn';
 import CustomField from '../generic/CustomField';
 import CustomSelect from '../generic/CustomSelect';
 
-const validationSchema = Yup.object().shape({
-  fio: Yup.string().required('Обязательное поле'),
-  phoneNumber1: Yup.string().required('Обязательное поле'),
-  orgStructureId: Yup.string().required('Обязательное поле'),
-  jobPositionId: Yup.string().required('Обязательное поле'),
-  roleId: Yup.string().required('Обязательное поле'),
-  isActive: Yup.string().required('Обязательное поле'),
-  login: Yup.string().required('Обязательное поле'),
-  password: Yup.string().required('Обязательное поле'),
-  eMail: Yup.string().email('Некорректная адрес электронной почта'),
-});
-
-const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => {
+const EmployeeForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
   const dispatch = useDispatch();
 
   const { jobpositions, loading: loadingJobPositions, error: errorJobPositions } = useSelector(
@@ -38,12 +26,11 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
     ({ orgstructure }) => orgstructure
   );
   const { roles, loading: loadingRroles, error: errorRoles } = useSelector(({ role }) => role);
-
   useEffect(() => {
     dispatch(getRoles());
     dispatch(getJobpositions());
     dispatch(getOrgstructures());
-  }, [dispatch]);
+  }, [dispatch, loading]);
 
   let optionsJobpositions = [];
   let optionsOrgstructures = [];
@@ -70,44 +57,56 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
     }));
   }
 
+  const validForm = {
+    fio: Yup.string().required('Обязательное поле'),
+    phoneNumber1: Yup.string().required('Обязательное поле'),
+    orgStructureId: Yup.string().required('Обязательное поле'),
+    jobPositionId: Yup.string().required('Обязательное поле'),
+    roleId: Yup.string().required('Обязательное поле'),
+    isActive: Yup.string().required('Обязательное поле'),
+    login: Yup.string().required('Обязательное поле'),
+    eMail: Yup.string().email('Некорректная адрес электронной почта'),
+  };
+
+  if (!defautValueForm.fio) validForm.password = Yup.string().required('Обязательное поле');
+
+  const validationSchema = Yup.object().shape(validForm);
+
   return (
     <Formik
-      initialValues={
-        defautValueForm
+      initialValues={{
+        ...defautValueForm,
+        orgStructureId: defautValueForm.orgStructureId
           ? {
-              fio: defautValueForm.fio,
-              jobPositionId: defautValueForm.jobPositionId
-                ? {
-                    value: defautValueForm.jobPositionId,
-                    label: defautValueForm.jobPosition,
-                  }
-                : '',
-              isActive: {
-                value: defautValueForm.isActive,
-                label: defautValueForm.isActive ? 'Активный' : 'Неактивный',
-              },
-              orgStructureId: defautValueForm.orgStructureId
-                ? {
-                    value: defautValueForm.orgStructureId,
-                    label: defautValueForm.orgStructureName,
-                  }
-                : '',
-              roleId: defautValueForm.roleId
-                ? { value: defautValueForm.roleId, label: defautValueForm.roleName }
-                : '',
-              login: defautValueForm.login,
-              eMail: defautValueForm.email,
-              phoneNumber1: defautValueForm.phoneNumber1,
-              phoneNumber2: defautValueForm.phoneNumber2,
-              comment: defautValueForm.comment,
+              value: defautValueForm.orgStructureId,
+              label: defautValueForm.orgStructureName,
             }
-          : ''
-      }
+          : '',
+        jobPositionId: defautValueForm.jobPositionId
+          ? {
+              value: defautValueForm.jobPositionId,
+              label: defautValueForm.jobPosition,
+            }
+          : '',
+        roleId: defautValueForm.roleId
+          ? { value: defautValueForm.roleId, label: defautValueForm.roleName }
+          : '',
+        isActive: {
+          value: defautValueForm.isActive,
+          label: defautValueForm.isActive ? 'Активный' : 'Неактивный',
+        },
+        password: '',
+        comment: '',
+      }}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        const formDate = objectOfFormDate(values);
-        if (id) formDate.append('id', id);
+        const data = { ...values };
+        data.jobPositionId = data.jobPositionId.value;
+        data.orgStructureId = data.orgStructureId.value;
+        data.roleId = data.roleId.value;
+        data.isActive = data.isActive.value;
+        const formDate = objectOfFormDate(data);
         dispatch(onSuccess(formDate, onClosed));
       }}
     >
@@ -122,6 +121,7 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
                     label="ФИО сотрудника"
                     placeholder="ФИО сотрудника"
                     name="fio"
+                    id="fio"
                   />
                 </Form.Group>
               </Col>
@@ -131,6 +131,7 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
                     placeholder="Должность сотрудника"
                     label="Должность сотрудника"
                     name="jobPositionId"
+                    id="jobPositionId"
                     data={optionsJobpositions}
                     isLoading={loadingJobPositions}
                     isDisabled={errorJobPositions}
@@ -181,12 +182,19 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
                     label="Логин сотрудника"
                     placeholder="Логин сотрудника"
                     name="login"
+                    id="login"
                   />
                 </Form.Group>
               </Col>
               <Col sm="6">
                 <Form.Group>
-                  <CustomField type="text" label="Пароль" placeholder="Пароль" name="password" />
+                  <CustomField
+                    type="text"
+                    label="Пароль"
+                    placeholder="Пароль"
+                    name="password"
+                    id="password"
+                  />
                 </Form.Group>
               </Col>
               <Col sm="12">
@@ -195,7 +203,8 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
                     type="text"
                     label="Адрес электронной почты"
                     placeholder="Адрес электронной почты"
-                    name="eMail"
+                    name="email"
+                    id="email"
                   />
                 </Form.Group>
               </Col>
@@ -207,6 +216,7 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
                     label="Телефон основной"
                     placeholder="Телефон основной"
                     name="phoneNumber1"
+                    id="phoneNumber1"
                   />
                 </Form.Group>
               </Col>
@@ -218,6 +228,7 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
                     label="Телефон дополнительный"
                     placeholder="Телефон дополнительный"
                     name="phoneNumber2"
+                    id="phoneNumber2"
                   />
                 </Form.Group>
               </Col>
@@ -229,6 +240,7 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
                     label="Комментарий"
                     placeholder="Комментарий"
                     name="comment"
+                    id="comment"
                   />
                 </Form.Group>
               </Col>
@@ -248,7 +260,7 @@ const EmployeeForm = ({ defautValueForm, id, onClosed, onSuccess, loading }) => 
                 <SubmitBtn
                   className="rounded"
                   isSubmitting={loading}
-                  text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
+                  text={defautValueForm?.id ? 'Изменить' : 'Добавить'}
                 />
               </Modal.Footer>
             </Form.Row>
@@ -280,7 +292,32 @@ EmployeeForm.defaultProps = {
 };
 
 EmployeeForm.propTypes = {
-  defautValueForm: PropTypes.oneOfType([PropTypes.string, PropTypes.objectOf(PropTypes.string)]),
+  defautValueForm: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      id: PropTypes.string,
+      jobPositionId: PropTypes.string,
+      jobPosition: PropTypes.string,
+      orgStructureName: PropTypes.string,
+      orgStructureId: PropTypes.string,
+      roleId: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+        PropTypes.shape({
+          value: PropTypes.number,
+          label: PropTypes.string,
+        }),
+      ]),
+      roleName: PropTypes.string,
+      fio: PropTypes.string,
+      phoneNumber1: PropTypes.string,
+      phoneNumber2: PropTypes.string,
+      email: PropTypes.string,
+      isActive: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+      login: PropTypes.string,
+      comment: PropTypes.string,
+    }),
+  ]),
   onClosed: PropTypes.func,
   onSuccess: PropTypes.func,
   loading: PropTypes.bool,

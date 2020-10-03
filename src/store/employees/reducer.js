@@ -79,7 +79,6 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         postLoading: false,
-        employees: state.employees.push(action.payload),
       };
 
     case EMPLOYE_PUT_REQUEST:
@@ -98,10 +97,6 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         putLoading: false,
-        employees: state.employees.map((item) => {
-          if (item.id !== action.payload.id) return item;
-          return action.payload;
-        }),
       };
 
     default:

@@ -24,12 +24,11 @@ const ConteinerEmployees = () => {
     ({ employees }) => employees
   );
   const [searchArray, setSearchArray] = useState([]);
-  const [id, setId] = useState(''); // id Банка
+  const [id, setId] = useState(''); // id
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
-  const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных банка
-  const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления банка
+  const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных
+  const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления
   const [defautValueForm, setDefautValueForm] = useState('');
-
   useEffect(() => {
     dispatch(getEmployees());
   }, [dispatch, searchArray]);
@@ -53,7 +52,7 @@ const ConteinerEmployees = () => {
         loading={loading}
         error={error}
         setMass={setSearchArray}
-        setBanksId={setId}
+        setId={setId}
         setShowConfirmation={setShowConfirmation}
         setShowWindowFormPut={setShowWindowFormPut}
         setDefautFormVal={setDefautValueForm}

@@ -7,14 +7,14 @@ import MaskedInput from 'react-text-mask';
 
 import inputMasksMap from '../../../utils/inputMasksMap';
 
-const CustomField = ({ name, label, type, mask, isDisabled, onFocusOut }) => (
+const CustomField = ({ name, label, type, mask, isDisabled, onFocusOut, id }) => (
   <Field name={name}>
     {({ field, meta }) => (
       <div className="custom-field">
         {mask ? (
           <MaskedInput
             type={type}
-            id={name}
+            id={id}
             className={`form-control ${field.value || field.value === 0 ? 'has-value' : ''} ${
               meta.touched && meta.error ? 'is-invalid' : ''
             }`}
@@ -35,7 +35,7 @@ const CustomField = ({ name, label, type, mask, isDisabled, onFocusOut }) => (
         ) : (
           <Form.Control
             type={type}
-            id={field.id}
+            id={id}
             className={field.value || field.value === 0 ? 'has-value' : ''}
             name={field.name}
             value={field.value}
@@ -46,7 +46,7 @@ const CustomField = ({ name, label, type, mask, isDisabled, onFocusOut }) => (
             autoComplete="off"
           />
         )}
-        <Form.Label>{label}</Form.Label>
+        <Form.Label htmlFor={id}>{label}</Form.Label>
         <Form.Control.Feedback className="invalid-tooltip" type="invalidd">
           {meta.error}
         </Form.Control.Feedback>
@@ -60,6 +60,7 @@ CustomField.defaultProps = {
   isDisabled: false,
   mask: undefined,
   onFocusOut: undefined,
+  id: '',
 };
 
 CustomField.propTypes = {
@@ -69,6 +70,7 @@ CustomField.propTypes = {
   isDisabled: PropTypes.bool,
   mask: PropTypes.string,
   onFocusOut: PropTypes.func,
+  id: PropTypes.string,
 };
 
 export default CustomField;

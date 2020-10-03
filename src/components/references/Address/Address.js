@@ -18,7 +18,7 @@ const Address = () => {
             <AddressRegions selectedArray={selectedArray} setSelectedArray={setSelectedArray} />
           </Route>
 
-          <Route path="/directory/address/regions/:parentId?/areas" exact>
+          <Route path="/directory/address/regions/:reginId?/areas" exact>
             <AddressAreas />
           </Route>
         </Switch>

@@ -10,8 +10,8 @@
     }
   }
   svg {
-    width: 15px;
-    height: 18px;
+    width: 13px;
+    height: 13px;
     fill: #202020;
   }
   .filter-list {
@@ -24,6 +24,7 @@
     border-radius: 3px;
     box-shadow: 0 1px 15px rgba(160, 118, 118, 0.425);
     ul {
+      width: 155px;
       padding: 0px;
       margin: 0;
       li {
@@ -31,6 +32,7 @@
         padding: 5px 10px;
         border-bottom: 1px solid #ddd;
         margin: 0px;
+        font-size: 13px;
         list-style: none;
         &:hover {
           background-color: #ddd;

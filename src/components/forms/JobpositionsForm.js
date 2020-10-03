@@ -38,6 +38,7 @@ const JobpositionsForm = ({ defautValueForm, onClosed, onSuccess, loading }) => 
                     placeholder="Наименнование должности"
                     label="Наименнование должности"
                     name="name"
+                    id="name"
                   />
                 </Form.Group>
               </Col>

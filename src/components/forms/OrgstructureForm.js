@@ -82,6 +82,7 @@ const OrgstructureForm = ({
                     label="Наименование орг структуры"
                     placeholder="Наименование орг структуры"
                     name="name"
+                    id="name"
                   />
                 </Form.Group>
               </Col>
@@ -119,7 +120,8 @@ const OrgstructureForm = ({
                     type="text"
                     label="Адрес электронной почты"
                     placeholder="Адрес электронной почты"
-                    name="eMail"
+                    name="email"
+                    id="email"
                   />
                 </Form.Group>
               </Col>
@@ -131,6 +133,7 @@ const OrgstructureForm = ({
                     label="Телефон основной"
                     placeholder="Телефон основной"
                     name="phoneNumber1"
+                    id="phoneNumber1"
                   />
                 </Form.Group>
               </Col>
@@ -142,6 +145,7 @@ const OrgstructureForm = ({
                     label="Телефон дополнительный"
                     placeholder="Телефон дополнительный"
                     name="phoneNumber2"
+                    id="phoneNumber2"
                   />
                 </Form.Group>
               </Col>

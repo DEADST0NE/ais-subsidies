@@ -51,17 +51,18 @@ const MaxcostsForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
                     label="Максимальная доля расходов"
                     placeholder="Максимальная доля расходов"
                     name="maxCost"
+                    id="maxCost"
                   />
                 </Form.Group>
               </Col>
               <Col sm="12">
                 <Form.Group>
-                  <DatePicker label="Дата начала" name="dateStart" />
+                  <DatePicker label="Дата начала" name="dateStart" id="dateStart" />
                 </Form.Group>
               </Col>
               <Col sm="12">
                 <Form.Group>
-                  <DatePicker label="Дата окончания" name="dateStop" />
+                  <DatePicker label="Дата окончания" name="dateStop" id="dateStop" />
                 </Form.Group>
               </Col>
               <Modal.Footer className="w-100 left-0 bottom-0 position-absolute d-flex">

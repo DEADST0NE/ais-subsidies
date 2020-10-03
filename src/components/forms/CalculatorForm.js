@@ -100,6 +100,7 @@ const CalculatorForm = () => {
                     placeholder="Количество трудоспособных"
                     label="Количество трудоспособных"
                     name="Name5"
+                    id="Name5"
                   />
                 </Form.Group>
               </Col>
@@ -111,6 +112,7 @@ const CalculatorForm = () => {
                     placeholder="Количество пенсионеров"
                     label="Количество пенсионеров"
                     name="Name6"
+                    id="Name6"
                   />
                 </Form.Group>
               </Col>
@@ -122,13 +124,20 @@ const CalculatorForm = () => {
                     placeholder="Количество детей"
                     label="Количество детей"
                     name="Name7"
+                    id="Name7"
                   />
                 </Form.Group>
               </Col>
 
               <Col sm="12">
                 <Form.Group>
-                  <CustomField type="number" placeholder="Доход" label="Доход" name="Name8" />
+                  <CustomField
+                    type="number"
+                    placeholder="Доход"
+                    label="Доход"
+                    name="Name8"
+                    id="Name8"
+                  />
                 </Form.Group>
               </Col>
             </Form.Row>

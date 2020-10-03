@@ -44,6 +44,7 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
                       label={item.name}
                       placeholder={item.name}
                       name={`livingwageGrup.${item.id}`}
+                      id={`livingwageGrup.${item.id}`}
                     />
                   </Form.Group>
                 </Col>
@@ -51,7 +52,7 @@ const LivingwageForm = ({ defautValueForm, socialGroupId, onClosed, onSuccess, l
 
               <Col sm="12">
                 <Form.Group>
-                  <DatePicker label="Дата начала" name="dateStart" />
+                  <DatePicker label="Дата начала" name="dateStart" id="dateStart" />
                 </Form.Group>
               </Col>
               <Modal.Footer className="w-100 left-0 bottom-0 position-absolute d-flex">

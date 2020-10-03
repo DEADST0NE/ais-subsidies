@@ -45,6 +45,7 @@ const BankForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
                     label="Наименование банка"
                     placeholder="Наименование банка"
                     name="name"
+                    id="name"
                   />
                 </Form.Group>
               </Col>
@@ -55,6 +56,7 @@ const BankForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
                     label="Город расположения банка"
                     placeholder="Город расположения банка"
                     name="city"
+                    id="city"
                   />
                 </Form.Group>
               </Col>
@@ -65,6 +67,7 @@ const BankForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
                     label="Адрес банка"
                     placeholder="Адрес банка"
                     name="address"
+                    id="address"
                   />
                 </Form.Group>
               </Col>
@@ -75,13 +78,14 @@ const BankForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
                     label="Корреспондентский счет"
                     placeholder="Корреспондентский счет"
                     name="ks"
+                    id="ks"
                   />
                 </Form.Group>
               </Col>
 
               <Col sm="12">
                 <Form.Group>
-                  <CustomField type="number" label="Бик" placeholder="Бик" name="bik" />
+                  <CustomField type="number" label="Бик" placeholder="Бик" name="bik" id="bik" />
                 </Form.Group>
               </Col>
 

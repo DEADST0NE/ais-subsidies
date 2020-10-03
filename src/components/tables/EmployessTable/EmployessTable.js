@@ -35,7 +35,6 @@ const EmployessTable = ({
   if (!array.length) {
     return <Alert variant="warning">Нет данных</Alert>;
   }
-
   const { orgstructures, loading: orgstLoading, error: orgstError } = useSelector(
     ({ orgstructure }) => orgstructure
   );
@@ -47,6 +46,11 @@ const EmployessTable = ({
 
   const [arrayTable, setArrayTable] = useState(array);
   const [sortName, setSortName] = useState(null);
+
+  const massFilter = orgstructures.map((item) => ({
+    value: item.name,
+  }));
+
   return (
     <div className="castom_table">
       <table className="table table-striped">
@@ -77,7 +81,7 @@ const EmployessTable = ({
             <th>
               <div className="d-flex align-items-center">
                 Огр структура
-                <FilterTable loading={orgstLoading} error={orgstError} data={orgstructures} />
+                <FilterTable loading={orgstLoading} error={orgstError} data={massFilter} />
               </div>
             </th>
             <th>
@@ -111,7 +115,7 @@ const EmployessTable = ({
               <col style={{ width: '10%' }} />
             </colgroup>
             <tbody>
-              {arrayTable.map((item, idx) => (
+              {array.map((item, idx) => (
                 <tr key={item.id} className="table-row">
                   <td className="text-center">
                     <div

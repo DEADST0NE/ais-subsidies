@@ -28,7 +28,7 @@ const Relations = () => {
     dispatch(getRelations());
   }, [dispatch, searchArray]);
 
-  const [id, setId] = useState(''); // id Банка
+  const [id, setId] = useState(''); // id
   const [showConfirmation, setShowConfirmation] = useState(false); // Подтверждение удаления
   const [showWindowFormPut, setShowWindowFormPut] = useState(false); // Изменение данных
   const [showWindowFormPost, setShowWindowFormPost] = useState(false); // Добавления

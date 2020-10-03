@@ -40,6 +40,7 @@ const RoleForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
                     placeholder="Наименование роли"
                     label="Наименование роли"
                     name="name"
+                    id="name"
                   />
                 </Form.Group>
               </Col>
@@ -50,12 +51,19 @@ const RoleForm = ({ defautValueForm, onClosed, onSuccess, loading }) => {
                     placeholder="Наименование роли на русском"
                     label="Наименование роли на русском"
                     name="nameRus"
+                    id="nameRus"
                   />
                 </Form.Group>
               </Col>
               <Col sm="12">
                 <Form.Group>
-                  <CustomField type="number" placeholder="Ранг" label="Ранг" name="rang" />
+                  <CustomField
+                    type="number"
+                    placeholder="Ранг"
+                    label="Ранг"
+                    name="rang"
+                    id="rang"
+                  />
                 </Form.Group>
               </Col>
               <Modal.Footer className="w-100 left-0 bottom-0 position-absolute d-flex">

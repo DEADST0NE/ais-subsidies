@@ -46,7 +46,7 @@ export const getEmployees = () => (dispatch) => {
     .catch((err) => dispatch(getEmployeesError(err)));
 };
 
-/* Все относится к запросу удаления банка  */
+/* Все относится к запросу удаления должности */
 const deleteEmployeeRequested = () => ({
   type: EMPLOYE_DELETE_REQUEST,
 });
@@ -61,13 +61,7 @@ const deleteEmployeeSuccess = (id) => ({
 });
 
 const deleteEmployeeRequest = async (id) => {
-  return axios
-    .delete('Directory/Employee', {
-      params: {
-        id,
-      },
-    })
-    .then((response) => response.data);
+  return axios.delete(`Directory/employee/${id}`).then((response) => response.data);
 };
 
 export const deleteEmployee = (id, onClose) => (dispatch) => {
@@ -79,7 +73,7 @@ export const deleteEmployee = (id, onClose) => (dispatch) => {
       dispatch(deleteEmployeeSuccess(id));
     })
     .catch((err) => {
-      toastMessageError(err.title);
+      toastMessageError(err.data.response);
       dispatch(deleteEmployeeError());
     });
 };
@@ -94,21 +88,21 @@ const postEmployeeError = () => ({
   type: EMPLOYE_POST_ERROR,
 });
 
-const postEmployeeSuccess = (object) => ({
+const postEmployeeSuccess = () => ({
   type: EMPLOYE_POST_SUCCESS,
-  payload: object,
 });
 
 const postEmployeeRequest = async (formDara) => {
-  return axios.post('Directory/jobpositions', formDara).then((response) => response.data);
+  return axios.post('Directory/employee', formDara).then((response) => response.data);
 };
 
 export const postEmployee = (formDara, onClose) => (dispatch) => {
   dispatch(postEmployeeRequested());
   postEmployeeRequest(formDara)
-    .then((data) => {
+    .then(() => {
+      dispatch(getEmployees());
       onClose(false);
-      postEmployeeSuccess(data);
+      dispatch(postEmployeeSuccess());
       toastMessageSuccess('Должность успешна добавлена');
     })
     .catch((err) => {
@@ -126,22 +120,22 @@ const putEmployeeError = () => ({
   type: EMPLOYE_PUT_ERROR,
 });
 
-const putEmployeeSuccess = (object) => ({
+const putEmployeeSuccess = () => ({
   type: EMPLOYE_PUT_SUCCESS,
-  payload: object,
 });
 
 const putEmployeeRequest = async (formDara) => {
-  return axios.put('Directory/jobpositions', formDara).then((response) => response.data);
+  return axios.put('Directory/employee', formDara).then((response) => response.data);
 };
 
 export const putEmployee = (formDara, onClose) => (dispatch) => {
   dispatch(putEmployeeRequested());
   putEmployeeRequest(formDara)
-    .then((data) => {
+    .then(() => {
+      dispatch(getEmployees());
       onClose(false);
-      putEmployeeSuccess(data);
-      toastMessageSuccess('Данные о банке успешно изменены');
+      dispatch(putEmployeeSuccess());
+      toastMessageSuccess('Данные о должности успешно изменены');
     })
     .catch((err) => {
       toastMessageError(err.title);

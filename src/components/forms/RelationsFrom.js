@@ -64,6 +64,7 @@ const RelationsFrom = ({ defautValueForm, onClosed, onSuccess, loading, relation
                     label="Наименование отношения"
                     placeholder="Наименование отношения"
                     name="relation.name"
+                    id="relation_name"
                   />
                 </Form.Group>
               </Col>

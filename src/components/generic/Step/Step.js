@@ -45,11 +45,7 @@ const Step = withRouter(({ location, selectedArray }) => {
   };
   return (
     <div>
-      <Redirect
-        from="/directory/address"
-        to="/directory/address/regions/areas/city/streets/house"
-        exact
-      />
+      <Redirect from="/directory/address" to="/directory/address/regions" exact />
       <ul className="steps">
         {array.map((item, idx) => (
           <li
