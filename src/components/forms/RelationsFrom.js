@@ -109,7 +109,7 @@ const RelationsFrom = ({ defautValueForm, onClosed, onSuccess, loading, relation
                 <SubmitBtn
                   className="rounded"
                   isSubmitting={loading}
-                  text={defautValueForm?.name ? 'Изменить' : 'Добавить'}
+                  text={defautValueForm?.relation.name ? 'Изменить' : 'Добавить'}
                 />
               </Modal.Footer>
             </Form.Row>

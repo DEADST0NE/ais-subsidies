@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Scrollbars from 'react-custom-scrollbars';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 import Icon from '../Icon';
@@ -12,7 +15,7 @@ import './FilterTable.scss';
 
 const FilterTable = ({ array, option, loading, error, setMass, name, lastArray }) => {
   const [show, setShow] = useState(false);
-  const [cheked, setCheked] = useState('');
+  const [cheked, setCheked] = useState([]);
   return (
     <div className="filter-table">
       {cheked ? (
@@ -28,7 +31,7 @@ const FilterTable = ({ array, option, loading, error, setMass, name, lastArray }
         </button>
       ) : (
         <button type="button" className="btn p-0" onClick={() => setShow(!show)}>
-          <Icon name="filter" />
+          <Icon name="outline-filter" />
         </button>
       )}
       <div className="filter-list-wraper">
@@ -63,26 +66,45 @@ const ListFilterTable = ({
 }) => {
   if (loading) return <LoadingIndicator />;
   if (error) return <Icon name="error" />;
-
   return (
-    <div className={`filter-list ${show ? 'active' : ''}`}>
-      <Scrollbars hideTracksWhenNotNeeded autoHeight>
-        {option.map((item) => (
-          <button
-            type="button"
-            key={item.value}
-            className={`btn ${cheked === item.value ? 'selected' : ''}`}
-            onClick={() => {
-              setMass(array.filter((el) => el[name] === item.value));
-              setShow(false);
-              setCheked(item.value);
-            }}
-          >
-            {item.value}
-          </button>
-        ))}
-      </Scrollbars>
-    </div>
+    <Modal
+      show={show}
+      onHide={() => {
+        setShow(false);
+      }}
+      className="filter-modal-window"
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>Фильтр</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Scrollbars hideTracksWhenNotNeeded autoHeight>
+          {option.map((item) => (
+            <div key={item.value} className="filter-input-group">
+              <input
+                id={item.value}
+                type="checkbox"
+                onClick={(e) => {
+                  console.log(e);
+                  setMass(array.filter((el) => el[name] === item.value));
+                  setCheked([[...cheked], item.value]);
+                }}
+              />
+              <label htmlFor={item.value}>{item.value}</label>
+            </div>
+          ))}
+        </Scrollbars>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          onClick={() => {
+            setShow(false);
+          }}
+        >
+          Закрыть
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
 

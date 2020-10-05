@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Scrollbars from 'react-custom-scrollbars';
 import Alert from 'react-bootstrap/Alert';
@@ -38,10 +38,10 @@ const EmployessTable = ({
 
   const [sortName, setSortName] = useState(null);
 
-  const massFilter = array
+  const massFilter = lastArray
     .filter(
-      (item, pos, array) =>
-        array.map((mapItem) => mapItem.orgStructureName).indexOf(item.orgStructureName) === pos
+      (item, pos, lastArray) =>
+        lastArray.map((mapItem) => mapItem.orgStructureName).indexOf(item.orgStructureName) === pos
     )
     .map((item) => ({ value: item.orgStructureName }));
 
